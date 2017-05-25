@@ -1,91 +1,104 @@
 package biblioteca;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
 
 /**
  * 
  * @author aline.correa
- * 
- * @Invocação
- * 1 - Livro(String titulo, Autor autor, Categoria categoria,int quantidadeDePaginas);
- * 
- * @MétodosPúblicos
- * +getCodigoSequencial();<br>
- * +getCodigoDeBarras();<br>
- * +setTitulo(String titulo);<br>
- * +getTitulo();<br>
- * +setResumo(String resumo);<br>
- * +getResumo();<br>
- * +setQuantidadeDePaginas(int quantidadeDePaginas);<br>
- * +getQuantidadeDePaginas();<br>
- * +getAutor();<br>
- * +setCategoria(Categoria categoria);<br>
- * +getCategoria();<br>
- * 
- * @Atributos
- * -codigoSequencial;<br>
- * -titulo;<br>
- * -resumo;<br>
- * -codigoDeBarras;<br>
- * -quantidadeDePaginas;<br>
- * -local;<br>
- * -dataDeAquisicao;<br>
- * -categoria(Categoria);<br>
- * -autor(Autor);<br>
- * 
- * @MétodosPrivados
- * +setCodigoSequencial();<br>
- * +setCodigoDeBarras();<br>
+ *
  */
-public class Livro implements ItemDaBiblioteca{
-	private long codigoSequencial; // Gerado automaticamente
+import java.util.Date;
+
+public class Livro implements LivroAcessivel, Comparable<Livro> {
+	private long codigoSequencial;
 	private String titulo;
 	private String resumo;
-	private long codigoDeBarras; 	// Gerado auomaticamente
+	private long codigoDeBarras;
 	private int quantidadeDePaginas;
-	private String local; 			// na biblioteca. Ex.: Prateleira b3
-	private Date dataDeAquisicao; 	// Usuario insere
-	private Categoria categoria;
+	private String local;
+	private Date dataDeAquisicao;
 	private Autor autor;
-	
-	public Livro(String titulo,int quantidadeDePaginas){
-		this.setTitulo(titulo);
-		this.setQuantidadeDePaginas(quantidadeDePaginas);
-		this.setCodigoSequencial();
+	private Categoria categoria;
+
+	// Construtores
+
+	// Métodos da classe
+
+	@Override
+	public int compareTo(Livro o) {
+
+		if (this.titulo != null) {
+
+			int comparacao = this.titulo.compareTo(o.getTitulo());
+
+			if (comparacao != 0) {
+				return comparacao;
+			}
+		}
+
+		if (this.resumo != null) {
+
+			int comparacaoResumo = this.resumo.compareTo(o.getResumo());
+
+			if (comparacaoResumo != 0) {
+				return comparacaoResumo;
+			}
+		}
+
+		return 0;
 	}
-	
-	public Livro(String titulo, Autor autor, Categoria categoria,int quantidadeDePaginas){
-		this.setTitulo(titulo);
-		this.setAutor(autor);
-		this.setCategoria(categoria);
-		this.setQuantidadeDePaginas(quantidadeDePaginas);
-		this.setCodigoSequencial();
+
+	@Override
+	public String toString() {
+		return "Livro: " + codigoSequencial + " - '" + titulo + "', Local: " + local + ", Autor: " + autor.getNome()
+				+ ", " + categoria + ", Data de aquisição: " + dataDeAquisicao + ",[ Código de barras: "
+				+ codigoDeBarras + "].";
 	}
-	
+
+	// titulo e codSequencial
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (codigoSequencial ^ (codigoSequencial >>> 32));
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Livro other = (Livro) obj;
+		if (codigoSequencial != other.codigoSequencial)
+			return false;
+		if (titulo == null) {
+			if (other.titulo != null)
+				return false;
+		} else if (!titulo.equals(other.titulo))
+			return false;
+		return true;
+	}
+
+	// Getters e Setters
+	public void setCodigoSequencial() {
+		// TODO tem que implementar a criacao do codSequencial
+		long codigoSequencial = 000;
+		this.codigoSequencial = codigoSequencial;
+	}
+
 	public long getCodigoSequencial() {
 		return this.codigoSequencial;
 	}
 
-	private void setCodigoSequencial() {
-		this.codigoSequencial = this.hashCode();
-	}
-
-	public long getCodigoDeBarras() {
-		return this.codigoDeBarras;
-	}
-
-	private void setCodigoDeBarras() {
-		this.codigoDeBarras = this.hashCode();
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getTitulo() {
 		return this.titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
 	}
 
 	public String getResumo() {
@@ -96,48 +109,59 @@ public class Livro implements ItemDaBiblioteca{
 		this.resumo = resumo;
 	}
 
-	public int getQuantidadeDePaginas() {
-		return this.quantidadeDePaginas;
+	public void setCodigoDeBarras() {
+		// TODO tem que implementar a criacao do codDeBarras
+		long codigoDeBarras = 000;
+		this.codigoDeBarras = codigoDeBarras;
+	}
+
+	public long getCodigoDeBarras() {
+		return this.codigoDeBarras;
 	}
 
 	public void setQuantidadeDePaginas(int quantidadeDePaginas) {
 		this.quantidadeDePaginas = quantidadeDePaginas;
 	}
 
-	public String getLocal() {
-		return this.local;
+	public int getQuantidadeDePaginas() {
+		return this.quantidadeDePaginas;
 	}
 
 	public void setLocal(String local) {
 		this.local = local;
 	}
 
-	public Date getDataDeAquisicao() {
-		return this.dataDeAquisicao;
+	public String getLocal() {
+		return this.local;
 	}
 
 	public void setDataDeAquisicao(Date dataDeAquisicao) {
+		// TODO tem que implementar a inserção da data de aquisicao
 		this.dataDeAquisicao = dataDeAquisicao;
 	}
 
-	public Categoria getCategoria() {
-		return this.categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-	public Autor getAutor() {
-		return this.autor;
+	public Date getDataDeAquisicao() {
+		return this.dataDeAquisicao;
 	}
 
 	public void setAutor(Autor autor) {
 		this.autor = autor;
 	}
 
-	public void buscar(Object object){
-		
+	public String getAutor() {
+		Autor autorDesseLivro = this.autor;
+		String nomeDoAutorDesseLivro = autorDesseLivro.getNome();
+		return nomeDoAutorDesseLivro;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getCategoria() {
+		Categoria categoriaDesseLivro = this.categoria;
+		String descricaoCategoriaDesseLivro = categoriaDesseLivro.getDescricao();
+		return descricaoCategoriaDesseLivro;
 	}
 
 }

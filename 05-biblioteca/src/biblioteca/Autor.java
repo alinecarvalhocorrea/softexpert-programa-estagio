@@ -1,65 +1,38 @@
 package biblioteca;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
 
 /**
  * 
  * @author aline.correa
- *
- *@Invocação
- * 1 - Autor(String nome, String nacionalidade,Date dataDeNascimento);<br>
- * 2 - Autor(String nome, String nacionalidade);<br>
- * 3 - Autor(String nome);<br>
- * 
- *@MétodosPublicos
- *+getCodigoSequencial();<br>
- *+setNome(String nome);<br>
- *+getNome();<br>
- *+setDataDeNascimento(Date dataDeNascimento);<br>
- *+getDataDeNascimento();<br>
- *+setNacionalidade(String nacionalidade);<br>
- *+getNacionalidade();<br>
- *
- *@Atributos
- *-codigoSequencial;<br>
- *-nome;<br>
- *-dataDeNascimento;<br>
- *-nacionalidade;<br>
- *
- *@MétodosPrivados
- *+setCodigoSequencial();<br>
- *
  */
-public class Autor implements ItemDaBiblioteca {
-	private long codigoSequencial; // Gerado automaticamente
+import java.util.Date;
+
+public class Autor implements AutorAcessivel {
+	private long codigoSequencial;
 	private String nome;
-	private Date dataDeNascimento;
 	private String nacionalidade;
-	
-	
-	public Autor(String nome, String nacionalidade,Date dataDeNascimento){
-		this.setNome(nome);
-		this.setNacionalidade(nacionalidade);
-		this.setDataDeNascimento(dataDeNascimento);
-		this.setCodigoSequencial();
-	}
-	public Autor(String nome, String nacionalidade){
-		this.setNome(nome);
-		this.setNacionalidade(nacionalidade);
-		this.setCodigoSequencial();
-	}
-	public Autor(String nome){
-		this.setNome(nome);
-		this.setCodigoSequencial();
-	}
-	
-	public long getCodigoSequencial() {
-		return codigoSequencial;
+	private Date dataDeNascimento;
+
+	// Construtores
+	public Autor(String nome, String nacionalidade) {
+		setNome(nome);
+		setNacionalidade(nacionalidade);
 	}
 
-	private void setCodigoSequencial() {
-		this.codigoSequencial = this.hashCode();
+	// Métodos da classe
+	@Override
+	public String toString() {
+		return "Autor [codigoSequencial=" + codigoSequencial + ", nome=" + nome + "]";
+	}
+
+	// Getters e Setters
+	public long getCodigoSequencial() {
+		return this.codigoSequencial;
+	}
+
+	public void setCodigoSequencial() {
+		// TODO Autor: tem que implementar a criacao do codSequencial
+		long codigoSequencial = 000;
+		this.codigoSequencial = codigoSequencial;
 	}
 
 	public String getNome() {
@@ -70,14 +43,6 @@ public class Autor implements ItemDaBiblioteca {
 		this.nome = nome;
 	}
 
-	public Date getDataDeNascimento() {
-		return this.dataDeNascimento;
-	}
-
-	public void setDataDeNascimento(Date dataDeNascimento) {
-		this.dataDeNascimento = dataDeNascimento;
-	}
-
 	public String getNacionalidade() {
 		return this.nacionalidade;
 	}
@@ -85,16 +50,14 @@ public class Autor implements ItemDaBiblioteca {
 	public void setNacionalidade(String nacionalidade) {
 		this.nacionalidade = nacionalidade;
 	}
-	public void listarAutores(Collection<Autor> colecao){
-		Iterator<Autor> i = colecao.iterator();
-		while (i.hasNext()) {
-		// recebe o próximo objeto
-		Autor palavra = i.next();
-		System.out.println(palavra.getNome());
-		}
+
+	public Date getDataDeNascimento() {
+		return this.dataDeNascimento;
 	}
-	public void buscar(Object object) {
-		// 
-		
+
+	public void setDataDeNascimento(Date dataDeNascimento) {
+		// TODO Autor: tem que implementar a inserção da dataDeNascimento
+		this.dataDeNascimento = dataDeNascimento;
 	}
+
 }

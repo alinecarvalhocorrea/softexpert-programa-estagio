@@ -1,52 +1,44 @@
 package biblioteca;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-
 /**
  * 
  * @author aline.correa
- * 
- * @Invocação
- * Categoria(String descricao);
- * 
- * @MétodosPúblicos
- * +getCodigoSequencial();<br>
- * +getDescricao();<br>
- * +setDescricao(String descricao);<br>
- * 
- * @Atributos
- * - codigoSequencial;<br>
- * - descricao;
- * 
- * @MétodosPrivados
- * +setCodigoSequencial();<br>
- * 
- *Criar Mapa entre (Categoria, Livro)
+ *
  */
-public class Categoria {
-	private long codigoSequencial;	//Gerado automaticamente
+
+public class Categoria implements CategoriaAcessivel {
+	private long codigoSequencial;
 	private String descricao;
-	
-	public Categoria(String descricao){
-		this.setDescricao(descricao);
-		this.setCodigoSequencial();
+
+	//Construtores
+	public Categoria(String descricao) {
+		setDescricao(descricao);
 	}
 	
+	//Métodos da classe
+	
+	@Override
+	public String toString() {
+		return "Categoria: " + descricao;
+	}
+	
+	//Getters e Setters
+	public void setCodigoSequencial() {
+		//TODO Categoria: tem que implementar a criacao do codSequencial
+		long codigoSequencial = 000;
+		this.codigoSequencial = codigoSequencial;
+	}
+
 	public long getCodigoSequencial() {
 		return this.codigoSequencial;
 	}
-
-	private void setCodigoSequencial() {
-		this.codigoSequencial = this.hashCode();
+	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-
+	
 	public String getDescricao() {
 		return this.descricao;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
 }
