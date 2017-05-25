@@ -26,7 +26,6 @@ public class Livro implements LivroAcessivel, Comparable<Livro> {
 	public int compareTo(Livro o) {
 
 		if (this.titulo != null) {
-
 			int comparacao = this.titulo.compareTo(o.getTitulo());
 
 			if (comparacao != 0) {
@@ -35,7 +34,6 @@ public class Livro implements LivroAcessivel, Comparable<Livro> {
 		}
 
 		if (this.resumo != null) {
-
 			int comparacaoResumo = this.resumo.compareTo(o.getResumo());
 
 			if (comparacaoResumo != 0) {
