@@ -11,8 +11,8 @@ public interface Livros extends AcoesEmMemoria<Livro> {
 	
 	List<Livro> buscarPorTitulo(String titulo);
 
-	Livro buscarPorCodigoSequencial(long codigoSequencial);
+	Livro buscarPorCodigoSequencial(String codigoSequencial);
 
-	Livro buscarPorCodigoDeBarras(long codigoDeBarras);
+	Livro buscarPorCodigoDeBarras(String codigoDeBarras);
 
 }

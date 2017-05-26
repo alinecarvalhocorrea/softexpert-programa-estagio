@@ -6,8 +6,8 @@ package biblioteca;
  *
  */
 
-public class Categoria implements CategoriaAcessivel {
-	private long codigoSequencial;
+public class Categoria implements ItemBiblioteca {
+	private int codigoSequencial;
 	private String descricao;
 
 	//Construtores
@@ -25,15 +25,17 @@ public class Categoria implements CategoriaAcessivel {
 	//Getters e Setters
 	public void setCodigoSequencial() {
 		//TODO Categoria: tem que implementar a criacao do codSequencial
-		long codigoSequencial = 000;
+		
+		int codigoSequencial = 000;
 		this.codigoSequencial = codigoSequencial;
 	}
 
-	public long getCodigoSequencial() {
+	public int getCodigoSequencial() {
 		return this.codigoSequencial;
 	}
 	
 	public void setDescricao(String descricao) {
+		descricao = descricao.toUpperCase();
 		this.descricao = descricao;
 	}
 	

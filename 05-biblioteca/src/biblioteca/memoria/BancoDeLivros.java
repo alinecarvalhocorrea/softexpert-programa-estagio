@@ -17,8 +17,7 @@ public class BancoDeLivros implements Livros {
 	private static Set<Livro> banco = new TreeSet<>();
 
 	public void adicionar(Livro livro) {
-
-		// TODO tem que colocar mais validações para adição de livros
+		// TODO BancoLivros: tem que colocar mais validações para adição de livros
 		if (livro.getTitulo() == null) {
 			throw new NullPointerException("O livro está sem titulo, favor colocar");
 		}
@@ -40,8 +39,6 @@ public class BancoDeLivros implements Livros {
 
 	@Override
 	public List<Livro> buscarPorTitulo(String titulo) {
-		// TODO tem que implementar busca por titulo
-
 		List<Livro> livrosEncontrados = new ArrayList<>();
 
 		for (Livro livro : banco) {
@@ -58,10 +55,10 @@ public class BancoDeLivros implements Livros {
 	}
 
 	@Override
-	public Livro buscarPorCodigoSequencial(long codigoSequencial) {
+	public Livro buscarPorCodigoSequencial(String codigoSequencial) {
 		for (Livro livro : banco) {
-			long codigoLivro = livro.getCodigoSequencial();
-			if (codigoLivro == codigoSequencial) {
+			String codigoLivro = livro.getCodigoSequencial();
+			if (codigoLivro.equals(codigoSequencial)) {
 				return livro;
 			}
 		}
@@ -69,8 +66,8 @@ public class BancoDeLivros implements Livros {
 	}
 
 	@Override
-	public Livro buscarPorCodigoDeBarras(long codigoDeBarras) {
-		// TODO tem que implementar busca por codDeBarras
+	public Livro buscarPorCodigoDeBarras(String codigoDeBarras) {
+		// TODO Livro: tem que implementar busca por codDeBarras
 		return null;
 	}
 

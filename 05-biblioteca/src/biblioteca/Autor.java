@@ -6,8 +6,8 @@ package biblioteca;
  */
 import java.util.Date;
 
-public class Autor implements AutorAcessivel {
-	private long codigoSequencial;
+public class Autor implements ItemBiblioteca{
+	private int codigoSequencial;
 	private String nome;
 	private String nacionalidade;
 	private Date dataDeNascimento;
@@ -25,13 +25,13 @@ public class Autor implements AutorAcessivel {
 	}
 
 	// Getters e Setters
-	public long getCodigoSequencial() {
+	public int getCodigoSequencial() {
 		return this.codigoSequencial;
 	}
 
 	public void setCodigoSequencial() {
 		// TODO Autor: tem que implementar a criacao do codSequencial
-		long codigoSequencial = 000;
+		int codigoSequencial = 000;
 		this.codigoSequencial = codigoSequencial;
 	}
 
