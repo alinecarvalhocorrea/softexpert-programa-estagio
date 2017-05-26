@@ -5,9 +5,10 @@ package biblioteca;
  * @author aline.correa
  */
 import java.util.Date;
+import java.util.UUID;
 
-public class Autor implements ItemBiblioteca{
-	private int codigoSequencial;
+public class Autor implements ItemBiblioteca {
+	private String codigoSequencial;
 	private String nome;
 	private String nacionalidade;
 	private Date dataDeNascimento;
@@ -25,14 +26,13 @@ public class Autor implements ItemBiblioteca{
 	}
 
 	// Getters e Setters
-	public int getCodigoSequencial() {
+	public String getCodigoSequencial() {
 		return this.codigoSequencial;
 	}
 
 	public void setCodigoSequencial() {
-		// TODO Autor: tem que implementar a criacao do codSequencial
-		int codigoSequencial = 000;
-		this.codigoSequencial = codigoSequencial;
+		UUID idOne = UUID.randomUUID();
+		this.codigoSequencial = idOne.toString().replaceAll("-", "");
 	}
 
 	public String getNome() {

@@ -78,29 +78,34 @@ public class TestaBancoDeLivros {
 
 		Set<Livro> listaDeLivros = bl.listar();
 
+		System.out.println("\n");
 		for (Livro livro : listaDeLivros) {
 			System.out.println(livro);
 		}
 
 		bl.excluir(b);
 
-		System.out.println("\nResultado pesquisa por título:");
-		String entradaPesquisaDeTituloUsuario = "testa"; // Vem do usuario
-		Collection<Livro> retornoTestePesquisaTitulo = bl.buscarPorTitulo(entradaPesquisaDeTituloUsuario);
-		if (!retornoTestePesquisaTitulo.isEmpty()) {
-			System.out.println("Livro(s) Encontrado(s):");
-			for (Livro livro : retornoTestePesquisaTitulo) {
-				System.out.println(livro);
-			}
-		} else {
-			System.out.println("Não foram encontrados livros");
-		}
-			
 		System.out.println("\nResultado pesquisa por código sequencial:");
-		// para buscar por codigo valido: retornoTestePesquisaTitulo.iterator().next().getCodigoSequencial());
-		Livro test = bl.buscarPorCodigoSequencial("gjgyututuyuy"); 
+		// para buscar por codigo valido:
+		// retornoTestePesquisaTitulo.iterator().next().getCodigoSequencial());
+		Livro test = bl.buscarPorCodigoSequencial("gjgyututuyuy"); // Vem do
+																	// usuario
 		System.out.println("#####" + test);
 
+		System.out.println("\nResultado pesquisa por título:");
+		String entradaPesquisaDeTituloUsuario = " " + "A"; // Vem do usuario
+		Collection<Livro> retornoTestePesquisaTitulo = bl.buscarPorTitulo(entradaPesquisaDeTituloUsuario);
+		for (Livro livro : retornoTestePesquisaTitulo) {
+			System.out.println(livro);
+		}
+
+		System.out.println("\nResultado pesquisa por código sequencial:");
+		// para buscar por codigo valido:
+		// retornoTestePesquisaTitulo.iterator().next().getCodigoSequencial());
+		Livro test1 = bl.buscarPorCodigoDeBarras(retornoTestePesquisaTitulo.iterator().next().getCodigoDeBarras()); // Vem
+																													// do
+																													// usuario
+		System.out.println("#####" + test1);
 	}
 
 	private static boolean adicionar(Livros banco, Livro livro) {

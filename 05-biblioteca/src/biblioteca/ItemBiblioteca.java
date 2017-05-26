@@ -8,7 +8,7 @@ package biblioteca;
 
 public interface ItemBiblioteca {
 
-	public int getCodigoSequencial();
+	public String getCodigoSequencial();
 
 	public void setCodigoSequencial();
 }

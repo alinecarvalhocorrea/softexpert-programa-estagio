@@ -1,5 +1,7 @@
 package biblioteca;
 
+import java.util.UUID;
+
 /**
  * 
  * @author aline.correa
@@ -7,38 +9,36 @@ package biblioteca;
  */
 
 public class Categoria implements ItemBiblioteca {
-	private int codigoSequencial;
+	private String codigoSequencial;
 	private String descricao;
 
-	//Construtores
+	// Construtores
 	public Categoria(String descricao) {
 		setDescricao(descricao);
 	}
-	
-	//Métodos da classe
-	
+
+	// Métodos da classe
+
 	@Override
 	public String toString() {
 		return "Categoria: " + descricao;
 	}
-	
-	//Getters e Setters
+
+	// Getters e Setters
 	public void setCodigoSequencial() {
-		//TODO Categoria: tem que implementar a criacao do codSequencial
-		
-		int codigoSequencial = 000;
-		this.codigoSequencial = codigoSequencial;
+		UUID idOne = UUID.randomUUID();
+		this.codigoSequencial = idOne.toString().replaceAll("-", "");
 	}
 
-	public int getCodigoSequencial() {
+	public String getCodigoSequencial() {
 		return this.codigoSequencial;
 	}
-	
+
 	public void setDescricao(String descricao) {
 		descricao = descricao.toUpperCase();
 		this.descricao = descricao;
 	}
-	
+
 	public String getDescricao() {
 		return this.descricao;
 	}

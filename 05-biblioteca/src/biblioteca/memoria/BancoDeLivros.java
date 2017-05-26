@@ -39,13 +39,21 @@ public class BancoDeLivros implements Livros {
 
 	@Override
 	public List<Livro> buscarPorTitulo(String titulo) {
+		// TODO BancoLivros: alterar estrutura de pesquisa por titulo de livro
 		List<Livro> livrosEncontrados = new ArrayList<>();
-
-		for (Livro livro : banco) {
-			String livroTitulo = livro.getTitulo();
-
-			if (livroTitulo.toLowerCase().contains(titulo.toLowerCase())) {
-				livrosEncontrados.add(livro);
+		titulo = titulo.toUpperCase();
+		String[] tituloArray = titulo.split(" ");
+		for (int contador = 0; contador < tituloArray.length; contador++) {
+			for (Livro livro : banco) {
+				String livroTitulo = livro.getTitulo();
+				String tituloArraySistema[] = livroTitulo.split(" ");
+				int i = 0;
+				while (i < tituloArraySistema.length) {
+					if (tituloArraySistema[i].contains(tituloArray[contador])) {
+						livrosEncontrados.add(livro);
+					}
+					i++;
+				}
 			}
 		}
 		if (!livrosEncontrados.isEmpty()) {
@@ -67,7 +75,12 @@ public class BancoDeLivros implements Livros {
 
 	@Override
 	public Livro buscarPorCodigoDeBarras(String codigoDeBarras) {
-		// TODO Livro: tem que implementar busca por codDeBarras
+		for (Livro livro : banco) {
+			String codigoLivro = livro.getCodigoDeBarras();
+			if (codigoLivro.equals(codigoDeBarras)) {
+				return livro;
+			}
+		}
 		return null;
 	}
 
