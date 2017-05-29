@@ -1,10 +1,5 @@
 package biblioteca;
 
-/**
- * 
- * @author aline.correa
- *
- */
 import java.util.Set;
 
 public interface AcoesEmMemoria<T> {

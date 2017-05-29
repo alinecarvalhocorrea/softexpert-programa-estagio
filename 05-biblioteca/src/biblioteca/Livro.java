@@ -34,7 +34,8 @@ public class Livro implements Comparable<Livro> {
 	}
 
 	// Métodos da classe
-	// titulo e codSequencial
+	
+	// CompareTO : titulo e codSequencial
 	@Override
 	public int compareTo(Livro outroLivro) {
 
@@ -59,8 +60,8 @@ public class Livro implements Comparable<Livro> {
 
 	@Override
 	public String toString() {
-		return "Livro " + digitoVerificador + ": " + codigoSequencial + " - '" + titulo + "', Local: " + local
-				+ ", Autor: " + autor.getNome() + ", " + categoria + ", Data de aquisição: " + dataDeAquisicao
+		return "Livro: " + codigoSequencial + " - '" + titulo + "', Local: " + local
+				+ ", Autor: " + autor.getNome() + ", Categoria: " + categoria + ", Data de aquisição: " + dataDeAquisicao
 				+ ",[ Código de barras: " + codigoDeBarras + "].";
 	}
 
@@ -128,7 +129,7 @@ public class Livro implements Comparable<Livro> {
 		String codigoSequencial = this.getCodigoSequencial();
 		int digitoVerificador = this.getDigitoVerificador();
 
-		// TODO CodSequencial Livro: retirar/usar apenas 3 numeros para utilizar no codDeBarras
+		// TODO Livro: tem que retirar/usar apenas 3 numeros do CodSequencial para utilizar no codDeBarras
 		String stringCodigoDeBarras = "" + prefixoDoPaisDeRegistroDaEmpresa + identificadorDaEmpresa + ">>>>"
 				+ codigoSequencial + "<<<<" + digitoVerificador;
 		this.codigoDeBarras = stringCodigoDeBarras;
@@ -157,7 +158,7 @@ public class Livro implements Comparable<Livro> {
 	}
 
 	public void setDataDeAquisicao(Date dataDeAquisicao) {
-		// TODO Livro: tem que implementar a inserção da data de aquisicao
+		// TODO Livro: TEM que implementar a inserção da data de aquisicao
 		this.dataDeAquisicao = dataDeAquisicao;
 	}
 

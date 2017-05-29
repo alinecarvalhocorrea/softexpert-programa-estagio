@@ -11,17 +11,19 @@ import java.util.UUID;
 public class Categoria implements ItemBiblioteca {
 	private String codigoSequencial;
 	private String descricao;
-
+	
 	// Construtores
 	public Categoria(String descricao) {
 		setDescricao(descricao);
+		setCodigoSequencial();
+		
 	}
 
 	// Métodos da classe
 
 	@Override
 	public String toString() {
-		return "Categoria: " + descricao;
+		return descricao;
 	}
 
 	// Getters e Setters

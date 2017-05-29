@@ -15,4 +15,6 @@ public interface Autores extends AcoesEmMemoria<Autor> {
 	Set<Autor> buscarPorNacionalidade(String nacionalidade);
 
 	Set<Autor> buscarPorDataDeNascimento(Date dataDeNascimento);
+	
+	Autor buscarPorCodigoSequencial(String codigoSequencial);
 }

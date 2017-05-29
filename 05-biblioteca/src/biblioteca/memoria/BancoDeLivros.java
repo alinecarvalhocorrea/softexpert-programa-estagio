@@ -1,5 +1,7 @@
 package biblioteca.memoria;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 
  * @author aline.correa
@@ -7,8 +9,6 @@ package biblioteca.memoria;
  */
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.ArrayList;
-import java.util.List;
 import biblioteca.Livro;
 import biblioteca.Livros;
 
@@ -17,11 +17,18 @@ public class BancoDeLivros implements Livros {
 	private static Set<Livro> banco = new TreeSet<>();
 
 	public void adicionar(Livro livro) {
-		// TODO BancoLivros: tem que colocar mais validações para adição de livros
-		if (livro.getTitulo() == null) {
+		// TODO BancoLivros: pensar em mais validações para adição de livros
+		/*if (livro.getTitulo() == null) {
 			throw new NullPointerException("O livro está sem titulo, favor colocar");
 		}
+		if (livro.getAutor() == null) {
+			throw new NullPointerException("O livro está sem autor, favor colocar");
+		}
+		if (livro.getCategoria() == null) {
+			throw new NullPointerException("O livro está sem categoria, favor colocar");
+		}*/
 		banco.add(livro);
+
 	}
 
 	public void excluir(Livro livro) {
@@ -29,6 +36,7 @@ public class BancoDeLivros implements Livros {
 	}
 
 	public void editar(Livro livroParaEditar) {
+		// TODO BancoLivros: PENSAR forma de enviar livro para edição
 		excluir(livroParaEditar);
 		adicionar(livroParaEditar);
 	}
@@ -39,7 +47,8 @@ public class BancoDeLivros implements Livros {
 
 	@Override
 	public List<Livro> buscarPorTitulo(String titulo) {
-		// TODO BancoLivros: alterar estrutura de pesquisa por titulo de livro
+		// TODO BancoLivros: TEM que alterar estrutura de pesquisa por titulo de livro
+		// TODO BancoLivros : pesquisar e implementar forma de pesquisa ignorando acentos
 		List<Livro> livrosEncontrados = new ArrayList<>();
 		titulo = titulo.toUpperCase();
 		String[] tituloArray = titulo.split(" ");
@@ -82,6 +91,20 @@ public class BancoDeLivros implements Livros {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public List<Livro> buscarPorCategoria(String descricaoCategoria) {
+		// TODO BancoLivros : pesquisar e implementar forma de pesquisa ignorando acentos
+		descricaoCategoria = descricaoCategoria.toUpperCase();
+		List<Livro> livrosEncontrados = new ArrayList<>();
+		for (Livro livro : banco) {
+			String descricaoLivro = livro.getCategoria();
+			if (descricaoLivro.equals(descricaoCategoria)) {
+				livrosEncontrados.add(livro);
+			}
+		}
+		return livrosEncontrados;
 	}
 
 }
