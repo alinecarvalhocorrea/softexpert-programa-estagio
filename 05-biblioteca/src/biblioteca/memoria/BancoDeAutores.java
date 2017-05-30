@@ -35,8 +35,6 @@ public class BancoDeAutores implements Autores {
 	public void editar(Autor autorParaEditar) {
 		// TODO BancoLivros: PENSAR forma de enviar autor para edição
 		excluir(autorParaEditar);
-		adicionar(autorParaEditar);
-
 	}
 
 	@Override

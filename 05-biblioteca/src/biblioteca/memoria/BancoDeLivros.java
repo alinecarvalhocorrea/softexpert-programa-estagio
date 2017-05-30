@@ -46,12 +46,13 @@ public class BancoDeLivros implements Livros {
 	}
 
 	@Override
-	public List<Livro> buscarPorTitulo(String titulo) {
+	public Set<Livro> buscarPorTitulo(String titulo) {
 		// TODO BancoLivros: TEM que alterar estrutura de pesquisa por titulo de livro
 		// TODO BancoLivros : pesquisar e implementar forma de pesquisa ignorando acentos
-		List<Livro> livrosEncontrados = new ArrayList<>();
+		Set<Livro> livrosEncontrados = new TreeSet<>();
 		titulo = titulo.toUpperCase();
 		String[] tituloArray = titulo.split(" ");
+		
 		for (int contador = 0; contador < tituloArray.length; contador++) {
 			for (Livro livro : banco) {
 				String livroTitulo = livro.getTitulo();
@@ -100,11 +101,28 @@ public class BancoDeLivros implements Livros {
 		List<Livro> livrosEncontrados = new ArrayList<>();
 		for (Livro livro : banco) {
 			String descricaoLivro = livro.getCategoria();
+			descricaoLivro = descricaoLivro.toUpperCase();
 			if (descricaoLivro.equals(descricaoCategoria)) {
 				livrosEncontrados.add(livro);
 			}
 		}
 		return livrosEncontrados;
+	}
+	
+	@Override
+	public List<Livro> buscarPorAutor(String nomeAutor) {
+		// TODO BancoLivros : verificar pesquisa de livros por autor
+		nomeAutor = nomeAutor.toUpperCase();
+		List<Livro> livrosEncontrados = new ArrayList<>();
+		for (Livro livro : banco) {
+			String nomeAutorLivro = livro.getAutor();
+			nomeAutorLivro = nomeAutorLivro.toUpperCase();
+			if (nomeAutorLivro.contains(nomeAutor)) {
+				livrosEncontrados.add(livro);
+			}
+		}
+		return livrosEncontrados;
+		
 	}
 
 }

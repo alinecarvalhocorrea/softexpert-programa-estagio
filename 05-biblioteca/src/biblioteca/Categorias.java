@@ -1,5 +1,7 @@
 package biblioteca;
 
+import java.util.Set;
+
 /**
  * 
  * @author aline.correa
@@ -7,7 +9,7 @@ package biblioteca;
  */
 public interface Categorias extends AcoesEmMemoria<Categoria> {
 
-	Categoria buscarCategoriaPorDescricao(String descricao); // Map(descricao,Livro livro); get(descricao);
+	Set<Categoria> buscarCategoriaPorDescricao(String descricao);
 
 	Categoria buscarPorCodigoSequencial(String codigoSequencial);
 }

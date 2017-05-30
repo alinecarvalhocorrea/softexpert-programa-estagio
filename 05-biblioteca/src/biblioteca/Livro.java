@@ -1,10 +1,8 @@
 package biblioteca;
 
-/**
- * 
- * @author aline.correa
- *
- */
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,12 +15,13 @@ public class Livro implements Comparable<Livro> {
 	private String codigoDeBarras;
 	private int quantidadeDePaginas;
 	private String local;
-	private Date dataDeAquisicao;
+	private Calendar dataDeAquisicao;
 	private Autor autor;
 	private Categoria categoria;
+	private static final SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 
 	// Construtores
-	public Livro() {
+	public Livro(Autor autor, Categoria categoria, String titulo, String local) {
 		setCodigoSequencial();
 		contadorDeLivrosRegistrados += 1;
 		setDigitoVerificador(contadorDeLivrosRegistrados);
@@ -31,10 +30,14 @@ public class Livro implements Comparable<Livro> {
 			setDigitoVerificador(contadorDeLivrosRegistrados);
 		}
 		setCodigoDeBarras();
+		setAutor(autor);
+		setCategoria(categoria);
+		setTitulo(titulo);
+		setLocal(local);
 	}
 
 	// Métodos da classe
-	
+
 	// CompareTO : titulo e codSequencial
 	@Override
 	public int compareTo(Livro outroLivro) {
@@ -60,9 +63,9 @@ public class Livro implements Comparable<Livro> {
 
 	@Override
 	public String toString() {
-		return "Livro: " + codigoSequencial + " - '" + titulo + "', Local: " + local
-				+ ", Autor: " + autor.getNome() + ", Categoria: " + categoria + ", Data de aquisição: " + dataDeAquisicao
-				+ ",[ Código de barras: " + codigoDeBarras + "].";
+		return "Livro: " + codigoSequencial + " - '" + titulo + "', Local: " + local + ", Autor: " + autor.getNome()
+				+ ", Categoria: " + categoria + ", Data de aquisição: " + getDataDeAquisicao() + ",[ Código de barras: "
+				+ codigoDeBarras + "].";
 	}
 
 	// Getters e Setters
@@ -129,9 +132,10 @@ public class Livro implements Comparable<Livro> {
 		String codigoSequencial = this.getCodigoSequencial();
 		int digitoVerificador = this.getDigitoVerificador();
 
-		// TODO Livro: tem que retirar/usar apenas 3 numeros do CodSequencial para utilizar no codDeBarras
-		String stringCodigoDeBarras = "" + prefixoDoPaisDeRegistroDaEmpresa + identificadorDaEmpresa + ">>>>"
-				+ codigoSequencial + "<<<<" + digitoVerificador;
+		// TODO Livro: tem que retirar/usar apenas 3 numeros do CodSequencial
+		// para utilizar no codDeBarras
+		String stringCodigoDeBarras = "" + prefixoDoPaisDeRegistroDaEmpresa + identificadorDaEmpresa + codigoSequencial
+				+ digitoVerificador;
 		this.codigoDeBarras = stringCodigoDeBarras;
 	}
 
@@ -157,13 +161,38 @@ public class Livro implements Comparable<Livro> {
 		return this.local;
 	}
 
-	public void setDataDeAquisicao(Date dataDeAquisicao) {
+	public void setDataDeAquisicao(String dataDeAquisicao) {
 		// TODO Livro: TEM que implementar a inserção da data de aquisicao
-		this.dataDeAquisicao = dataDeAquisicao;
+		try {
+			Date date = formatoData.parse(dataDeAquisicao);
+			Calendar dataVerifica = Calendar.getInstance();
+			dataVerifica.setTime(date);
+			if (verificarDataDeAquisicao(dataVerifica)) {
+				this.dataDeAquisicao = Calendar.getInstance();
+				this.dataDeAquisicao.setTime(date);
+			} else {
+				System.out.println("######################" + dataDeAquisicao);
+			}
+		} catch (ParseException e) {
+			throw new IllegalArgumentException("Data inserida invalida, por favor utilize o formato (dd/mm/yyyy)");
+		}
+
 	}
 
-	public Date getDataDeAquisicao() {
-		return this.dataDeAquisicao;
+	private boolean verificarDataDeAquisicao(Calendar dataVerifica) {
+		Calendar dataDeHoje = Calendar.getInstance();
+		if (dataVerifica.getTime().after(dataDeHoje.getTime())) {
+			return false;
+		}
+		return true;
+	}
+
+	public String getDataDeAquisicao() {
+		if (this.dataDeAquisicao == null) {
+			return "";
+		}
+		String dataString = formatoData.format(this.dataDeAquisicao.getTime());
+		return dataString;
 	}
 
 	public void setAutor(Autor autor) {

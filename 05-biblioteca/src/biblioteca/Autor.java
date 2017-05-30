@@ -1,9 +1,7 @@
 package biblioteca;
-
-/**
- * 
- * @author aline.correa
- */
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -11,15 +9,10 @@ public class Autor implements ItemBiblioteca,Comparable<Autor>{
 	private String codigoSequencial;
 	private String nome;
 	private String nacionalidade;
-	private Date dataDeNascimento;
+	private Calendar dataDeNascimento;
+	private static final SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 
 	// Construtores
-	public Autor(String nome, String nacionalidade) {
-		setNome(nome);
-		setNacionalidade(nacionalidade);
-		setCodigoSequencial();
-	}
-	
 	public Autor(String nome) {
 		setNome(nome);
 		setCodigoSequencial();
@@ -88,13 +81,20 @@ public class Autor implements ItemBiblioteca,Comparable<Autor>{
 		this.nacionalidade = nacionalidade;
 	}
 
-	public Date getDataDeNascimento() {
-		return this.dataDeNascimento;
+	public String getDataDeNascimento() {
+		String dataUserString = formatoData.format(this.dataDeNascimento.getTime());
+		return dataUserString;
 	}
 
-	public void setDataDeNascimento(Date dataDeNascimento) {
-		// TODO Autor: TEM que implementar a inserção da dataDeNascimento
-		this.dataDeNascimento = dataDeNascimento;
+	public void setDataDeNascimento(String dataDeNascimento) {
+		try {
+			Date data = formatoData.parse(dataDeNascimento);
+			this.dataDeNascimento = Calendar.getInstance();
+			this.dataDeNascimento.setTime(data);
+			
+		} catch (ParseException e) {
+			throw new IllegalArgumentException("Data inserida invalida, por favor utilize o formato (dd/mm/yyyy)");
+		}
 	}
 
 	@Override

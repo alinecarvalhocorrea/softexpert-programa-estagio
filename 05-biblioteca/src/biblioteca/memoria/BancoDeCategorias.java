@@ -22,7 +22,7 @@ public class BancoDeCategorias implements Categorias {
 		}
 		banco.add(categoria);
 	}
-
+	
 	@Override
 	public void excluir(Categoria categoria) {
 		banco.remove(categoria);
@@ -31,9 +31,7 @@ public class BancoDeCategorias implements Categorias {
 
 	@Override
 	public void editar(Categoria categoriaParaEditar) {
-		// TODO BancoLivros: PENSAR forma de enviar categoria para edição
 		excluir(categoriaParaEditar);
-		adicionar(categoriaParaEditar);
 	}
 
 	@Override
@@ -42,16 +40,17 @@ public class BancoDeCategorias implements Categorias {
 	}
 
 	@Override
-	public Categoria buscarCategoriaPorDescricao(String descricao) {
+	public Set<Categoria> buscarCategoriaPorDescricao(String descricao) {
 		// TODO BancoCategorias : pesquisar e implementar forma de pesquisa ignorando acentos
+		Set<Categoria> categoriasEncontradas = new HashSet<>();
 		descricao = descricao.toUpperCase();
 		for (Categoria categoria : banco) {
 			String descricaoCategoria = categoria.getDescricao();
-			if (descricaoCategoria.equals(descricao)) {
-				return categoria;
+			if (descricaoCategoria.contains(descricao)) {
+				categoriasEncontradas.add(categoria);
 			}
 		}
-		return null;
+		return categoriasEncontradas;
 	}
 
 	@Override
