@@ -39,6 +39,8 @@ public class EditaCategoria {
 		String decisao = scanner.next();
 		if (decisao.equals("1")) {
 			return true;
+		}if (decisao.equals("2")) {
+			return false;
 		}else{
 			System.out.println("Opção inválida. Por favor, digite novamente.");
 			confirmacaoEdicao(categoria);

@@ -34,6 +34,7 @@ public class Biblioteca {
 				System.out.println("Cadastrar");
 				System.out.println("1 - Cadastrar Categoria");
 				System.out.println("2 - Cadastrar Autor");
+				System.out.println("3 - Voltar ao Menu Principal");
 				System.out.println("Insira a opção desejada: ");
 				String opcaoCadastrar = scanner.next();
 				
@@ -42,13 +43,18 @@ public class Biblioteca {
 					cadastrarCategoria.cadastrarCategoria();
 				}
 				if (opcaoCadastrar.equals("2")) {
-					CadastroDeAutor cadastrarCategoria = new CadastroDeAutor(scanner, bancoDeAutores);
-					cadastrarCategoria.cadastrarAutor();
+					CadastroDeAutor cadastraAutor = new CadastroDeAutor(scanner, bancoDeAutores);
+					cadastraAutor.cadastrarAutor();
+				}
+				if(opcaoCadastrar.equals("3")){
+					continue;
 				}
 			}
 			if (opcaoIndex.equals("2")) {
 				System.out.println("Listar");
 				System.out.println("1 - Listar Categorias");
+				System.out.println("2 - Listar Autores");
+				System.out.println("3 - Voltar ao Menu Principal");
 				System.out.println("Insira a opção desejada: ");
 				String opcaoListar = scanner.next();
 				
@@ -56,10 +62,19 @@ public class Biblioteca {
 					ListaDeCategorias listaDeCategorias = new ListaDeCategorias(bancoDeCategorias);
 					listaDeCategorias.listarCategorias();
 				}
+				if (opcaoListar.equals("2")) {
+					ListaDeAutores listaDeAutores = new ListaDeAutores(bancoDeAutores);
+					listaDeAutores.listarAutores();
+				}
+				if(opcaoListar.equals("3")){
+					continue;
+				}
 			}
 			if(opcaoIndex.equals("3")){
 				System.out.println("Remover");
 				System.out.println("1 - Remover Categoria");
+				System.out.println("2 - Remover Autor(a)");
+				System.out.println("3 - Voltar ao Menu Principal");
 				System.out.println("Insira a opção desejada: ");
 				String opcaoRemover = scanner.next();
 				
@@ -69,10 +84,20 @@ public class Biblioteca {
 					RemoveCategoria removeCategoria = new RemoveCategoria(scanner,bancoDeCategorias);
 					removeCategoria.removerCategoria();
 				}
+				if (opcaoRemover.equals("2")) {
+					ListaDeCategorias listaDeCategorias = new ListaDeCategorias(bancoDeCategorias);
+					listaDeCategorias.listarCategorias();
+					RemoveCategoria removeCategoria = new RemoveCategoria(scanner,bancoDeCategorias);
+					removeCategoria.removerCategoria();
+				}
+				if(opcaoRemover.equals("3")){
+					continue;
+				}
 			}
 			if(opcaoIndex.equals("4")){
 				System.out.println("Editar");
 				System.out.println("1 - Editar Categoria");
+				System.out.println("3 - Voltar ao Menu Principal");
 				System.out.println("Insira a opção desejada: ");
 				String opcaoEditar = scanner.next();
 				
@@ -80,13 +105,17 @@ public class Biblioteca {
 					ListaDeCategorias listaDeCategorias = new ListaDeCategorias(bancoDeCategorias);
 					listaDeCategorias.listarCategorias();
 					EditaCategoria editaCategoria = new EditaCategoria(scanner, bancoDeCategorias);
-					editaCategoria.editarCategoria();
-					
+					editaCategoria.editarCategoria();	
+				}
+				if(opcaoEditar.equals("3")){
+					continue;
 				}
 			}
 			if(opcaoIndex.equals("5")){
 				System.out.println("Pesquisar");
 				System.out.println("1 - Pesquisar Categoria");
+				System.out.println("2 - Pesquisar Autor(a)");
+				System.out.println("3 - Voltar ao Menu Principal");
 				System.out.println("Insira a opção desejada: ");
 				String opcaoPesquisar = scanner.next();
 				if(opcaoPesquisar.equals("1")){
@@ -96,13 +125,37 @@ public class Biblioteca {
 					System.out.println("Insira a opção desejada: ");
 					String opcaoPesquisarCategoria = scanner.next();
 					if(opcaoPesquisarCategoria.equals("1")){
-						PesquisaCategoria pesquisaCategoria = new PesquisaCategoria(scanner, bancoDeCategorias);
-						pesquisaCategoria.pesquisarCategoriaPorCodigoSequencial();
+						PesquisaCategoriaPorCodigoSequencial pesquisaCategoriaCod = new PesquisaCategoriaPorCodigoSequencial(scanner, bancoDeCategorias);
+						pesquisaCategoriaCod.pesquisarCategoriaPorCodigoSequencial();
 					}
 					if(opcaoPesquisarCategoria.equals("2")){
-						PesquisaCategoria pesquisaCategoria = new PesquisaCategoria(scanner, bancoDeCategorias);
-						pesquisaCategoria.pesquisarCategoriaPorDescricao();
+						PesquisaCategoriaPorDescricao pesquisaCategoriaDesc = new PesquisaCategoriaPorDescricao(scanner, bancoDeCategorias);
+						pesquisaCategoriaDesc.pesquisarCategoriaPorDescricao();
 					}
+					
+				}
+				if(opcaoPesquisar.equals("2")){
+					System.out.println("Pesquisar Autor(a)");
+					System.out.println("1 - Pesquisar autor(a) por código sequencial");
+					System.out.println("2 - Pesquisar autor(a) por nome");
+					System.out.println("3 - Pesquisar autor(a) por nacionalidade");
+					System.out.println("Insira a opção desejada: ");
+					String opcaoPesquisarAutor = scanner.next();
+					if(opcaoPesquisarAutor.equals("1")){
+						PesquisaAutorPorCodigoSequencial pesquisaAutor = new PesquisaAutorPorCodigoSequencial(scanner, bancoDeAutores);
+						pesquisaAutor.pesquisarAutorPorCodigoSequencial();
+					}
+					if(opcaoPesquisarAutor.equals("2")){
+						PesquisaAutorPorNome pesquisaAutorNome = new PesquisaAutorPorNome(scanner, bancoDeAutores);
+						pesquisaAutorNome.pesquisarAutorPorNome();
+					}
+					if(opcaoPesquisarAutor.equals("3")){
+						PesquisaAutorPorNacionalidade pesquisaAutorNacionalidade = new PesquisaAutorPorNacionalidade(scanner, bancoDeAutores);
+						pesquisaAutorNacionalidade.pesquisarAutorPorNacionalidade();
+					}
+				}
+				if(opcaoPesquisar.equals("3")){
+					continue;
 				}
 				
 			}

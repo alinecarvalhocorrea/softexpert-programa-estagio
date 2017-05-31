@@ -162,7 +162,6 @@ public class Livro implements Comparable<Livro> {
 	}
 
 	public void setDataDeAquisicao(String dataDeAquisicao) {
-		// TODO Livro: TEM que implementar a inserção da data de aquisicao
 		try {
 			Date date = formatoData.parse(dataDeAquisicao);
 			Calendar dataVerifica = Calendar.getInstance();
@@ -176,7 +175,6 @@ public class Livro implements Comparable<Livro> {
 		} catch (ParseException e) {
 			throw new IllegalArgumentException("Data inserida invalida, por favor utilize o formato (dd/mm/yyyy)");
 		}
-
 	}
 
 	private boolean verificarDataDeAquisicao(Calendar dataVerifica) {

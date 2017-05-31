@@ -16,16 +16,13 @@ public class BancoDeLivros implements Livros {
 
 	private static Set<Livro> banco = new TreeSet<>();
 
-	public boolean adicionar(Livro livro) {
+	public void adicionar(Livro livro) {
 		// TODO BancoLivros: pensar em mais validações para adição de livros
 		try{verificacaoDeDadosInseridosParaInserirNoBanco(livro);
 		banco.add(livro);
-		return true;
 		}catch(NullPointerException e){
 			e.getMessage();
-			return false;
 		}
-
 	}
 	
 	private void verificacaoDeDadosInseridosParaInserirNoBanco(Livro livro){
@@ -48,9 +45,7 @@ public class BancoDeLivros implements Livros {
 	}
 
 	public void editar(Livro livroParaEditar) {
-		// TODO BancoLivros: PENSAR forma de enviar livro para edição
 		excluir(livroParaEditar);
-		adicionar(livroParaEditar);
 	}
 
 	public Set<Livro> listar() {

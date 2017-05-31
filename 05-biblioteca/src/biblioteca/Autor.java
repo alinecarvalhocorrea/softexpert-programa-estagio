@@ -21,7 +21,7 @@ public class Autor implements ItemBiblioteca,Comparable<Autor>{
 	// Métodos da classe
 	@Override
 	public String toString() {
-		return "Nome: " + nome +", Nacionalidade: " + nacionalidade + ", Data de Nascimento: " + dataDeNascimento + ", Código Sequencial: "+ codigoSequencial;
+		return "Nome: " + nome +", Nacionalidade: " + nacionalidade + ", Data de Nascimento: " + getDataDeNascimento() + ", Código Sequencial: "+ codigoSequencial;
 	}
 
 	@Override
@@ -88,21 +88,40 @@ public class Autor implements ItemBiblioteca,Comparable<Autor>{
 
 	public void setDataDeNascimento(String dataDeNascimento) {
 		try {
-			Date data = formatoData.parse(dataDeNascimento);
-			this.dataDeNascimento = Calendar.getInstance();
-			this.dataDeNascimento.setTime(data);
-			
+			Date date = formatoData.parse(dataDeNascimento);
+			Calendar dataVerifica = Calendar.getInstance();
+			dataVerifica.setTime(date);
+			if (verificarDataDeNascimento(dataVerifica)) {
+				this.dataDeNascimento = Calendar.getInstance();
+				this.dataDeNascimento.setTime(date);
+			} else {
+				throw new IllegalArgumentException("Data inserida invalida : Data posterior a atual. Por favor, tente novamente.");
+			}
 		} catch (ParseException e) {
-			throw new IllegalArgumentException("Data inserida invalida, por favor utilize o formato (dd/mm/yyyy)");
+			throw new IllegalArgumentException("Data inserida invalida, por favor tente novamente e utilize o formato (dd/mm/yyyy)");
 		}
 	}
-
+	
+	private boolean verificarDataDeNascimento(Calendar dataVerifica) {
+		Calendar dataDeHoje = Calendar.getInstance();
+		if (dataVerifica.getTime().before(dataDeHoje.getTime())) {
+			return true;
+		}
+		return false;
+	}
+	
 	@Override
 		public int compareTo(Autor outroAutor) {
 
 			if (this.nome != null) {
 				int comparacao = this.nome.compareTo(outroAutor.getNome());
-
+				if (comparacao != 0) {
+					return comparacao;
+				}
+			}
+			
+			if (this.dataDeNascimento != null) {
+				int comparacao = this.getDataDeNascimento().compareTo(outroAutor.getDataDeNascimento());
 				if (comparacao != 0) {
 					return comparacao;
 				}
@@ -110,7 +129,6 @@ public class Autor implements ItemBiblioteca,Comparable<Autor>{
 
 			if (this.codigoSequencial != null) {
 				int comparacaoCodigo = this.codigoSequencial.compareTo(outroAutor.getCodigoSequencial());
-
 				if (comparacaoCodigo != 0) {
 					return comparacaoCodigo;
 				}
@@ -119,3 +137,5 @@ public class Autor implements ItemBiblioteca,Comparable<Autor>{
 			return 0;
 		}
 	}
+
+	

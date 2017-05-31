@@ -3,31 +3,15 @@ package biblioteca;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
-
 import biblioteca.memoria.BancoDeCategorias;
 
-public class PesquisaCategoria {
+public class PesquisaCategoriaPorDescricao {
 	private Scanner scanner;
 	private static BancoDeCategorias bancoDeCategorias;
 
-	public PesquisaCategoria(Scanner scanner, BancoDeCategorias bancoDeCategorias) {
+	public PesquisaCategoriaPorDescricao(Scanner scanner, BancoDeCategorias bancoDeCategorias) {
 		this.scanner = scanner;
-		PesquisaCategoria.bancoDeCategorias = bancoDeCategorias;
-	}
-
-	public void pesquisarCategoriaPorCodigoSequencial() {
-		System.out.println("Insira o código sequencial: ");
-		scanner.nextLine();
-		String codigoParaPesquisar = scanner.nextLine();
-		boolean verifica = verificaExistenciaDeCategoriaPorCodigoSequencial(codigoParaPesquisar);
-
-		if (verifica) {
-			Categoria busca = bancoDeCategorias.buscarPorCodigoSequencial(codigoParaPesquisar);
-			System.out.println("Categoria: " + busca + " | Código Sequencial: " + busca.getCodigoSequencial());
-		} else {
-			System.out.println("Categoria não encontrada, verifique o código informado e tente novamente.");
-			return;
-		}
+		PesquisaCategoriaPorDescricao.bancoDeCategorias = bancoDeCategorias;
 	}
 
 	public void pesquisarCategoriaPorDescricao() {
@@ -49,14 +33,6 @@ public class PesquisaCategoria {
 		}
 	}
 
-	public boolean verificaExistenciaDeCategoriaPorCodigoSequencial(String codigo) {
-		Categoria busca = bancoDeCategorias.buscarPorCodigoSequencial(codigo);
-		if (busca != null) {
-			return true;
-		}
-		return false;
-	}
-
 	public boolean verificaExistenciaDeCategoriaPorDescricao(String descricao) {
 		Set<Categoria> busca = new HashSet<>();
 		busca = bancoDeCategorias.buscarCategoriaPorDescricao(descricao);
@@ -65,5 +41,4 @@ public class PesquisaCategoria {
 		}
 		return false;
 	}
-
 }

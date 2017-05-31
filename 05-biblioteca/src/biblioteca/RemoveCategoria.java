@@ -18,7 +18,7 @@ public class RemoveCategoria {
 		scanner.nextLine();
 		String codigoSequencial = scanner.nextLine();
 		System.out.println("Buscando categoria...");
-		boolean verifica = new PesquisaCategoria(scanner, bancoDeCategorias).verificaExistenciaDeCategoriaPorCodigoSequencial(codigoSequencial);
+		boolean verifica = new PesquisaCategoriaPorCodigoSequencial(scanner, bancoDeCategorias).verificaExistenciaDeCategoriaPorCodigoSequencial(codigoSequencial);
 		if(verifica){
 			Categoria categoria = bancoDeCategorias.buscarPorCodigoSequencial(codigoSequencial);
 			System.out.println("Categoria Encontrada: " + categoria + " | Código Sequencial: " + categoria.getCodigoSequencial());

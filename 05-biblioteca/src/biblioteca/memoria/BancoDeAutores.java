@@ -33,7 +33,6 @@ public class BancoDeAutores implements Autores {
 
 	@Override
 	public void editar(Autor autorParaEditar) {
-		// TODO BancoLivros: PENSAR forma de enviar autor para edição
 		excluir(autorParaEditar);
 	}
 
@@ -44,7 +43,8 @@ public class BancoDeAutores implements Autores {
 
 	@Override
 	public Set<Autor> buscarPorNome(String nome) {
-		// TODO BancoAutores : pesquisar e implementar forma de pesquisa ignorando acentos
+		// TODO BancoAutores : pesquisar e implementar forma de pesquisa
+		// ignorando acentos
 		Set<Autor> autoresEncontrados = new HashSet<>();
 		for (Autor autor : banco) {
 			String nomeAutor = autor.getNome();
@@ -59,9 +59,8 @@ public class BancoDeAutores implements Autores {
 
 	@Override
 	public Set<Autor> buscarPorNacionalidade(String nacionalidade) {
-		// TODO BancoAutores : pesquisar e implementar forma de pesquisa ignorando acentos
 		Set<Autor> autoresEncontrados = new HashSet<>();
-		
+
 		for (Autor autor : banco) {
 			String nacionalidadeAutor = autor.getNacionalidade().toUpperCase();
 			nacionalidade = nacionalidade.toUpperCase();
