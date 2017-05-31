@@ -16,19 +16,31 @@ public class BancoDeLivros implements Livros {
 
 	private static Set<Livro> banco = new TreeSet<>();
 
-	public void adicionar(Livro livro) {
+	public boolean adicionar(Livro livro) {
 		// TODO BancoLivros: pensar em mais validações para adição de livros
-		/*if (livro.getTitulo() == null) {
-			throw new NullPointerException("O livro está sem titulo, favor colocar");
+		try{verificacaoDeDadosInseridosParaInserirNoBanco(livro);
+		banco.add(livro);
+		return true;
+		}catch(NullPointerException e){
+			e.getMessage();
+			return false;
+		}
+
+	}
+	
+	private void verificacaoDeDadosInseridosParaInserirNoBanco(Livro livro){
+		if (livro.getTitulo() == null) {
+			throw new NullPointerException("O livro está sem titulo, favor informar");
 		}
 		if (livro.getAutor() == null) {
-			throw new NullPointerException("O livro está sem autor, favor colocar");
+			throw new NullPointerException("O livro está sem autor, favor informar");
+		}
+		if (livro.getLocal() == null) {
+			throw new NullPointerException("O livro está sem local, favor informar");
 		}
 		if (livro.getCategoria() == null) {
-			throw new NullPointerException("O livro está sem categoria, favor colocar");
-		}*/
-		banco.add(livro);
-
+			throw new NullPointerException("O livro está sem categoria, favor informar");
+		}
 	}
 
 	public void excluir(Livro livro) {
