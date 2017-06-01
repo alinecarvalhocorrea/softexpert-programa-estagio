@@ -1,11 +1,5 @@
 package biblioteca;
 
-/**
- * 
- * @author aline.correa
- *
- */
-import java.util.Date;
 import java.util.Set;
 
 public interface Autores extends AcoesEmMemoria<Autor> {
@@ -14,7 +8,7 @@ public interface Autores extends AcoesEmMemoria<Autor> {
 
 	Set<Autor> buscarPorNacionalidade(String nacionalidade);
 
-	Set<Autor> buscarPorDataDeNascimento(Date dataDeNascimento);
+	Set<Autor> buscarPorDataDeNascimento(String dataDeNascimento);
 	
 	Autor buscarPorCodigoSequencial(String codigoSequencial);
 }

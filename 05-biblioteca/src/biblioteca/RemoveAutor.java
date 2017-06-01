@@ -14,7 +14,7 @@ public class RemoveAutor {
 	}
 
 	public void removerAutor() {
-		System.out.println("Insira o código sequencial da Autor: ");
+		System.out.println("Insira o código sequencial do(a) Autor(a): ");
 		scanner.nextLine();
 		String codigoSequencial = scanner.nextLine();
 		System.out.println("Buscando Autor...");

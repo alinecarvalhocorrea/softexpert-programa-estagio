@@ -15,10 +15,18 @@ public class TestaBancoDeAutores {
 	public static void main(String[] args) {
 		// TESTE : Criar autores
 		System.out.println("Criando autores...");
-		Autor a1 = new Autor("Bruna a clarice", "brasileira");
-		Autor a2 = new Autor("Aline", "britânica");
-		Autor a3 = new Autor("Joaquim Teste", "alemã");
-		Autor a4 = new Autor("Joao Testando Nome", "francês");
+		Autor a1 = new Autor("Bruna a clarice");
+		a1.setDataDeNascimento("15/03/2010");
+		a1.setNacionalidade("russo");
+		Autor a2 = new Autor("Aline");
+		a2.setDataDeNascimento("08/11/1997");
+		a2.setNacionalidade("russo");
+		Autor a3 = new Autor("Joaquim Teste");
+		a3.setDataDeNascimento("10/10/2009");
+		a3.setNacionalidade("russo");
+		Autor a4 = new Autor("Joao Testando Nome");
+		a4.setDataDeNascimento("08/11/1997");
+		a4.setNacionalidade("russo");
 
 		// TESTE : Criar Banco de Autores
 		System.out.println("Criando Banco de Autores...");
@@ -96,7 +104,7 @@ public class TestaBancoDeAutores {
 
 		System.out.println("\n");
 
-		// TODO TESTE : Buscar Autor por Data de Nascimento
+		// TESTE : Buscar Autor por Data de Nascimento
 	}
 
 }

@@ -7,11 +7,37 @@ import biblioteca.memoria.BancoDeCategorias;
 import biblioteca.memoria.BancoDeLivros;
 
 public class Biblioteca {
-	public static void main(String[] args) {
-
+	public static void main(String[] args) {		
+		
 		BancoDeLivros bancoDeLivros = new BancoDeLivros();
 		BancoDeAutores bancoDeAutores = new BancoDeAutores();
 		BancoDeCategorias bancoDeCategorias = new BancoDeCategorias();
+		
+		Autor a1 = new Autor("Aline");
+		a1.setDataDeNascimento("08/11/1997");
+		a1.setNacionalidade("brasileira");
+		bancoDeAutores.adicionar(a1);
+		Autor a2 = new Autor("Teste nome autor");
+		a2.setDataDeNascimento("10/09/2011");
+		a2.setNacionalidade("brasileira");
+		bancoDeAutores.adicionar(a2);
+		Autor a3 = new Autor("joaquim teste biblioteca de autores");
+		a3.setDataDeNascimento("01/10/2004");
+		a3.setNacionalidade("francês");
+		bancoDeAutores.adicionar(a3);
+		Autor a4 = new Autor("biblioteca de autores joaquim teste  aline soft");
+		a4.setDataDeNascimento("05/12/2001");
+		a4.setNacionalidade("britânico");
+		bancoDeAutores.adicionar(a4);
+		
+		Categoria c1 = new Categoria("Romance");
+		bancoDeCategorias.adicionar(c1);
+		Categoria c2 = new Categoria("Conto");
+		bancoDeCategorias.adicionar(c2);
+		Categoria c3 = new Categoria("Poesia");
+		bancoDeCategorias.adicionar(c3);
+		Categoria c4 = new Categoria("ficcccccao");
+		bancoDeCategorias.adicionar(c4);
 
 		// TODO Persistir dados em arquivos externos
 
@@ -34,7 +60,8 @@ public class Biblioteca {
 				System.out.println("Cadastrar");
 				System.out.println("1 - Cadastrar Categoria");
 				System.out.println("2 - Cadastrar Autor");
-				System.out.println("3 - Voltar ao Menu Principal");
+				System.out.println("3 - Cadastrar Livro");
+				System.out.println("4 - Voltar ao Menu Principal");
 				System.out.println("Insira a opção desejada: ");
 				String opcaoCadastrar = scanner.next();
 				
@@ -47,6 +74,9 @@ public class Biblioteca {
 					cadastraAutor.cadastrarAutor();
 				}
 				if(opcaoCadastrar.equals("3")){
+					// TODO Cadastro de Livro
+				}
+				if(opcaoCadastrar.equals("4")){
 					continue;
 				}
 			}
@@ -85,10 +115,10 @@ public class Biblioteca {
 					removeCategoria.removerCategoria();
 				}
 				if (opcaoRemover.equals("2")) {
-					ListaDeCategorias listaDeCategorias = new ListaDeCategorias(bancoDeCategorias);
-					listaDeCategorias.listarCategorias();
-					RemoveCategoria removeCategoria = new RemoveCategoria(scanner,bancoDeCategorias);
-					removeCategoria.removerCategoria();
+					ListaDeAutores listaDeAutores = new ListaDeAutores(bancoDeAutores);
+					listaDeAutores.listarAutores();
+					RemoveAutor removeAutor = new RemoveAutor(scanner,bancoDeAutores);
+					removeAutor.removerAutor();
 				}
 				if(opcaoRemover.equals("3")){
 					continue;
@@ -97,6 +127,7 @@ public class Biblioteca {
 			if(opcaoIndex.equals("4")){
 				System.out.println("Editar");
 				System.out.println("1 - Editar Categoria");
+				System.out.println("1 - Editar Autor");
 				System.out.println("3 - Voltar ao Menu Principal");
 				System.out.println("Insira a opção desejada: ");
 				String opcaoEditar = scanner.next();
@@ -104,6 +135,12 @@ public class Biblioteca {
 				if (opcaoEditar.equals("1")) {
 					ListaDeCategorias listaDeCategorias = new ListaDeCategorias(bancoDeCategorias);
 					listaDeCategorias.listarCategorias();
+					EditaCategoria editaCategoria = new EditaCategoria(scanner, bancoDeCategorias);
+					editaCategoria.editarCategoria();	
+				}
+				if (opcaoEditar.equals("2")) {
+					ListaDeAutores listaDeAutores = new ListaDeAutores(bancoDeAutores);
+					listaDeAutores.listarAutores();
 					EditaCategoria editaCategoria = new EditaCategoria(scanner, bancoDeCategorias);
 					editaCategoria.editarCategoria();	
 				}

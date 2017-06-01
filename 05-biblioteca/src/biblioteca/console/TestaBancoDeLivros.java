@@ -17,9 +17,15 @@ public class TestaBancoDeLivros {
 		// Livros bl = new livrosEmBancoDeDados();
 
 		// TESTE : Inicializando alguns autores(as) e categorias
-		Autor autor1 = new Autor("Clarice Lispector", "Brasileira");
-		Autor autor2 = new Autor("Nome", "alemã");
-		Autor autor3 = new Autor("Antonio", "britânico");
+		Autor autor1 = new Autor("Clarice Lispector");
+		autor1.setNacionalidade("brasileira");
+		autor1.setDataDeNascimento("08/10/2010");
+		Autor autor2 = new Autor("Nome");
+		autor2.setNacionalidade("francês");
+		autor2.setDataDeNascimento("08/11/1997");
+		Autor autor3 = new Autor("Antonio");
+		autor3.setNacionalidade("alemão");
+		autor3.setDataDeNascimento("02/03/2012");
 
 		Categoria categoria1 = new Categoria("Drama");
 		Categoria categoria2 = new Categoria("Ação");

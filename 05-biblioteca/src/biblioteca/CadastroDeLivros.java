@@ -28,37 +28,23 @@ public class CadastroDeLivros {
 		String quantidadeDePaginas = scanner.nextLine();
 		System.out.println("Insira a data de aquisição do livro(dd/mm/aaaa): ");
 		String dataDeAquisicao = scanner.nextLine();
-		System.out.println("Insira a categoria do livro: ");
+		ListaDeCategorias listaDeCategorias = new ListaDeCategorias(bancoDeCategorias);
+		listaDeCategorias.listarCategorias();
+		System.out.println("Insira o código sequencial da categoria do livro: ");
 		String categoria = scanner.nextLine();
-		// pesquisa por descricao de categoria
-		
-		/*
-		 * System.out.println("Verificando categoria no sistema: \n"
-		 * );
-		 * System.out.println("Categoria encontrada no sistema: \n"
-		 * );
-		 */
-		// printa na tela categoria encontrado
+		// Pesquisar por código sequencial e adicionar categoria
 		System.out.println("Insira o resumo do livro: ");
 		String resumo = scanner.nextLine();
-		System.out.println("Insira o nome do autor do livro: ");
+		System.out.println("Insira o número de autores(as) do livro: ");
+		String numeroDeAutores = scanner.nextLine();
+		ListaDeAutores listaDeAutores = new ListaDeAutores(bancoDeAutores);
+		listaDeAutores.listarAutores();
+		// if quantidade de autores for 1 
+		System.out.println("Insira o código sequencial do autor do livro: ");
 		String autor = scanner.nextLine();
-		// pesquisa por nome de autor
-		/*
-		 * System.out.println("Verificando autor(a) no sistema: \n"
-		 * );
-		 * System.out.println("Autor(a) encontrado no sistema: \n");
-		 */
-		// printa na tela autor encontrado
-
-		/*
-		 * Livro novoLivro = new Livro(); novoLivro.setTitulo();
-		 * novoLivro.setQuantidadeDePaginas(quantidadeDePaginas);
-		 * novoLivro.setAutor(autorEncontrado);
-		 * novoLivro.setCategoria(autorEncontrado);
-		 * novoLivro.setLocal(local); novoLivro.setResumo(resumo);
-		 * novoLivro.setDataDeAquisicao(dataDeAquisicao);
-		 */
+		// Pesquisar por código sequencial e adicionar autor(a)
+		// se a quantidade de autores for maior que 1, repete loop de inserção de autores referente ao número inserido pelo usuario
+		
 	}
 	
 	

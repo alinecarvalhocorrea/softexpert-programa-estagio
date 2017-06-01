@@ -17,6 +17,7 @@ public class Livro implements Comparable<Livro> {
 	private String local;
 	private Calendar dataDeAquisicao;
 	private Autor autor;
+	// TODO Livro: aceitar mais de um autor
 	private Categoria categoria;
 	private static final SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 

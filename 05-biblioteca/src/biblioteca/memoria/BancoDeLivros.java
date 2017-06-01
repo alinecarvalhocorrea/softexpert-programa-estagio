@@ -17,15 +17,15 @@ public class BancoDeLivros implements Livros {
 	private static Set<Livro> banco = new TreeSet<>();
 
 	public void adicionar(Livro livro) {
-		// TODO BancoLivros: pensar em mais validações para adição de livros
-		try{verificacaoDeDadosInseridosParaInserirNoBanco(livro);
-		banco.add(livro);
-		}catch(NullPointerException e){
+		try {
+			verificacaoDeDadosInseridosParaInserirNoBanco(livro);
+			banco.add(livro);
+		} catch (NullPointerException e) {
 			e.getMessage();
 		}
 	}
-	
-	private void verificacaoDeDadosInseridosParaInserirNoBanco(Livro livro){
+
+	private void verificacaoDeDadosInseridosParaInserirNoBanco(Livro livro) {
 		if (livro.getTitulo() == null) {
 			throw new NullPointerException("O livro está sem titulo, favor informar");
 		}
@@ -54,12 +54,10 @@ public class BancoDeLivros implements Livros {
 
 	@Override
 	public Set<Livro> buscarPorTitulo(String titulo) {
-		// TODO BancoLivros: TEM que alterar estrutura de pesquisa por titulo de livro
-		// TODO BancoLivros : pesquisar e implementar forma de pesquisa ignorando acentos
 		Set<Livro> livrosEncontrados = new TreeSet<>();
 		titulo = titulo.toUpperCase();
 		String[] tituloArray = titulo.split(" ");
-		
+
 		for (int contador = 0; contador < tituloArray.length; contador++) {
 			for (Livro livro : banco) {
 				String livroTitulo = livro.getTitulo();
@@ -103,7 +101,6 @@ public class BancoDeLivros implements Livros {
 
 	@Override
 	public List<Livro> buscarPorCategoria(String descricaoCategoria) {
-		// TODO BancoLivros : pesquisar e implementar forma de pesquisa ignorando acentos
 		descricaoCategoria = descricaoCategoria.toUpperCase();
 		List<Livro> livrosEncontrados = new ArrayList<>();
 		for (Livro livro : banco) {
@@ -115,10 +112,9 @@ public class BancoDeLivros implements Livros {
 		}
 		return livrosEncontrados;
 	}
-	
+
 	@Override
 	public List<Livro> buscarPorAutor(String nomeAutor) {
-		// TODO BancoLivros : verificar pesquisa de livros por autor
 		nomeAutor = nomeAutor.toUpperCase();
 		List<Livro> livrosEncontrados = new ArrayList<>();
 		for (Livro livro : banco) {
@@ -129,7 +125,7 @@ public class BancoDeLivros implements Livros {
 			}
 		}
 		return livrosEncontrados;
-		
+
 	}
 
 }

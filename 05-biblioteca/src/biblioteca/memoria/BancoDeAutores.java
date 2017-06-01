@@ -1,11 +1,5 @@
 package biblioteca.memoria;
 
-/**
- * 
- * @author aline.correa
- * 
- */
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -18,7 +12,6 @@ public class BancoDeAutores implements Autores {
 
 	@Override
 	public void adicionar(Autor autor) {
-		// TODO BancoAutores: pensar em mais validações para adição de autores
 		if (autor.getNome() == null) {
 			throw new NullPointerException("O autor(a) está sem nome, favor colocar");
 		}
@@ -43,8 +36,6 @@ public class BancoDeAutores implements Autores {
 
 	@Override
 	public Set<Autor> buscarPorNome(String nome) {
-		// TODO BancoAutores : pesquisar e implementar forma de pesquisa
-		// ignorando acentos
 		Set<Autor> autoresEncontrados = new HashSet<>();
 		for (Autor autor : banco) {
 			String nomeAutor = autor.getNome();
@@ -72,9 +63,16 @@ public class BancoDeAutores implements Autores {
 	}
 
 	@Override
-	public Set<Autor> buscarPorDataDeNascimento(Date dataDeNascimento) {
-		// TODO BancoAutores : TEM que implementar busca por data de nascimento
-		return null;
+	public Set<Autor> buscarPorDataDeNascimento(String dataDeNascimento) {
+		Set<Autor> autoresEncontrados = new TreeSet<>();
+		for (Autor autor : banco) {
+			String dataAutor = autor.getDataDeNascimento();
+			if(dataAutor.equals(dataDeNascimento)){
+				autoresEncontrados.add(autor);
+			}
+		}
+		return autoresEncontrados;
+		
 	}
 
 	@Override

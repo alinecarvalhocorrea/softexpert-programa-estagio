@@ -16,7 +16,6 @@ public class BancoDeCategorias implements Categorias {
 
 	@Override
 	public void adicionar(Categoria categoria) {
-		// TODO BancoCategorias: pensar em mais validações para adição de categorias
 		if (categoria.getDescricao() == null) {
 			throw new NullPointerException("A categoria está sem descrição, favor colocar");
 		}
@@ -41,7 +40,6 @@ public class BancoDeCategorias implements Categorias {
 
 	@Override
 	public Set<Categoria> buscarCategoriaPorDescricao(String descricao) {
-		// TODO BancoCategorias : pesquisar e implementar forma de pesquisa ignorando acentos
 		Set<Categoria> categoriasEncontradas = new HashSet<>();
 		descricao = descricao.toUpperCase();
 		for (Categoria categoria : banco) {
