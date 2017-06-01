@@ -23,6 +23,7 @@ public class CadastroDeCategoria {
 		
 		boolean resultado = verificaExistênciaDeCategoriaPorDescricao(descricao);
 		if(resultado){
+			System.out.println("Categoria:" + descricao + " ja existe.");
 			return;
 		}else{
 			System.out.println("Nova categoria criada: " + descricao.toUpperCase());
