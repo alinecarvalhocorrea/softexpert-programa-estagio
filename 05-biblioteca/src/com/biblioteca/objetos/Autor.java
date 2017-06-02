@@ -23,8 +23,7 @@ public class Autor implements Comparable<Autor>, ItemBiblioteca {
 	// Métodos da classe
 	@Override
 	public String toString() {
-		return "Nome: " + nome + ", Nacionalidade: " + nacionalidade + ", Data de Nascimento: " + getDataDeNascimento()
-				+ ", Código Sequencial: " + codigoSequencial;
+		return "Nome: " + nome + "( Código Sequencial: " + codigoSequencial + " )";
 	}
 
 	@Override

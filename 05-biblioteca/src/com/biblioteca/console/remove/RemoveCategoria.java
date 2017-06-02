@@ -2,6 +2,7 @@ package com.biblioteca.console.remove;
 
 import java.util.Scanner;
 
+import com.biblioteca.console.confirmacao.Confirmacao;
 import com.biblioteca.console.pesquisa.categoria.PesquisaCategoriaPorCodigoSequencial;
 import com.biblioteca.objetos.Categoria;
 import com.biblioteca.repositorios.memoria.BancoDeCategorias;
@@ -24,7 +25,7 @@ public class RemoveCategoria {
 		if(verifica){
 			Categoria categoria = bancoDeCategorias.buscarPorCodigoSequencial(codigoSequencial);
 			System.out.println("Categoria Encontrada: " + categoria + " | Código Sequencial: " + categoria.getCodigoSequencial());
-			boolean decisao = confirmacaoRemoção(categoria);
+			boolean decisao = new Confirmacao(scanner, categoria).confirmaRemocao();
 				if (decisao) {
 						bancoDeCategorias.excluir(categoria);
 						System.out.println("Categoria " + categoria + " removida.");
@@ -35,21 +36,5 @@ public class RemoveCategoria {
 			System.out.println("Categoria não encontrada. Por favor, verifique o código sequencial informado e tente novamente.");
 			return;
 		}
-	}
-
-	private boolean confirmacaoRemoção(Categoria categoria) {
-		System.out.println("Excluir categoria " + categoria + " ?");
-		System.out.println("1 - Sim");
-		System.out.println("2 - Não");
-		System.out.println("Digite: ");
-		String decisao = scanner.next();
-		if (decisao.equals("1")) {
-			return true;
-		} else {
-			System.out.println("Opção inválida. Por favor, digite novamente.");
-			confirmacaoRemoção(categoria);
-		}
-		return false;
-
 	}
 }

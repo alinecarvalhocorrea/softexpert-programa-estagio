@@ -25,10 +25,10 @@ public class CadastroDeAutor {
 		System.out.println("Insira a data de nascimento do(a) autor(a)(dd/mm/aaaa): ");
 		String dataDeNascimento = scanner.nextLine();
 		Autor novoAutor = new Autor(nome);
-		if (nacionalidade != null) {
+		if (!nacionalidade.equals(null)) {
 			novoAutor.setNacionalidade(nacionalidade);
 		}
-		if (dataDeNascimento != null) {
+		if (dataDeNascimento.equals(null)) {
 			try {
 				novoAutor.setDataDeNascimento(dataDeNascimento);
 			} catch (IllegalArgumentException e) {

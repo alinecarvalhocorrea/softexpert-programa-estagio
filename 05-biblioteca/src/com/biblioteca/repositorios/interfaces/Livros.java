@@ -20,6 +20,6 @@ public interface Livros extends AcoesNoRepositorio<Livro> {
 	
 	List<Livro> buscarPorCategoria(String descricaoCategoria);
 
-	List<Livro> buscarPorAutor(String nomeAutor);
+	Set<Livro> buscarPorAutor(String nomeAutor);	
 
 }

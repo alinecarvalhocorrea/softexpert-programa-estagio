@@ -3,6 +3,8 @@ package com.biblioteca.console.edita;
 import java.util.Scanner;
 
 import com.biblioteca.console.cadastro.CadastroDeCategoria;
+import com.biblioteca.console.confirmacao.Confirmacao;
+import com.biblioteca.console.pesquisa.categoria.PesquisaCategoriaPorCodigoSequencial;
 import com.biblioteca.objetos.Categoria;
 import com.biblioteca.repositorios.memoria.BancoDeCategorias;
 
@@ -20,35 +22,23 @@ public class EditaCategoria {
 		scanner.nextLine();
 		String codigoSequencial = scanner.nextLine();
 		//TODO verificar existencia de categoria
-		Categoria categoria = bancoDeCategorias.buscarPorCodigoSequencial(codigoSequencial);
 		System.out.println("Buscando categoria...");
-		System.out.println("Categoria Encontrada: " + categoria + " | Código Sequencial: " + categoria.getCodigoSequencial());
-		boolean decisao = confirmacaoEdicao(categoria);
-		if(decisao){
-			bancoDeCategorias.editar(categoria);
-			CadastroDeCategoria cadastraCategoriaNova = new CadastroDeCategoria(scanner,bancoDeCategorias);
-			cadastraCategoriaNova.cadastrarCategoria();
-		}else {
+		boolean pesquisa = new PesquisaCategoriaPorCodigoSequencial(scanner, bancoDeCategorias).verificaExistenciaDeCategoriaPorCodigoSequencial(codigoSequencial);
+		if(pesquisa){
+			Categoria categoria = bancoDeCategorias.buscarPorCodigoSequencial(codigoSequencial);
+			System.out.println("Categoria Encontrada: " + categoria + " | Código Sequencial: " + categoria.getCodigoSequencial());
+			boolean decisao = new Confirmacao(scanner, categoria).confirmaEdicao();
+			if(decisao){
+				bancoDeCategorias.editar(categoria);
+				CadastroDeCategoria cadastraCategoriaNova = new CadastroDeCategoria(scanner,bancoDeCategorias);
+				cadastraCategoriaNova.cadastrarCategoria();
+			}else {
+				return;
+			}
+		}else{
+			System.out.println("Categoria não encontrada. Por favor, verifique o código informado e tente novamente.");
 			return;
 		}
 			
-	}
-	
-	private boolean confirmacaoEdicao(Categoria categoria) {
-		System.out.println("Editar categoria " + categoria + " ?");
-		System.out.println("1 - Sim");
-		System.out.println("2 - Não");
-		System.out.println("Digite: ");
-		String decisao = scanner.next();
-		if (decisao.equals("1")) {
-			return true;
-		}if (decisao.equals("2")) {
-			return false;
-		}else{
-			System.out.println("Opção inválida. Por favor, digite novamente.");
-			confirmacaoEdicao(categoria);
-		}
-		return false;
-
 	}
 }

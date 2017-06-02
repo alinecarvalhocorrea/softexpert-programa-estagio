@@ -4,10 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import com.biblioteca.objetos.interfaces.ItemBiblioteca;
+import com.biblioteca.objetos.verificacoes.VerificaLivro;
 
 public class Livro implements Comparable<Livro>,ItemBiblioteca {
 	static private int contadorDeLivrosRegistrados = 0;
@@ -19,25 +20,42 @@ public class Livro implements Comparable<Livro>,ItemBiblioteca {
 	private int quantidadeDePaginas;
 	private String local;
 	private Calendar dataDeAquisicao;
-	private List<Autor> autor;
-	// TODO Livro: aceitar mais de um autor
+	private Set<Autor> autor;
 	private Categoria categoria;
 	private static final SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 
 	// Construtores
-	public Livro(Autor autor, Categoria categoria, String titulo, String local) {
+	public Livro(){
 		setCodigoSequencial();
 		contadorDeLivrosRegistrados += 1;
 		setDigitoVerificador(contadorDeLivrosRegistrados);
-		if (contadorDeLivrosRegistrados == 10) {
-			contadorDeLivrosRegistrados = 0;
-			setDigitoVerificador(contadorDeLivrosRegistrados);
-		}
+			if (contadorDeLivrosRegistrados == 10) {
+				contadorDeLivrosRegistrados = 0;
+				setDigitoVerificador(contadorDeLivrosRegistrados);
+			}
 		setCodigoDeBarras();
-		setAutor(autor);
-		setCategoria(categoria);
-		setTitulo(titulo);
-		setLocal(local);
+	}
+	
+	public Livro(Set<Autor> autor, Categoria categoria, String titulo, String local) throws NullPointerException{
+			try{
+				VerificaLivro verificacao = new VerificaLivro();
+				verificacao.verificacaoDeDadosLivro(this);
+				setCodigoSequencial();
+				contadorDeLivrosRegistrados += 1;
+				setDigitoVerificador(contadorDeLivrosRegistrados);
+				if (contadorDeLivrosRegistrados == 10) {
+					contadorDeLivrosRegistrados = 0;
+					setDigitoVerificador(contadorDeLivrosRegistrados);
+				}
+				setCodigoDeBarras();
+				setAutor(autor);
+				setCategoria(categoria);
+				setTitulo(titulo);
+				setLocal(local);
+			}catch(NullPointerException e){
+				System.out.println(e.getMessage());
+			}
+			
 	}
 
 	// Métodos da classe
@@ -55,10 +73,10 @@ public class Livro implements Comparable<Livro>,ItemBiblioteca {
 		}
 
 		if (this.codigoSequencial != null) {
-			int comparacaoResumo = this.codigoSequencial.compareTo(outroLivro.getCodigoSequencial());
+			int comparacaoCodigoSequencial = this.codigoSequencial.compareTo(outroLivro.getCodigoSequencial());
 
-			if (comparacaoResumo != 0) {
-				return comparacaoResumo;
+			if (comparacaoCodigoSequencial != 0) {
+				return comparacaoCodigoSequencial;
 			}
 		}
 
@@ -67,9 +85,8 @@ public class Livro implements Comparable<Livro>,ItemBiblioteca {
 
 	@Override
 	public String toString() {
-		return "Livro: " + codigoSequencial + " - '" + titulo + "', Local: " + local + ", Autor: " + ((Autor) autor).getNome()
-				+ ", Categoria: " + categoria + ", Data de aquisição: " + getDataDeAquisicao() + ",[ Código de barras: "
-				+ codigoDeBarras + "].";
+		return "Livro: " + titulo + ", (" + quantidadeDePaginas + " Páginas) | Categoria: " + categoria +" | Autor(es/a/as): " + autor  + " | Código De Barras: " + codigoDeBarras + " | Data de Aquisição: " + getDataDeAquisicao() + " .";
+		
 	}
 
 	// Getters e Setters
@@ -197,11 +214,11 @@ public class Livro implements Comparable<Livro>,ItemBiblioteca {
 		return dataString;
 	}
 
-	public void setAutor(Autor autor) {
-		this.autor.add(autor);
+	public void setAutor(Set<Autor> autor) {
+		this.autor = autor;
 	}
 
-	public List<Autor> getAutor() {
+	public Set<Autor> getAutor() {
 		return this.autor;
 	}
 

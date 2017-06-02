@@ -1,22 +1,20 @@
-package com.biblioteca.repositorios.database;
+package com.biblioteca.repositorios.file;
 
-/**
- * 
- * @author aline.correa
- *
- */
-public class AutoresDB { //implements Autores
+public class AutoresEmArquivo {//implements Autores 
 /*
 	@Override
-	public void adicionar(AutoresEmMemoria registro) {
+	public void adicionar(Autor registro) {
+	
 	}
 
 	@Override
 	public void excluir(Autor registro) {
+	
 	}
 
 	@Override
-	public void editar(Autor registro) {	
+	public void editar(Autor registro) {
+		
 	}
 
 	@Override
@@ -26,7 +24,6 @@ public class AutoresDB { //implements Autores
 
 	@Override
 	public Set<Autor> buscarPorNome(String nome) {
-	
 		return null;
 	}
 
@@ -36,7 +33,7 @@ public class AutoresDB { //implements Autores
 	}
 
 	@Override
-	public Set<Autor> buscarPorDataDeNascimento(Date dataDeNascimento) {
+	public Set<Autor> buscarPorDataDeNascimento(String dataDeNascimento) {
 		return null;
 	}
 
@@ -44,5 +41,5 @@ public class AutoresDB { //implements Autores
 	public Autor buscarPorCodigoSequencial(String codigoSequencial) {
 		return null;
 	}
-
-*/}
+*/
+}

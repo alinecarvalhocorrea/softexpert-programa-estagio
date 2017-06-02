@@ -20,25 +20,9 @@ public class BancoDeLivros implements Livros {
 
 	public void adicionar(Livro livro) {
 		try {
-			verificacaoDeDadosInseridosParaInserirNoBanco(livro);
 			banco.add(livro);
 		} catch (NullPointerException e) {
 			e.getMessage();
-		}
-	}
-
-	private void verificacaoDeDadosInseridosParaInserirNoBanco(Livro livro) {
-		if (livro.getTitulo() == null) {
-			throw new NullPointerException("O livro está sem titulo, favor informar");
-		}
-		if (livro.getAutor() == null) {
-			throw new NullPointerException("O livro está sem autor, favor informar");
-		}
-		if (livro.getLocal() == null) {
-			throw new NullPointerException("O livro está sem local, favor informar");
-		}
-		if (livro.getCategoria() == null) {
-			throw new NullPointerException("O livro está sem categoria, favor informar");
 		}
 	}
 
@@ -116,11 +100,11 @@ public class BancoDeLivros implements Livros {
 	}
 
 	@Override
-	public List<Livro> buscarPorAutor(String nomeAutor) {
+	public Set<Livro> buscarPorAutor(String nomeAutor) {
 		nomeAutor = nomeAutor.toUpperCase();
-		List<Livro> livrosEncontrados = new ArrayList<>();
+		Set<Livro> livrosEncontrados = new TreeSet<>();
 		for (Livro livro : banco) {
-			List<Autor> autorLivro = livro.getAutor();
+			Set<Autor> autorLivro = livro.getAutor();
 			for (Autor autor : autorLivro) {
 				String nomeAutorLivro = autor.getNome().toUpperCase();
 				if (nomeAutorLivro.contains(nomeAutor)) {

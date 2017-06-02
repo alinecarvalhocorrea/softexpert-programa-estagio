@@ -10,7 +10,7 @@ import com.biblioteca.objetos.interfaces.ItemBiblioteca;
  *
  */
 
-public class Categoria implements ItemBiblioteca {
+public class Categoria implements ItemBiblioteca, Comparable<Categoria> {
 	private String codigoSequencial;
 	private String descricao;
 
@@ -47,4 +47,26 @@ public class Categoria implements ItemBiblioteca {
 		return this.descricao;
 	}
 
+		public int compareTo(Categoria outraCategoria) {
+
+			if (this.descricao != null) {
+				int comparacao = this.descricao.compareTo(outraCategoria.getDescricao());
+
+				if (comparacao != 0) {
+					return comparacao;
+				}
+			}
+
+			if (this.codigoSequencial != null) {
+				int comparacaoCodigo = this.codigoSequencial.compareTo(outraCategoria.getCodigoSequencial());
+
+				if (comparacaoCodigo != 0) {
+					return comparacaoCodigo;
+				}
+			}
+
+			return 0;
+		}
+	
+	
 }

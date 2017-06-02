@@ -16,10 +16,12 @@ public class CadastroDeCategoria {
 	}
 
 	public void cadastrarCategoria() {
+		
 		System.out.println("Insira a descrição da categoria: ");
 		scanner.nextLine();
 		String descricao = scanner.nextLine();
 		Categoria novaCategoria = new Categoria(descricao);
+		
 		System.out.println("Verificando se categoria ja existe no banco...");
 		boolean resultado = verificaExistênciaDeCategoriaPorDescricao(descricao);
 		if(resultado){
