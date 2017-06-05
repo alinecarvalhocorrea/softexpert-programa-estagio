@@ -3,13 +3,13 @@ package br.com.biblioteca.console.pesquisa.autor;
 import java.util.Scanner;
 
 import br.com.biblioteca.objetos.Autor;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
+import br.com.biblioteca.repositorios.interfaces.Autores;
 
 public class PesquisaAutorPorCodigoSequencial {
 	private Scanner scanner;
-	private static BancoDeAutores bancoDeAutores;
+	private static Autores bancoDeAutores;
 
-	public PesquisaAutorPorCodigoSequencial(Scanner scanner, BancoDeAutores bancoDeAutores) {
+	public PesquisaAutorPorCodigoSequencial(Scanner scanner, Autores bancoDeAutores) {
 		this.scanner = scanner;
 		PesquisaAutorPorCodigoSequencial.bancoDeAutores = bancoDeAutores;
 	}

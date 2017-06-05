@@ -5,13 +5,13 @@ import java.util.Scanner;
 import java.util.Set;
 
 import br.com.biblioteca.objetos.Autor;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
+import br.com.biblioteca.repositorios.interfaces.Autores;
 
 public class PesquisaAutorPorNome {
 	private Scanner scanner;
-	private static BancoDeAutores bancoDeAutores;
+	private static Autores bancoDeAutores;
 
-	public PesquisaAutorPorNome(Scanner scanner, BancoDeAutores bancoDeAutores) {
+	public PesquisaAutorPorNome(Scanner scanner, Autores bancoDeAutores) {
 		this.scanner = scanner;
 		PesquisaAutorPorNome.bancoDeAutores = bancoDeAutores;
 	}

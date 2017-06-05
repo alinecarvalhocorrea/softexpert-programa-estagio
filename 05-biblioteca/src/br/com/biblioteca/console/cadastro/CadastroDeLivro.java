@@ -3,24 +3,23 @@ package br.com.biblioteca.console.cadastro;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
-import java.lang.Integer;
 
 import br.com.biblioteca.console.lista.ListaDeAutores;
 import br.com.biblioteca.console.lista.ListaDeCategorias;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.objetos.Categoria;
 import br.com.biblioteca.objetos.Livro;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
-import br.com.biblioteca.repositorios.memoria.BancoDeCategorias;
-import br.com.biblioteca.repositorios.memoria.BancoDeLivros;
+import br.com.biblioteca.repositorios.interfaces.Autores;
+import br.com.biblioteca.repositorios.interfaces.Categorias;
+import br.com.biblioteca.repositorios.interfaces.Livros;
 
 public class CadastroDeLivro {
 	private Scanner scanner;
-	private static BancoDeLivros bancoDeLivros;
-	private static BancoDeAutores bancoDeAutores;
-	private static BancoDeCategorias bancoDeCategorias;
+	private static Livros bancoDeLivros;
+	private static Autores bancoDeAutores;
+	private static Categorias bancoDeCategorias;
 	
-	public CadastroDeLivro(Scanner scanner, BancoDeLivros bancoDeLivros,BancoDeAutores bancoDeAutores,BancoDeCategorias bancoDeCategorias){
+	public CadastroDeLivro(Scanner scanner, Livros bancoDeLivros, Autores bancoDeAutores,Categorias bancoDeCategorias){
 		this.scanner = scanner;
 		CadastroDeLivro.bancoDeLivros = bancoDeLivros;
 		CadastroDeLivro.bancoDeAutores = bancoDeAutores;

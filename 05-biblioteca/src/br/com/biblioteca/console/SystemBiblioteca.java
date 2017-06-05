@@ -25,21 +25,20 @@ import br.com.biblioteca.console.pesquisa.livro.PesquisaLivroPorTitulo;
 import br.com.biblioteca.console.remove.RemoveAutor;
 import br.com.biblioteca.console.remove.RemoveCategoria;
 import br.com.biblioteca.console.remove.RemoveLivro;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
-import br.com.biblioteca.repositorios.memoria.BancoDeCategorias;
-import br.com.biblioteca.repositorios.memoria.BancoDeLivros;
+import br.com.biblioteca.repositorios.interfaces.Autores;
+import br.com.biblioteca.repositorios.interfaces.Categorias;
+import br.com.biblioteca.repositorios.interfaces.Livros;
+import br.com.biblioteca.repositorios.memoria.BancoDeAutoresEmMemoria;
+import br.com.biblioteca.repositorios.memoria.BancoDeCategoriasEmMemoria;
+import br.com.biblioteca.repositorios.memoria.BancoDeLivrosEmMemoria;
 
 public class SystemBiblioteca {
 	public static void main(String[] args) {		
 		
-		BancoDeLivros bancoDeLivros = new BancoDeLivros();
-		BancoDeAutores bancoDeAutores = new BancoDeAutores();
-		BancoDeCategorias bancoDeCategorias = new BancoDeCategorias();
+		Livros bancoDeLivros = new BancoDeLivrosEmMemoria();
+		Autores bancoDeAutores = new BancoDeAutoresEmMemoria();
+		Categorias bancoDeCategorias = new BancoDeCategoriasEmMemoria();
 	
-		InicializaDados dadosIniciais = new InicializaDados(bancoDeAutores, bancoDeCategorias, bancoDeLivros);
-		
-		// TODO Persistir dados em arquivos externos
-
 		System.out.println("                 Bem-Vindo(a) a biblioteca!");
 		Scanner scanner = new Scanner(System.in);
 		String opcaoIndex = "0";

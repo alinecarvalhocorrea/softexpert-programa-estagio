@@ -5,18 +5,18 @@ import java.util.Set;
 
 import br.com.biblioteca.console.confirmacao.Confirmacao;
 import br.com.biblioteca.objetos.Autor;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
+import br.com.biblioteca.repositorios.interfaces.Autores;
 
 public class CadastroDeAutor {
 	private Scanner scanner;
-	private static BancoDeAutores bancoDeAutores;
+	private static Autores bancoDeAutores;
 
-	public CadastroDeAutor(Scanner scanner, BancoDeAutores bancoDeAutores) {
+	public CadastroDeAutor(Scanner scanner, Autores bancoDeAutores) {
 		this.scanner = scanner;
 		CadastroDeAutor.bancoDeAutores = bancoDeAutores;
 	}
 
-	public void cadastrarAutor() {
+	public void cadastrarAutor(){
 		scanner.nextLine();
 		System.out.println("Insira o nome do(a) autor(a): ");
 		String nome = scanner.nextLine();

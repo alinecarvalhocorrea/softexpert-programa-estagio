@@ -6,13 +6,13 @@ import br.com.biblioteca.console.cadastro.CadastroDeCategoria;
 import br.com.biblioteca.console.confirmacao.Confirmacao;
 import br.com.biblioteca.console.pesquisa.categoria.PesquisaCategoriaPorCodigoSequencial;
 import br.com.biblioteca.objetos.Categoria;
-import br.com.biblioteca.repositorios.memoria.BancoDeCategorias;
+import br.com.biblioteca.repositorios.interfaces.Categorias;
 
 public class EditaCategoria {
 	private Scanner scanner;
-	private static BancoDeCategorias bancoDeCategorias;
+	private static Categorias bancoDeCategorias;
 	
-	public EditaCategoria(Scanner scanner, BancoDeCategorias bancoDeCategorias){
+	public EditaCategoria(Scanner scanner, Categorias bancoDeCategorias){
 		this.scanner = scanner;
 		EditaCategoria.bancoDeCategorias = bancoDeCategorias;
 	}
@@ -21,7 +21,7 @@ public class EditaCategoria {
 		System.out.println("Insira o código sequencial da categoria: ");
 		scanner.nextLine();
 		String codigoSequencial = scanner.nextLine();
-		//TODO verificar existencia de categoria
+		
 		System.out.println("Buscando categoria...");
 		boolean pesquisa = new PesquisaCategoriaPorCodigoSequencial(scanner, bancoDeCategorias).verificaExistenciaDeCategoriaPorCodigoSequencial(codigoSequencial);
 		if(pesquisa){

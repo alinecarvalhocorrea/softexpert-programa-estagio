@@ -3,13 +3,13 @@ package br.com.biblioteca.console.pesquisa.livro;
 import java.util.Scanner;
 
 import br.com.biblioteca.objetos.Livro;
-import br.com.biblioteca.repositorios.memoria.BancoDeLivros;
+import br.com.biblioteca.repositorios.interfaces.Livros;
 
 public class PesquisaLivroPorCodigoSequencial {
 		private Scanner scanner;
-		private static BancoDeLivros bancoDeLivros;
+		private static Livros bancoDeLivros;
 		
-		public PesquisaLivroPorCodigoSequencial(Scanner scanner, BancoDeLivros bancoDeLivros){
+		public PesquisaLivroPorCodigoSequencial(Scanner scanner, Livros bancoDeLivros){
 			this.scanner = scanner;
 			PesquisaLivroPorCodigoSequencial.bancoDeLivros = bancoDeLivros;
 		}

@@ -3,13 +3,13 @@ package br.com.biblioteca.console.lista;
 import java.util.Set;
 
 import br.com.biblioteca.objetos.Categoria;
-import br.com.biblioteca.repositorios.memoria.BancoDeCategorias;
+import br.com.biblioteca.repositorios.interfaces.Categorias;
 
 public class ListaDeCategorias {
-	private static BancoDeCategorias bancoDeCategorias;
+	private static Categorias bancoDeCategorias;
 	
-	public  ListaDeCategorias(BancoDeCategorias bancoDeCategorias){
-		ListaDeCategorias.bancoDeCategorias = bancoDeCategorias;
+	public  ListaDeCategorias(Categorias bancoDeCategorias2){
+		ListaDeCategorias.bancoDeCategorias = bancoDeCategorias2;
 	}
 	
 	public void listarCategorias(){

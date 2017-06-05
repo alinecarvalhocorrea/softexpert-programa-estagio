@@ -5,12 +5,12 @@ import java.util.TreeSet;
 
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.objetos.Livro;
-import br.com.biblioteca.repositorios.memoria.BancoDeLivros;
+import br.com.biblioteca.repositorios.interfaces.Livros;
 
 public class ListaDeLivros {
-private static BancoDeLivros bancoDeLivros;
+private static Livros bancoDeLivros;
 	
-	public  ListaDeLivros(BancoDeLivros bancoDeLivros){
+	public  ListaDeLivros(Livros bancoDeLivros){
 		ListaDeLivros.bancoDeLivros = bancoDeLivros;
 	}
 	

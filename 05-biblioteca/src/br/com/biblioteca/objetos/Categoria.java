@@ -1,16 +1,18 @@
 package br.com.biblioteca.objetos;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import br.com.biblioteca.objetos.interfaces.ItemBiblioteca;
 
 /**
  * 
- * @author aline.correa
+ *author aline.correa
  *
  */
 
-public class Categoria implements ItemBiblioteca, Comparable<Categoria> {
+public class Categoria implements ItemBiblioteca, Comparable<Categoria>,Serializable{
+	private static final long serialVersionUID = 1L;
 	private String codigoSequencial;
 	private String descricao;
 

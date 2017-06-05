@@ -5,13 +5,13 @@ import java.util.Scanner;
 import br.com.biblioteca.console.confirmacao.Confirmacao;
 import br.com.biblioteca.console.pesquisa.categoria.PesquisaCategoriaPorCodigoSequencial;
 import br.com.biblioteca.objetos.Categoria;
-import br.com.biblioteca.repositorios.memoria.BancoDeCategorias;
+import br.com.biblioteca.repositorios.interfaces.Categorias;
 
 public class RemoveCategoria {
-	private static BancoDeCategorias bancoDeCategorias;
+	private static Categorias bancoDeCategorias;
 	private Scanner scanner;
 
-	public RemoveCategoria(Scanner scanner, BancoDeCategorias bancoDeCategorias) {
+	public RemoveCategoria(Scanner scanner, Categorias bancoDeCategorias) {
 		this.scanner = scanner;
 		RemoveCategoria.bancoDeCategorias = bancoDeCategorias;
 	}

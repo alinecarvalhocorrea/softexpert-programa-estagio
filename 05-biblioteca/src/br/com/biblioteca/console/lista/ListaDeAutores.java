@@ -3,12 +3,12 @@ package br.com.biblioteca.console.lista;
 import java.util.Set;
 
 import br.com.biblioteca.objetos.Autor;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
+import br.com.biblioteca.repositorios.interfaces.Autores;
 
 public class ListaDeAutores {
-	private static BancoDeAutores bancoDeAutores;
+	private static Autores bancoDeAutores;
 	
-	public  ListaDeAutores(BancoDeAutores bancoDeAutores){
+	public  ListaDeAutores(Autores bancoDeAutores){
 		ListaDeAutores.bancoDeAutores = bancoDeAutores;
 	}
 	

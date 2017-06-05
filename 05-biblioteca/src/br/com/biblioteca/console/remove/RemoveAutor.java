@@ -5,13 +5,13 @@ import java.util.Scanner;
 import br.com.biblioteca.console.confirmacao.Confirmacao;
 import br.com.biblioteca.console.pesquisa.autor.PesquisaAutorPorCodigoSequencial;
 import br.com.biblioteca.objetos.Autor;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
+import br.com.biblioteca.repositorios.interfaces.Autores;
 
 public class RemoveAutor {
-	private static BancoDeAutores bancoDeAutores;
+	private static Autores bancoDeAutores;
 	private Scanner scanner;
 
-	public RemoveAutor(Scanner scanner, BancoDeAutores bancoDeAutores) {
+	public RemoveAutor(Scanner scanner, Autores bancoDeAutores) {
 		this.scanner = scanner;
 		RemoveAutor.bancoDeAutores = bancoDeAutores;
 	}

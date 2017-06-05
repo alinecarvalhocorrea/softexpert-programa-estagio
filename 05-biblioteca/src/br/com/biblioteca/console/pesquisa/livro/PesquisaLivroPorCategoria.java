@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Scanner;
 
 import br.com.biblioteca.objetos.Livro;
-import br.com.biblioteca.repositorios.memoria.BancoDeLivros;
+import br.com.biblioteca.repositorios.interfaces.Livros;
 
 public class PesquisaLivroPorCategoria {
 	private Scanner scanner;
-	private static BancoDeLivros bancoDeLivros;
+	private static Livros bancoDeLivros;
 
-	public PesquisaLivroPorCategoria(Scanner scanner, BancoDeLivros bancoDeLivros) {
+	public PesquisaLivroPorCategoria(Scanner scanner, Livros bancoDeLivros) {
 		this.scanner = scanner;
 		PesquisaLivroPorCategoria.bancoDeLivros = bancoDeLivros;
 	}

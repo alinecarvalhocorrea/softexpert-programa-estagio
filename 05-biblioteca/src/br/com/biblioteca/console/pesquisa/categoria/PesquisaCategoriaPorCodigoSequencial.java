@@ -3,13 +3,13 @@ package br.com.biblioteca.console.pesquisa.categoria;
 import java.util.Scanner;
 
 import br.com.biblioteca.objetos.Categoria;
-import br.com.biblioteca.repositorios.memoria.BancoDeCategorias;
+import br.com.biblioteca.repositorios.interfaces.Categorias;
 
 public class PesquisaCategoriaPorCodigoSequencial {
 	private Scanner scanner;
-	private static BancoDeCategorias bancoDeCategorias;
+	private static Categorias bancoDeCategorias;
 
-	public PesquisaCategoriaPorCodigoSequencial(Scanner scanner, BancoDeCategorias bancoDeCategorias) {
+	public PesquisaCategoriaPorCodigoSequencial(Scanner scanner, Categorias bancoDeCategorias) {
 		this.scanner = scanner;
 		PesquisaCategoriaPorCodigoSequencial.bancoDeCategorias = bancoDeCategorias;
 	}

@@ -3,7 +3,7 @@ package br.com.biblioteca.console.testes;
 import java.util.Set;
 
 import br.com.biblioteca.objetos.Autor;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
+import br.com.biblioteca.repositorios.memoria.BancoDeAutoresEmMemoria;
 
 public class TestaBancoDeAutores {
 
@@ -25,7 +25,7 @@ public class TestaBancoDeAutores {
 
 		// TESTE : Criar Banco de Autores
 		System.out.println("Criando Banco de Autores...");
-		BancoDeAutores bancoDeAutores = new BancoDeAutores();
+		BancoDeAutoresEmMemoria bancoDeAutores = new BancoDeAutoresEmMemoria();
 
 		// TESTE : Adicionar Autores no Banco
 		System.out.println("Adicionando Autores no Banco...");

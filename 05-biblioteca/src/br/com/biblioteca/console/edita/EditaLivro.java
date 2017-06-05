@@ -6,17 +6,17 @@ import br.com.biblioteca.console.cadastro.CadastroDeLivro;
 import br.com.biblioteca.console.confirmacao.Confirmacao;
 import br.com.biblioteca.console.pesquisa.livro.PesquisaLivroPorCodigoSequencial;
 import br.com.biblioteca.objetos.Livro;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
-import br.com.biblioteca.repositorios.memoria.BancoDeCategorias;
-import br.com.biblioteca.repositorios.memoria.BancoDeLivros;
+import br.com.biblioteca.repositorios.interfaces.Autores;
+import br.com.biblioteca.repositorios.interfaces.Categorias;
+import br.com.biblioteca.repositorios.interfaces.Livros;
 
 public class EditaLivro {
 	private Scanner scanner;
-	private static BancoDeLivros bancoDeLivros;
-	private static BancoDeAutores bancoDeAutores;
-	private static BancoDeCategorias bancoDeCategorias;
+	private static Livros bancoDeLivros;
+	private static Autores bancoDeAutores;
+	private static Categorias bancoDeCategorias;
 	
-	public EditaLivro(Scanner scanner, BancoDeLivros bancoDeLivros, BancoDeAutores bancoDeAutores, BancoDeCategorias bancoDeCategorias){
+	public EditaLivro(Scanner scanner, Livros bancoDeLivros, Autores bancoDeAutores, Categorias bancoDeCategorias){
 		this.scanner = scanner;
 		EditaLivro.bancoDeLivros = bancoDeLivros;
 		EditaLivro.bancoDeAutores  = bancoDeAutores;

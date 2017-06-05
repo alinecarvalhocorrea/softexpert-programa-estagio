@@ -5,13 +5,13 @@ import java.util.Scanner;
 import java.util.Set;
 
 import br.com.biblioteca.objetos.Categoria;
-import br.com.biblioteca.repositorios.memoria.BancoDeCategorias;
+import br.com.biblioteca.repositorios.interfaces.Categorias;
 
 public class PesquisaCategoriaPorDescricao {
 	private Scanner scanner;
-	private static BancoDeCategorias bancoDeCategorias;
+	private static Categorias bancoDeCategorias;
 
-	public PesquisaCategoriaPorDescricao(Scanner scanner, BancoDeCategorias bancoDeCategorias) {
+	public PesquisaCategoriaPorDescricao(Scanner scanner, Categorias bancoDeCategorias) {
 		this.scanner = scanner;
 		PesquisaCategoriaPorDescricao.bancoDeCategorias = bancoDeCategorias;
 	}

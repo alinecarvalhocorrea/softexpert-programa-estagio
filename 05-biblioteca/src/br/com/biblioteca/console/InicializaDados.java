@@ -6,13 +6,13 @@ import java.util.TreeSet;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.objetos.Categoria;
 import br.com.biblioteca.objetos.Livro;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
-import br.com.biblioteca.repositorios.memoria.BancoDeCategorias;
-import br.com.biblioteca.repositorios.memoria.BancoDeLivros;
+import br.com.biblioteca.repositorios.memoria.BancoDeAutoresEmMemoria;
+import br.com.biblioteca.repositorios.memoria.BancoDeCategoriasEmMemoria;
+import br.com.biblioteca.repositorios.memoria.BancoDeLivrosEmMemoria;
 
 public class InicializaDados {
-	public InicializaDados(BancoDeAutores bancoDeAutores, BancoDeCategorias bancoDeCategorias,
-			BancoDeLivros bancoDeLivros) {
+	public InicializaDados(BancoDeAutoresEmMemoria bancoDeAutores, BancoDeCategoriasEmMemoria bancoDeCategorias,
+			BancoDeLivrosEmMemoria bancoDeLivros) {
 		Autor a1 = new Autor("Aline");
 		a1.setDataDeNascimento("08/11/1997");
 		a1.setNacionalidade("brasileira");

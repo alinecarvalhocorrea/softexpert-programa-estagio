@@ -6,13 +6,13 @@ import br.com.biblioteca.console.cadastro.CadastroDeAutor;
 import br.com.biblioteca.console.confirmacao.Confirmacao;
 import br.com.biblioteca.console.pesquisa.autor.PesquisaAutorPorCodigoSequencial;
 import br.com.biblioteca.objetos.Autor;
-import br.com.biblioteca.repositorios.memoria.BancoDeAutores;
+import br.com.biblioteca.repositorios.interfaces.Autores;
 
 public class EditaAutor {
 	private Scanner scanner;
-	private static BancoDeAutores bancoDeAutores;
+	private static Autores bancoDeAutores;
 	
-	public EditaAutor(Scanner scanner, BancoDeAutores bancoDeAutores){
+	public EditaAutor(Scanner scanner, Autores bancoDeAutores){
 		this.scanner = scanner;
 		EditaAutor.bancoDeAutores = bancoDeAutores;
 	}
