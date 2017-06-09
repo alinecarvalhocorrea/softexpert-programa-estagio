@@ -2,12 +2,14 @@ package br.com.biblioteca.objetos;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import br.com.biblioteca.objetos.interfaces.ItemBiblioteca;
-import br.com.biblioteca.objetos.verificacoes.VerificaLivro;
+import br.com.biblioteca.objetos.verificacoes.AttributeCreationException;
 
 /**
  * 
@@ -16,15 +18,13 @@ import br.com.biblioteca.objetos.verificacoes.VerificaLivro;
  */
 
 public class Livro implements Comparable<Livro>, ItemBiblioteca {
-	private static int contadorParaDigitoVerificador = 0;
-	private int contador;
 	private int digitoVerificador;
 	private CodigoSequencial codigo = new CodigoSequencial();
 	private String codigoSequencial;
 	private String titulo;
 	private String resumo;
 	private String codigoDeBarras;
-	private int quantidadeDePaginas;
+	private String quantidadeDePaginas;
 	private String local;
 	private Calendar dataDeAquisicao;
 	private Set<Autor> autor;
@@ -34,51 +34,22 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 	// Construtores
 
 	public Livro() {
-		setContador(getContador() + 1);
-		setCodigoSequencial(codigo.criarCodigoAutor());
-		contadorParaDigitoVerificador += 1;
-		setDigitoVerificador(getDigitoVerificador());
-		if (contadorParaDigitoVerificador == 10) {
-			contadorParaDigitoVerificador = 0;
-			setDigitoVerificador(contadorParaDigitoVerificador);
-		}
+		setCodigoSequencial(codigo.criarCodigoLivro());
+		setDigitoVerificador();
 		setCodigoDeBarras();
 	}
-
-	public Livro(Set<Autor> autor, Categoria categoria, String titulo, String local) throws NullPointerException {
-		try {
-			VerificaLivro verificacao = new VerificaLivro();
-			verificacao.verificacaoDeDadosLivro(this);
-			setContador(getContador() + 1);
-			setCodigoSequencial(getContador());
-			contadorParaDigitoVerificador += 1;
-			setDigitoVerificador(contadorParaDigitoVerificador);
-			if (contadorParaDigitoVerificador == 10) {
-				contadorParaDigitoVerificador = 0;
-				setDigitoVerificador(contadorParaDigitoVerificador);
-			}
-			setCodigoDeBarras();
-			setAutor(autor);
-			setCategoria(categoria);
-			setTitulo(titulo);
-			setLocal(local);
-		} catch (NullPointerException e) {
-			System.out.println(e.getMessage());
-		}
-
-	}
-
-	// Métodos Static
-
-	private void setContador(int contador) {
-		this.contador = contador;
-	}
-
-	private int getContador() {
-		return contador;
-	}
-
+	
 	// Métodos Private
+	
+	private void setCodigoDeBarras() {
+		int prefixoDoPaisDeRegistroDaEmpresa = 789;
+		int identificadorDaEmpresa = 73217;
+		String codigoSequencial = verificaCodigoSequencial(this.getCodigoSequencial());
+		int digitoVerificador = this.getDigitoVerificador();
+		String stringCodigoDeBarras = "" + prefixoDoPaisDeRegistroDaEmpresa + identificadorDaEmpresa + codigoSequencial
+				+ digitoVerificador;
+		this.codigoDeBarras = stringCodigoDeBarras;
+	}
 
 	private void verificarDataDeAquisicao(Calendar dataVerifica) throws DataInvalidaException {
 		Calendar dataDeHoje = Calendar.getInstance();
@@ -89,21 +60,89 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 		// return true;
 	}
 
-	private void setDigitoVerificador(int digitoVerificador) {
-		this.digitoVerificador = digitoVerificador;
+	private void setDigitoVerificador() {
+		List<Integer> numeros = calculaDigitoVerificador();
+		this.digitoVerificador = numeros.get(12);
 	}
 
-	private int getDigitoVerificador() {
+	public int getDigitoVerificador() {
 		return this.digitoVerificador;
 	}
-
-	// Métodos Public
-
-	public void setCodigoSequencial(int contador) {
+	
+	private String verificaCodigoSequencial(String codigo){
+		if(!(codigo.length() == 4)){
+			for(int tamanho = codigo.length();tamanho != 4;){
+				codigo = "0" + codigo;
+				tamanho = codigo.length();
+			}
+		}
+		return codigo;
+	}
+	
+	private List<Integer> calculaDigitoVerificador(){
+		String codigoSequencial = verificaCodigoSequencial(this.getCodigoSequencial());
+		List<Integer> numeros = new ArrayList<>();
+		numeros.add(7);	
+		numeros.add(8);	
+		numeros.add(9);	
+		numeros.add(7);	
+		numeros.add(3);	
+		numeros.add(2);	
+		numeros.add(1);	
+		numeros.add(7);	
+		for(int posicao = 0;posicao < 4;posicao++){
+			String num = String.valueOf(codigoSequencial.charAt(posicao));
+			int numero = Integer.parseInt(num);
+			numeros.add(numero);
+		}
+		int somaImpares = 0;
+		int somaPares = 0;
+			//soma dos numeros nas posicões pares
+			for(int posicao = 0; posicao < 11;){
+				int num = numeros.get(posicao);
+				somaPares += num;
+				posicao += 2;
+			}
+			//soma dos numeros nas posicões impares
+			for(int posicao = 1; posicao <= 11;){
+				int num = numeros.get(posicao);
+				somaImpares += num;
+				posicao += 2;
+			}
+			int numPares = somaPares * 3;
+			int numeroFinal = somaImpares + numPares;
+			int contador = 0;
+			while(numeroFinal%10 != 0){
+				numeroFinal = numeroFinal+1;
+				contador += 1;
+			}	
+			numeros.add(contador);
+			return numeros;
+	}
+	
+	private void setCodigoSequencial(int contador) {
 		String codigoString = String.valueOf(contador);
 		this.codigoSequencial = codigoString;
 	}
 
+	// Métodos Public
+	
+	
+	public void verificacaoDeDadosLivro() throws AttributeCreationException {
+		if (this.getTitulo() == null) {
+			throw new AttributeCreationException("*** ERRO: O livro está sem titulo. Por favor, informe o título. ***");
+		}
+		if(this.getAutor().isEmpty()){
+			throw new AttributeCreationException("*** ERRO: O livro está sem autor. Por Favor, informe pelo menos um(a) autor(a). ***");
+		}
+		if(this.getCategoria() == null){
+			throw new AttributeCreationException("*** ERRO: O livro está sem categoria. Por favor, informe a categoria do livro. ***");
+		}
+		if (this.getLocal() == null) {
+			throw new AttributeCreationException("*** ERRO: O livro está sem local. Por favor, informe o local do livro. ***");
+		}
+	}
+	
 	public String getCodigoSequencial() {
 		return this.codigoSequencial;
 	}
@@ -118,38 +157,30 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 	}
 
 	public void setResumo(String resumo) {
-		this.resumo = resumo;
+		if(resumo == null){
+			this.resumo = "*** Resumo não informado ***";
+		}else{
+			this.resumo = resumo;
+		}
 	}
 
 	public String getResumo() {
 		return this.resumo;
 	}
 
-	public void setCodigoDeBarras() {
-		// 13 digitos
-		// 3 primeiros digitos: prefixo do pais de registro da empresa(789)
-		// do quarto ao nono digito: Identificação da empresa(456789)
-		// do décimo ao décimo segundo: Referência do produto(codSequencial -
-		// 001)
-		// décimo terceiro: Digito verificador(5)
-		int prefixoDoPaisDeRegistroDaEmpresa = 847;
-		int identificadorDaEmpresa = 892174;
-		String codigoSequencial = this.getCodigoSequencial();
-		int digitoVerificador = this.getDigitoVerificador();
-		String stringCodigoDeBarras = "" + prefixoDoPaisDeRegistroDaEmpresa + identificadorDaEmpresa + codigoSequencial
-				+ digitoVerificador;
-		this.codigoDeBarras = stringCodigoDeBarras;
-	}
-
 	public String getCodigoDeBarras() {
 		return this.codigoDeBarras;
 	}
 
-	public void setQuantidadeDePaginas(int quantidadeDePaginas) {
-		this.quantidadeDePaginas = quantidadeDePaginas;
+	public void setQuantidadeDePaginas(String quantidadeDePaginas) {
+		if(quantidadeDePaginas == null){
+			this.quantidadeDePaginas = "*** Quantidade de páginas não informado ***";
+		}else{
+			this.quantidadeDePaginas = quantidadeDePaginas;
+		}
 	}
 
-	public int getQuantidadeDePaginas() {
+	public String getQuantidadeDePaginas() {
 		return this.quantidadeDePaginas;
 	}
 
@@ -162,8 +193,7 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 		return this.local;
 	}
 
-	public void setDataDeAquisicao(String dataDeAquisicao)
-			throws FormatoDeDataInvalidoException, DataInvalidaException {
+	public void setDataDeAquisicao(String dataDeAquisicao) throws FormatoDeDataInvalidoException, DataInvalidaException {
 		try {
 			Date date = formatoData.parse(dataDeAquisicao);
 			Calendar dataVerifica = Calendar.getInstance();
@@ -175,15 +205,17 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 			this.dataDeAquisicao.setTime(date);
 
 		} catch (ParseException e) {
-			// formato inserido
 			throw new FormatoDeDataInvalidoException(
 					"Data inserida invalida, por favor utilize o formato (dd/mm/yyyy)");
+		}catch (NullPointerException e){
+			this.dataDeAquisicao = null;
+			return;
 		}
 	}
 
 	public String getDataDeAquisicao() {
 		if (this.dataDeAquisicao == null) {
-			return "";
+			return "*** Data de Aquisição não informada ***";
 		}
 		String dataString = formatoData.format(this.dataDeAquisicao.getTime());
 		return dataString;
@@ -201,10 +233,8 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 		this.categoria = categoria;
 	}
 
-	public String getCategoria() {
-		Categoria categoriaDesseLivro = this.categoria;
-		String descricaoCategoriaDesseLivro = categoriaDesseLivro.getDescricao();
-		return descricaoCategoriaDesseLivro;
+	public Categoria getCategoria() {
+		return this.categoria;
 	}
 
 	// Métodos da classe

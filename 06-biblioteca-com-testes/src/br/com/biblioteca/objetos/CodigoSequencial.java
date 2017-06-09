@@ -1,9 +1,9 @@
 package br.com.biblioteca.objetos;
 
 public class CodigoSequencial{
-		private static int codigoLivro;
-		private static int codigoAutor;
-		private static int codigoCategoria;
+		private static int codigoLivro = 0;
+		private static int codigoAutor = 0;
+		private static int codigoCategoria = 0;
 		
 		//Métodos Public
 		
@@ -27,6 +27,7 @@ public class CodigoSequencial{
 			setCodigoCategoria(0);
 			setCodigoLivro(0);
 		}
+		
 		// Métodos Private
 		
 		private int getCodigoCategoria() {
@@ -46,7 +47,7 @@ public class CodigoSequencial{
 		}
 
 		private int getCodigoLivro() {
-			return codigoLivro;
+			return CodigoSequencial.codigoLivro;
 		}
 
 		private void setCodigoLivro(int codigoLivro) {

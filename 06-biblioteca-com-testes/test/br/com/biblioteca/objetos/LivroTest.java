@@ -6,9 +6,12 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.junit.After;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import br.com.biblioteca.objetos.testes.ZerarTestesDeLivros;
+import br.com.biblioteca.objetos.verificacoes.AttributeCreationException;
 
 /**
  * @author aline.correa
@@ -21,12 +24,24 @@ import br.com.biblioteca.objetos.testes.ZerarTestesDeLivros;
 
 public class LivroTest {
 
-	public Livro criaLivroPadrao() throws NomeAutorNuloException, DescricaoCategoriaNulaException {
+	@Rule
+    public ExpectedException exception = ExpectedException.none();
+	
+	public Livro criaLivroPadrao() throws NomeAutorNuloException, DescricaoCategoriaNulaException, DataException {
 		Autor autor = new Autor("Aline Teste");
 		Set<Autor> autoresLivro = new TreeSet<>();
 		autoresLivro.add(autor);
 		Categoria categoria = new Categoria("Romance");
-		Livro livro = new Livro(autoresLivro, categoria, "Livro Teste Titulo", "b3");
+
+		Livro livro = new Livro();
+
+		livro.setAutor(autoresLivro);
+		livro.setCategoria(categoria);
+		livro.setTitulo("Livro teste Titulo");
+		livro.setLocal("b3");
+		livro.setDataDeAquisicao("08/10/2003");
+		livro.setQuantidadeDePaginas("23");
+		livro.setResumo("resumo livro teste");
 		return livro;
 	}
 
@@ -36,32 +51,100 @@ public class LivroTest {
 	}
 
 	@Test
-	public void testLivro() {
+	public void testLivro() throws NomeAutorNuloException, DescricaoCategoriaNulaException, DataException, Exception {
+		
+		Livro livro = criaLivroPadrao();
+		
+		livro.verificacaoDeDadosLivro();
+		
+		assertEquals("1", livro.getCodigoSequencial());
+		
+	}
+	
 
+	@Test
+	public void testCriarLivrosAteOCodigoSequencialTerQuatroDigitos() throws DescricaoCategoriaNulaException, NomeAutorNuloException, DataException {
+		for(int contador = 1; contador < 1999;contador++){
+			new Livro();
+		}		
+		assertEquals("7897321719998",new Livro().getCodigoDeBarras());
+	}
+	
+	@Test
+	public void testLivroSemTitulo() throws Exception{
+		
+		exception.expect(AttributeCreationException.class);
+		exception.expectMessage("está sem titulo");
+		
 		Livro livro = new Livro();
-
-		assertEquals("1", livro.getCodigoSequencial());
+		livro.verificacaoDeDadosLivro();
 	}
-
+	
 	@Test
-	public void testSetCodigoSequencial() throws NomeAutorNuloException, DescricaoCategoriaNulaException {
+	public void testLivroSemAutor() throws Exception{
 
-		Livro livro = criaLivroPadrao();
-
-		assertEquals("1", livro.getCodigoSequencial());
+		exception.expect(AttributeCreationException.class);
+		exception.expectMessage("está sem autor");
+		
+		Livro livro = new Livro();
+		livro.setTitulo("teste titulo");
+		Set<Autor> autor = new TreeSet<>();
+		livro.setAutor(autor);
+		livro.verificacaoDeDadosLivro();
 	}
-
+	
 	@Test
-	public void testSetCodigoDeBarras() throws NomeAutorNuloException, DescricaoCategoriaNulaException {
+	public void testLivroSemCategoria() throws Exception{
 
-		Livro livro = criaLivroPadrao();
-
-		assertEquals("84789217411", livro.getCodigoDeBarras());
+		exception.expect(AttributeCreationException.class);
+		exception.expectMessage("está sem categoria");
+		
+		Livro livro = new Livro();
+		livro.setTitulo("teste titulo");
+		Set<Autor> autor = new TreeSet<>();
+		autor.add(new Autor());
+		livro.setAutor(autor);
+		livro.verificacaoDeDadosLivro();
 	}
-
+	
 	@Test
-	public void testSetDataDeAquisicao()
-			throws DataInvalidaException, NomeAutorNuloException, DescricaoCategoriaNulaException {
+	public void testLivroSemLocal() throws Exception{
+		
+		exception.expect(AttributeCreationException.class);
+		exception.expectMessage("está sem local");
+		
+		Livro livro = new Livro();
+		livro.setTitulo("teste titulo");
+		Set<Autor> autor = new TreeSet<>();
+		autor.add(new Autor());
+		livro.setAutor(autor);
+		livro.setCategoria(new Categoria("drama"));
+		livro.verificacaoDeDadosLivro();
+	}
+	
+	@Test
+	public void testLivroSemDataDeAquisicao() throws Exception{
+		
+		Livro livro = new Livro();
+		livro.setTitulo("teste titulo");
+		Set<Autor> autor = new TreeSet<>();
+		autor.add(new Autor());
+		livro.setAutor(autor);
+		livro.setCategoria(new Categoria("drama"));
+		livro.setDataDeAquisicao(null);
+		livro.setLocal("b5");
+		livro.verificacaoDeDadosLivro();
+		assertEquals("*** Data de Aquisição não informada ***",livro.getDataDeAquisicao());
+	}
+	
+	@Test
+	public void testSetCodigoDeBarras() throws NomeAutorNuloException, DescricaoCategoriaNulaException, DataException {
+
+		assertEquals("7897321700015", criaLivroPadrao().getCodigoDeBarras());
+	}
+	
+	@Test
+	public void testSetDataDeAquisicao() throws NomeAutorNuloException, DescricaoCategoriaNulaException, DataException {
 
 		Livro livro = criaLivroPadrao();
 
@@ -70,18 +153,40 @@ public class LivroTest {
 		assertEquals("08/10/2012", livro.getDataDeAquisicao());
 	}
 
-	@Test(expected = DataInvalidaException.class)
+	@Test
 	public void testDataDeAquisicaoPosteriorAAtual() throws Exception {
 
+		exception.expect(DataInvalidaException.class);
+		
 		Livro livro = criaLivroPadrao();
 
 		livro.setDataDeAquisicao("08/10/2019");
 	}
-
+	
 	@Test
-	public void testSetAutor() throws NomeAutorNuloException {
+	public void testDataDeAquisicaoFormatoErrado() throws Exception {
 
-		Livro livro = new Livro();
+		exception.expect(FormatoDeDataInvalidoException.class);
+		
+		Livro livro = criaLivroPadrao();
+
+		livro.setDataDeAquisicao("aaaa");
+	}
+	
+	@Test
+	public void testQuantidadeDePaginasNaoInformado() throws Exception {
+		
+		Livro livro = criaLivroPadrao();
+		
+		livro.setQuantidadeDePaginas(null);
+		
+		assertEquals("*** Quantidade de páginas não informado ***",livro.getQuantidadeDePaginas());
+	}
+	
+	@Test
+	public void testSetAutor() throws NomeAutorNuloException, DescricaoCategoriaNulaException, DataException {
+
+		Livro livro = criaLivroPadrao();
 		Autor autor = new Autor("Teste Autor");
 		Set<Autor> autorDoLivro = new TreeSet<>();
 		autorDoLivro.add(autor);
@@ -92,13 +197,15 @@ public class LivroTest {
 	}
 
 	@Test
-	public void testSetCategoria() throws DescricaoCategoriaNulaException {
+	public void testSetCategoria() throws DescricaoCategoriaNulaException, NomeAutorNuloException, DataException {
 
-		Livro livro = new Livro();
+		Livro livro = criaLivroPadrao();
 		Categoria categoria = new Categoria("drama");
 
 		livro.setCategoria(categoria);
 
-		assertEquals("DRAMA", livro.getCategoria());
+		assertEquals("DRAMA", livro.getCategoria().getDescricao());
 	}
+	
+	
 }

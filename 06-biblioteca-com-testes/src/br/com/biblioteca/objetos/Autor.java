@@ -77,9 +77,6 @@ public class Autor implements Comparable<Autor>, ItemBiblioteca {
 	}
 	
 	public void setDataDeNascimento(String dataDeNascimento) throws DataInvalidaException, FormatoDeDataInvalidoException {
-		if (dataDeNascimento.equals(null)) {
-			return;
-		}
 		try {
 			Date date = formatoData.parse(dataDeNascimento);
 			Calendar dataVerifica = Calendar.getInstance();
@@ -89,14 +86,19 @@ public class Autor implements Comparable<Autor>, ItemBiblioteca {
 			this.dataDeNascimento.setTime(date);
 		} catch (ParseException e) {
 			throw new FormatoDeDataInvalidoException("Data inserida invalida, por favor tente novamente e utilize o formato (dd/mm/yyyy)");
-		} catch (IllegalArgumentException e) {
-			throw new FormatoDeDataInvalidoException("Data inserida invalida, por favor tente novamente e utilize o formato (dd/mm/yyyy)");
-		} 
+		} catch (NullPointerException e) {
+			return;
+		}
 	}
 
 	public String getDataDeNascimento() {
-		String dataUserString = formatoData.format(this.dataDeNascimento.getTime());
-		return dataUserString;
+		try{
+			String dataUserString = formatoData.format(this.dataDeNascimento.getTime());
+			return dataUserString;
+		}catch(NullPointerException e){
+			throw new NullPointerException("*** Data de nascimento não informada ***");
+		}
+		
 	}	
 	
 	// Métodos da Classe

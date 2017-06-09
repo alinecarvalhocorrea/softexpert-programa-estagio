@@ -23,10 +23,6 @@ public class Categoria implements ItemBiblioteca, Comparable<Categoria>,Serializ
 		setCodigoSequencial(codigo.criarCodigoAutor());
 	}
 	
-	public Categoria() {
-		setCodigoSequencial(codigo.criarCodigoAutor());
-	}
-	
 	// Métodos Private
 	
 	private void setCodigoSequencial(int contador) {
