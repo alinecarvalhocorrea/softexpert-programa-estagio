@@ -7,7 +7,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.Set;
 
 import org.junit.After;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.objetos.DataInvalidaException;
@@ -30,7 +32,10 @@ import br.com.biblioteca.repositorios.interfaces.Autores;
 public class BancoDeAutoresEmMemoriaTest {
 
 	private Autores banco = new BancoDeAutoresEmMemoria();
-
+	
+	@Rule
+    public ExpectedException exception = ExpectedException.none();
+	
 	// Inicia Dados padrão para os testes
 	private void prepararDadosParaPesquisa() throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
 		Autor autor1 = new Autor("Shakespeare Aline");

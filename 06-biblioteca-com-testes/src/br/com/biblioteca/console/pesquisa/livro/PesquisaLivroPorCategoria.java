@@ -1,7 +1,7 @@
 package br.com.biblioteca.console.pesquisa.livro;
 
-import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import br.com.biblioteca.objetos.Livro;
 import br.com.biblioteca.repositorios.interfaces.Livros;
@@ -22,7 +22,7 @@ public class PesquisaLivroPorCategoria {
 		boolean verifica = verificarExistenciaDeLivroPorCategoria(categoriaParaPesquisar);
 
 		if (verifica) {
-			List<Livro> livrosEncontrados = bancoDeLivros.buscarPorCategoria(categoriaParaPesquisar);
+			Set<Livro> livrosEncontrados = bancoDeLivros.buscarPorCategoria(categoriaParaPesquisar);
 			System.out.println("Livro(s) encontrado(s):");
 			for (Livro livro : livrosEncontrados) {
 				System.out.println(livro);
@@ -34,7 +34,7 @@ public class PesquisaLivroPorCategoria {
 	}
 
 	private boolean verificarExistenciaDeLivroPorCategoria(String categoria) {
-		List<Livro> busca = bancoDeLivros.buscarPorCategoria(categoria);
+		Set<Livro> busca = bancoDeLivros.buscarPorCategoria(categoria);
 		if (!busca.isEmpty()) {
 			return true;
 		}

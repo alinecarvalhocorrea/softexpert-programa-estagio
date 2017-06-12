@@ -17,9 +17,6 @@ public class BancoDeCategoriasEmMemoria implements Categorias {
 
 	@Override
 	public void adicionar(Categoria categoria) {
-		if (categoria.getDescricao() == null) {
-			throw new NullPointerException("A categoria está sem descrição, favor colocar");
-		}
 		banco.add(categoria);
 	}
 	
@@ -39,7 +36,7 @@ public class BancoDeCategoriasEmMemoria implements Categorias {
 	}
 
 	@Override
-	public Set<Categoria> buscarCategoriaPorDescricao(String descricao) {
+	public Set<Categoria> buscarCategoriaPorDescricao(String descricao) throws NullPointerException{
 		Set<Categoria> categoriasEncontradas = new HashSet<>();
 		descricao = descricao.toUpperCase();
 		for (Categoria categoria : banco) {
@@ -47,6 +44,9 @@ public class BancoDeCategoriasEmMemoria implements Categorias {
 			if (descricaoCategoria.contains(descricao)) {
 				categoriasEncontradas.add(categoria);
 			}
+		}
+		if(categoriasEncontradas.isEmpty()){
+			throw new NullPointerException("Nenhuma categoria com a descrição informada foi encontrada");
 		}
 		return categoriasEncontradas;
 	}

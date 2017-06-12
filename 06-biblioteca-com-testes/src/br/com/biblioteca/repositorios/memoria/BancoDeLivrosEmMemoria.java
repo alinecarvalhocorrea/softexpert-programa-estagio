@@ -1,7 +1,5 @@
 package br.com.biblioteca.repositorios.memoria;
 
-import java.util.ArrayList;
-import java.util.List;
 /**
  * 
  * @author aline.correa
@@ -19,11 +17,7 @@ public class BancoDeLivrosEmMemoria implements Livros {
 	private static Set<Livro> banco = new TreeSet<>();
 
 	public void adicionar(Livro livro) {
-		try {
-			banco.add(livro);
-		} catch (NullPointerException e) {
-			e.getMessage();
-		}
+		banco.add(livro);
 	}
 
 	public void excluir(Livro livro) {
@@ -39,39 +33,31 @@ public class BancoDeLivrosEmMemoria implements Livros {
 	}
 
 	@Override
-	public Set<Livro> buscarPorTitulo(String titulo) {
+	public Set<Livro> buscarPorTitulo(String titulo) throws NullPointerException {
 		Set<Livro> livrosEncontrados = new TreeSet<>();
-		titulo = titulo.toUpperCase();
-		String[] tituloArray = titulo.split(" ");
-
-		for (int contador = 0; contador < tituloArray.length; contador++) {
-			for (Livro livro : banco) {
-				String livroTitulo = livro.getTitulo();
-				String tituloArraySistema[] = livroTitulo.split(" ");
-				int i = 0;
-				while (i < tituloArraySistema.length) {
-					if (tituloArraySistema[i].contains(tituloArray[contador])) {
-						livrosEncontrados.add(livro);
-					}
-					i++;
+		for (Livro livro : banco) {
+			titulo = titulo.toUpperCase();
+			String tituloLivroNoSistema = livro.getTitulo();
+			tituloLivroNoSistema = tituloLivroNoSistema.toUpperCase();
+				if(tituloLivroNoSistema.contains(titulo)){
+					livrosEncontrados.add(livro);
 				}
-			}
 		}
-		if (!livrosEncontrados.isEmpty()) {
-			return livrosEncontrados;
+		if(livrosEncontrados.isEmpty()){
+			throw new NullPointerException("Nenhum livro encontrado com o título informado");
 		}
-		return null;
+		return livrosEncontrados;
 	}
 
 	@Override
-	public Livro buscarPorCodigoSequencial(String codigoSequencial) {
+	public Livro buscarPorCodigoSequencial(String codigoSequencial) throws NullPointerException {
 		for (Livro livro : banco) {
 			String codigoLivro = livro.getCodigoSequencial();
 			if (codigoLivro.equals(codigoSequencial)) {
 				return livro;
 			}
 		}
-		return null;
+		throw new NullPointerException("Nenhum livro encontrado com o código sequencial informado");
 	}
 
 	@Override
@@ -82,19 +68,22 @@ public class BancoDeLivrosEmMemoria implements Livros {
 				return livro;
 			}
 		}
-		return null;
+		throw new NullPointerException("Nenhum livro encontrado com o código de barras informado");
 	}
 
 	@Override
-	public List<Livro> buscarPorCategoria(String descricaoCategoria) {
+	public Set<Livro> buscarPorCategoria(String descricaoCategoria) {
 		descricaoCategoria = descricaoCategoria.toUpperCase();
-		List<Livro> livrosEncontrados = new ArrayList<>();
+		Set<Livro> livrosEncontrados = new TreeSet<>();
 		for (Livro livro : banco) {
-			String descricaoLivro = livro.getCategoria();
+			String descricaoLivro = livro.getCategoria().getDescricao();
 			descricaoLivro = descricaoLivro.toUpperCase();
 			if (descricaoLivro.equals(descricaoCategoria)) {
 				livrosEncontrados.add(livro);
 			}
+		}
+		if(livrosEncontrados.isEmpty()){
+			throw new NullPointerException("Nenhum livro encontrado com a categoria informada");
 		}
 		return livrosEncontrados;
 	}
@@ -113,8 +102,10 @@ public class BancoDeLivrosEmMemoria implements Livros {
 			}
 			
 		}
+		if(livrosEncontrados.isEmpty()){
+			throw new NullPointerException("Nenhum livro encontrado com o(a) autor(a) informado(a)");
+		}
 		return livrosEncontrados;
-
 	}
 
 }

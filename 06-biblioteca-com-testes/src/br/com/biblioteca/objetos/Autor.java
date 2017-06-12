@@ -69,7 +69,15 @@ public class Autor implements Comparable<Autor>, ItemBiblioteca {
 	}
 	
 	public void setNacionalidade(String nacionalidade) {
-		this.nacionalidade = nacionalidade;
+		try{
+			if(nacionalidade.equals("")){
+				this.nacionalidade = "*** Nacionalidade não informada ***";
+			}else{
+				this.nacionalidade = nacionalidade;
+			}
+		}catch(NullPointerException e){
+			this.nacionalidade = "*** Nacionalidade não informada ***";
+		}
 	}
 	
 	public String getNacionalidade() {
@@ -85,7 +93,7 @@ public class Autor implements Comparable<Autor>, ItemBiblioteca {
 			this.dataDeNascimento = Calendar.getInstance();
 			this.dataDeNascimento.setTime(date);
 		} catch (ParseException e) {
-			throw new FormatoDeDataInvalidoException("Data inserida invalida, por favor tente novamente e utilize o formato (dd/mm/yyyy)");
+			throw new FormatoDeDataInvalidoException("Data inserida invalida ou nula, por favor utilize o formato (dd/mm/yyyy)");
 		} catch (NullPointerException e) {
 			return;
 		}
@@ -96,7 +104,7 @@ public class Autor implements Comparable<Autor>, ItemBiblioteca {
 			String dataUserString = formatoData.format(this.dataDeNascimento.getTime());
 			return dataUserString;
 		}catch(NullPointerException e){
-			throw new NullPointerException("*** Data de nascimento não informada ***");
+			return "*** Data de nascimento não informada ***";
 		}
 		
 	}	
@@ -105,7 +113,7 @@ public class Autor implements Comparable<Autor>, ItemBiblioteca {
 	
 	@Override
 	public String toString() {
-		return nome;
+		return "Nome: " + nome + " | Código Sequencial: " + codigoSequencial;
 	}
 
 	@Override

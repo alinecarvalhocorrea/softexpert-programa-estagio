@@ -55,18 +55,12 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 		Calendar dataDeHoje = Calendar.getInstance();
 		if (dataVerifica.getTime().after(dataDeHoje.getTime())) {
 			throw new DataInvalidaException("*** ERRO: Data inserida posterior a data atual! ***");
-			// return false;
 		}
-		// return true;
 	}
 
 	private void setDigitoVerificador() {
 		List<Integer> numeros = calculaDigitoVerificador();
 		this.digitoVerificador = numeros.get(12);
-	}
-
-	public int getDigitoVerificador() {
-		return this.digitoVerificador;
 	}
 	
 	private String verificaCodigoSequencial(String codigo){
@@ -127,8 +121,15 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 
 	// Métodos Public
 	
+	public int getDigitoVerificador() {
+		return this.digitoVerificador;
+	}
 	
-	public void verificacaoDeDadosLivro() throws AttributeCreationException {
+	public String getCodigoSequencial() {
+		return this.codigoSequencial;
+	}
+	
+	public void verificacaoDeDadosLivro() throws AttributeCreationException{
 		if (this.getTitulo() == null) {
 			throw new AttributeCreationException("*** ERRO: O livro está sem titulo. Por favor, informe o título. ***");
 		}
@@ -142,10 +143,6 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 			throw new AttributeCreationException("*** ERRO: O livro está sem local. Por favor, informe o local do livro. ***");
 		}
 	}
-	
-	public String getCodigoSequencial() {
-		return this.codigoSequencial;
-	}
 
 	public void setTitulo(String titulo) {
 		titulo = titulo.toUpperCase();
@@ -157,10 +154,14 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 	}
 
 	public void setResumo(String resumo) {
-		if(resumo == null){
+		try{
+			if(resumo.equals("")){
+				this.resumo = "*** Resumo não informado ***";
+			}else{
+				this.resumo = resumo;
+			}
+		}catch(NullPointerException e){
 			this.resumo = "*** Resumo não informado ***";
-		}else{
-			this.resumo = resumo;
 		}
 	}
 
@@ -173,10 +174,14 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 	}
 
 	public void setQuantidadeDePaginas(String quantidadeDePaginas) {
-		if(quantidadeDePaginas == null){
+		try{
+			if(quantidadeDePaginas.equals("")){
+				this.quantidadeDePaginas = "*** Quantidade de páginas não informado ***";
+			}else{
+				this.quantidadeDePaginas = quantidadeDePaginas;
+			}
+		}catch(NullPointerException e){
 			this.quantidadeDePaginas = "*** Quantidade de páginas não informado ***";
-		}else{
-			this.quantidadeDePaginas = quantidadeDePaginas;
 		}
 	}
 
@@ -205,8 +210,7 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 			this.dataDeAquisicao.setTime(date);
 
 		} catch (ParseException e) {
-			throw new FormatoDeDataInvalidoException(
-					"Data inserida invalida, por favor utilize o formato (dd/mm/yyyy)");
+			throw new FormatoDeDataInvalidoException("Data inserida invalida, por favor utilize o formato (dd/mm/yyyy)");
 		}catch (NullPointerException e){
 			this.dataDeAquisicao = null;
 			return;
@@ -214,11 +218,18 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 	}
 
 	public String getDataDeAquisicao() {
-		if (this.dataDeAquisicao == null) {
+		try{
+			if (this.dataDeAquisicao.equals(null)) {
+				return "*** Data de Aquisição não informada ***";
+			}
+			if (this.dataDeAquisicao.equals("")) {
+				return "*** Data de Aquisição não informada ***";
+			}
+			String dataString = formatoData.format(this.dataDeAquisicao.getTime());
+			return dataString;
+		}catch(NullPointerException e ){
 			return "*** Data de Aquisição não informada ***";
 		}
-		String dataString = formatoData.format(this.dataDeAquisicao.getTime());
-		return dataString;
 	}
 
 	public void setAutor(Set<Autor> autor) {
@@ -249,7 +260,6 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 				return comparacao;
 			}
 		}
-
 		if (this.codigoSequencial != null) {
 			int comparacaoCodigoSequencial = this.codigoSequencial.compareTo(outroLivro.getCodigoSequencial());
 
@@ -257,14 +267,13 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 				return comparacaoCodigoSequencial;
 			}
 		}
-
 		return 0;
 	}
 
 	@Override
 	public String toString() {
 		return "Livro: " + titulo + ", (" + quantidadeDePaginas + " Páginas) | Categoria: " + categoria
-				+ " | Autor(es/a/as): " + autor + " | Código De Barras: " + codigoDeBarras + " | Data de Aquisição: "
+				+ " | Autor(es/a/as): " + autor + " | Código De Barras: " + codigoDeBarras + " | Código Sequencia: " + codigoSequencial + " | Data de Aquisição: "
 				+ getDataDeAquisicao() + " | Resumo: " + resumo + ".";
 
 	}

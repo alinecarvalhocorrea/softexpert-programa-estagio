@@ -207,5 +207,33 @@ public class LivroTest {
 		assertEquals("DRAMA", livro.getCategoria().getDescricao());
 	}
 	
+	@Test
+	public void testSetResumo() throws Exception{
+
+		Livro livro = criaLivroPadrao();
+
+		livro.setResumo("Resumo teste teste");
+
+		assertEquals("Resumo teste teste", livro.getResumo());
+	}
 	
+	@Test
+	public void testGetResumoNulo() throws Exception{
+
+		Livro livro = criaLivroPadrao();
+
+		livro.setResumo(null);
+
+		assertEquals("*** Resumo não informado ***", livro.getResumo());
+	}
+	
+	@Test
+	public void testGetResumoVazio() throws Exception{
+
+		Livro livro = criaLivroPadrao();
+
+		livro.setResumo("");
+
+		assertEquals("*** Resumo não informado ***", livro.getResumo());
+	}
 }

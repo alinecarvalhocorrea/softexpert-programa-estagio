@@ -85,7 +85,7 @@ public class AutorTest {
 	}
 
 	@Test
-	public void testSetDataDeNascimento() throws NomeAutorNuloException, DataInvalidaException {
+	public void testSetDataDeNascimento() throws NomeAutorNuloException, DataException {
 
 		Autor autor = criarAutorPadrao();
 
@@ -95,7 +95,7 @@ public class AutorTest {
 	}
 
 	@Test
-	public void testDataDeNascimentoFutura() throws NomeAutorNuloException, Exception {
+	public void testSetDataDeNascimentoFutura() throws NomeAutorNuloException, Exception {
 		
 		exception.expect(DataInvalidaException.class);
 		
@@ -105,7 +105,7 @@ public class AutorTest {
 	}
 
 	@Test
-	public void testDataDeNascimentoFormatoInvalido() throws NomeAutorNuloException, Exception {
+	public void testSetDataDeNascimentoFormatoInvalido() throws NomeAutorNuloException, Exception {
 		
 		exception.expect(FormatoDeDataInvalidoException.class);
 		
@@ -115,21 +115,20 @@ public class AutorTest {
 	}
 	
 	@Test 
-	public void testDataDeNascimentoNula() throws NomeAutorNuloException, DataException{
-		
-		exception.expect(NullPointerException.class);
-		exception.expectMessage("Data de nascimento não informada");
+	public void testGetSetDataDeNascimentoNula() throws Exception{
 		
 		Autor autor = criarAutorPadrao();
 		
 		autor.setDataDeNascimento(null);
 		
-		autor.getDataDeNascimento();
+		assertEquals("*** Data de nascimento não informada ***", autor.getDataDeNascimento());
 	}
 	
-	@Test(expected = FormatoDeDataInvalidoException.class)
-	public void testDataDeNascimentoCaractereNAceito() throws NomeAutorNuloException, Exception {
-
+	@Test
+	public void testSetDataDeNascimentoCaractereNAceito() throws NomeAutorNuloException, Exception {
+		
+		exception.expect(FormatoDeDataInvalidoException.class);
+		
 		Autor autor = criarAutorPadrao();
 
 		autor.setDataDeNascimento("ç2215kh2h6");
@@ -144,5 +143,24 @@ public class AutorTest {
 
 		assertEquals("brasileiro", autor.getNacionalidade());
 	}
+	
+	@Test
+	public void testSetNacionalidadeVazia() throws Exception{
 
+		Autor autor = criarAutorPadrao();
+
+		autor.setNacionalidade("");
+
+		assertEquals("*** Nacionalidade não informada ***", autor.getNacionalidade());
+	}
+	
+	@Test
+	public void testSetNacionalidadeNula() throws Exception{
+
+		Autor autor = criarAutorPadrao();
+
+		autor.setNacionalidade(null);
+
+		assertEquals("*** Nacionalidade não informada ***", autor.getNacionalidade());
+	}
 }

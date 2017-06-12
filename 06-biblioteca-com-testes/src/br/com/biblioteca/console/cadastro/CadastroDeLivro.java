@@ -8,7 +8,10 @@ import br.com.biblioteca.console.lista.ListaDeAutores;
 import br.com.biblioteca.console.lista.ListaDeCategorias;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.objetos.Categoria;
+import br.com.biblioteca.objetos.DataInvalidaException;
+import br.com.biblioteca.objetos.FormatoDeDataInvalidoException;
 import br.com.biblioteca.objetos.Livro;
+import br.com.biblioteca.objetos.verificacoes.AttributeCreationException;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
 import br.com.biblioteca.repositorios.interfaces.Livros;
@@ -26,86 +29,96 @@ public class CadastroDeLivro {
 		CadastroDeLivro.bancoDeCategorias = bancoDeCategorias;
 	}
 	
-	public void cadastrarLivro(){	
-		scanner.nextLine();
+	public void cadastrarLivro() throws FormatoDeDataInvalidoException{
 		Livro novoLivro = new Livro();
-		
-		System.out.println("ATENÇÃO: CAMPOS COM * DEVEM SER OBRIGATORIAMENTE PREENCHIDOS");
-		System.out.println("\n");
-		
-		System.out.println("*Insira o título do livro*:");
-			String titulo = scanner.nextLine();
-			novoLivro.setTitulo(titulo);	
+			try{
+				scanner.nextLine();
+				System.out.println("ATENÇÃO: CAMPOS COM * DEVEM SER OBRIGATORIAMENTE PREENCHIDOS");
+				System.out.println("\n");
 			
-		System.out.println("*Insira o local do livro*:");
-			String local = scanner.nextLine();
-			novoLivro.setLocal(local);
+				System.out.println("*Insira o título do livro*:");
+				String titulo = scanner.nextLine();
+				novoLivro.setTitulo(titulo);	
+				
+				System.out.println("*Insira o local do livro*:");
+				String local = scanner.nextLine();
+				novoLivro.setLocal(local);
+				
+				System.out.println("==== *Escolha a Categoria* ====");
 			
-		System.out.println("Insira a quantidade de páginas do livro:");
-			String quantidadeDePaginas = scanner.nextLine();
+				ListaDeCategorias listaDeCategorias = new ListaDeCategorias(bancoDeCategorias);
+				listaDeCategorias.listarCategorias();
+				
+				System.out.println("*Insira o código sequencial da categoria do livro*:");
 			
-		System.out.println("*Insira a data de aquisição do livro(dd/mm/aaaa)*:");
-			String dataDeAquisicao = scanner.nextLine();
-			
-		System.out.println("==== *Escolha a Categoria* ====");
-		
-			ListaDeCategorias listaDeCategorias = new ListaDeCategorias(bancoDeCategorias);
-			listaDeCategorias.listarCategorias();
-			
-		System.out.println("*Insira o código sequencial da categoria do livro*:");
-		
-			String codigoCategoria = scanner.nextLine();
-			Categoria categoria = bancoDeCategorias.buscarPorCodigoSequencial(codigoCategoria);
-			novoLivro.setCategoria(categoria);
-			
-		System.out.println("Insira o resumo do livro: ");
-			String resumo = scanner.nextLine();
-		
-		System.out.println("*Insira o número de autores(as) do livro*:");
-			String numeroDeAutores = scanner.nextLine();
-			int numero = Integer.parseInt(numeroDeAutores);
-			Set<Autor> autoresDoLivro = new TreeSet<>();
-			
-		System.out.println("==== *Lista de Autores(as)* ====");
-
-			ListaDeAutores listaDeAutores = new ListaDeAutores(bancoDeAutores);
-			listaDeAutores.listarAutores();
-
-			if(numero == 1){
-				System.out.println("*Insira o código sequencial do autor(a) do livro*:");
-					String codigoAutor = scanner.nextLine();
-					Autor autor = bancoDeAutores.buscarPorCodigoSequencial(codigoAutor);
-					autoresDoLivro.add(autor);
-			}
-			if(numero > 1){
-				for(int contador = 1;contador <= numero;contador++){
-					System.out.println("*Insira o código sequencial do autor " + contador +" do livro*:");
-						String codigoAutor = scanner.nextLine();
-						Autor autor = bancoDeAutores.buscarPorCodigoSequencial(codigoAutor);
-						autoresDoLivro.add(autor);				}
-			}
-			
-			novoLivro.setAutor(autoresDoLivro);
-			
-			if(!dataDeAquisicao.equals(null)){
+				String codigoCategoria = scanner.nextLine();
 				try{
-					novoLivro.setDataDeAquisicao(dataDeAquisicao);
-				}catch(IllegalArgumentException e){
-					e.printStackTrace();
+					Categoria categoria = bancoDeCategorias.buscarPorCodigoSequencial(codigoCategoria);
+					novoLivro.setCategoria(categoria);
+				}catch(NullPointerException e){
+					System.out.println("*** Categoria não encontrada. Tente novamente ***");
+					cadastrarLivro();
 				}
-			}
-			if(!resumo.equals(null)){
+			
+				System.out.println("*Insira o número de autores(as) do livro*:");
+			
+				String numeroDeAutores = scanner.nextLine();
+				int numero = Integer.parseInt(numeroDeAutores);
+				Set<Autor> autoresDoLivro = new TreeSet<>();
+				
+				System.out.println("==== *Lista de Autores(as)* ====");
+				ListaDeAutores listaDeAutores = new ListaDeAutores(bancoDeAutores);
+				listaDeAutores.listarAutores();
+	
+				if(numero == 1){
+					System.out.println("*Insira o código sequencial do autor(a) do livro*:");
+						String codigoAutor = scanner.nextLine();
+						try{
+							Autor autor = bancoDeAutores.buscarPorCodigoSequencial(codigoAutor);
+							autoresDoLivro.add(autor);
+							novoLivro.setAutor(autoresDoLivro);
+						}catch(NullPointerException e){
+							System.out.println("*** Autor(a) não encontrado(a). Tente Novamente ***");
+							cadastrarLivro();
+						}
+				}
+				if(numero > 1){
+					for(int contador = 1;contador <= numero;contador++){
+						System.out.println("*Insira o código sequencial do autor " + contador +" do livro*:");
+							String codigoAutor = scanner.nextLine();
+							Autor autor = bancoDeAutores.buscarPorCodigoSequencial(codigoAutor);
+							autoresDoLivro.add(autor);				
+					}
+					novoLivro.setAutor(autoresDoLivro);
+				}
+				
+				System.out.println("Insira o resumo do livro: ");
+				String resumo = scanner.nextLine();
 				novoLivro.setResumo(resumo);
+				
+				System.out.println("Insira a quantidade de páginas do livro:");
+				String quantidadeDePaginas = scanner.nextLine();
+				novoLivro.setQuantidadeDePaginas(quantidadeDePaginas);
+				
+				System.out.println("Insira a data de aquisição do livro(dd/mm/aaaa):");
+				String dataDeAquisicao = scanner.nextLine();
+				novoLivro.setDataDeAquisicao(dataDeAquisicao);
+				
+				novoLivro.verificacaoDeDadosLivro();
+				
+				bancoDeLivros.adicionar(novoLivro);
+				
+				System.out.println("Novo livro Criado !!!");
+				System.out.println(novoLivro);
+				
+			}catch(AttributeCreationException e){
+				System.out.println(e.getMessage());
+				cadastrarLivro();
+			}catch(DataInvalidaException e){
+				System.out.println(e.getMessage());
+				System.out.println("Retornando... Por favor, Tente novamente");
+				cadastrarLivro();
 			}
-			if(quantidadeDePaginas != null){
-				int paginas = Integer.parseInt(quantidadeDePaginas);
-				novoLivro.setQuantidadeDePaginas(paginas);
-			}
-			
-			bancoDeLivros.adicionar(novoLivro);
-			
-			System.out.println("Novo livro Criado !!!");
-			System.out.println(novoLivro);
 			
 		}
 	}

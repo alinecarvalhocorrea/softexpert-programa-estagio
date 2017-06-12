@@ -25,6 +25,10 @@ import br.com.biblioteca.console.pesquisa.livro.PesquisaLivroPorTitulo;
 import br.com.biblioteca.console.remove.RemoveAutor;
 import br.com.biblioteca.console.remove.RemoveCategoria;
 import br.com.biblioteca.console.remove.RemoveLivro;
+import br.com.biblioteca.objetos.FormatoDeDataInvalidoException;
+import br.com.biblioteca.objetos.testes.ZerarTestesDeAutores;
+import br.com.biblioteca.objetos.testes.ZerarTestesDeCategorias;
+import br.com.biblioteca.objetos.testes.ZerarTestesDeLivros;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
 import br.com.biblioteca.repositorios.interfaces.Livros;
@@ -33,7 +37,7 @@ import br.com.biblioteca.repositorios.memoria.BancoDeCategoriasEmMemoria;
 import br.com.biblioteca.repositorios.memoria.BancoDeLivrosEmMemoria;
 
 public class SystemBiblioteca {
-	public static void main(String[] args) {		
+	public static void main(String[] args) throws FormatoDeDataInvalidoException {		
 		
 		Livros bancoDeLivros = new BancoDeLivrosEmMemoria();
 		Autores bancoDeAutores = new BancoDeAutoresEmMemoria();
@@ -399,9 +403,13 @@ public class SystemBiblioteca {
 					}
 			}
 		}
-		
-		System.out.println("############# Sistema encerrado ##############");
-		scanner.close();
-		System.exit(0);
+		if(opcaoIndex.equals("6")){
+			System.out.println("############# Sistema encerrado ##############");
+			scanner.close();
+			System.exit(0);
+			new ZerarTestesDeAutores().zerar();
+			new ZerarTestesDeLivros().zerar();
+			new ZerarTestesDeCategorias().zerar();
+		}
 	}
 }

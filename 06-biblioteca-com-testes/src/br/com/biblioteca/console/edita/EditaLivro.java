@@ -5,6 +5,7 @@ import java.util.Scanner;
 import br.com.biblioteca.console.cadastro.CadastroDeLivro;
 import br.com.biblioteca.console.confirmacao.Confirmacao;
 import br.com.biblioteca.console.pesquisa.livro.PesquisaLivroPorCodigoSequencial;
+import br.com.biblioteca.objetos.FormatoDeDataInvalidoException;
 import br.com.biblioteca.objetos.Livro;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
@@ -23,7 +24,7 @@ public class EditaLivro {
 		EditaLivro.bancoDeCategorias = bancoDeCategorias;
 	}
 	
-	public void editarLivro(){
+	public void editarLivro() throws FormatoDeDataInvalidoException{
 		scanner.nextLine();
 		System.out.println("Insira o código sequencial do livro:");
 		String codigo = scanner.nextLine();
