@@ -193,7 +193,7 @@ public class LivroTest {
 
 		livro.setAutor(autorDoLivro);
 
-		assertEquals("[Teste Autor]", livro.getAutor().toString());
+		assertEquals("[Nome: Teste Autor | Código Sequencial: 3]", livro.getAutor().toString());
 	}
 
 	@Test
