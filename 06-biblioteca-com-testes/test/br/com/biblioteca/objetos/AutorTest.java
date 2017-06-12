@@ -8,6 +8,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import br.com.biblioteca.objetos.exceptions.DataException;
+import br.com.biblioteca.objetos.exceptions.DataInvalidaException;
+import br.com.biblioteca.objetos.exceptions.FormatoDeDataInvalidoException;
+import br.com.biblioteca.objetos.exceptions.NomeAutorNuloException;
 import br.com.biblioteca.objetos.testes.ZerarTestesDeAutores;
 
 /**
@@ -20,10 +24,10 @@ import br.com.biblioteca.objetos.testes.ZerarTestesDeAutores;
  */
 
 public class AutorTest {
-	
+
 	@Rule
-    public ExpectedException exception = ExpectedException.none();
-	
+	public ExpectedException exception = ExpectedException.none();
+
 	private Autor criarAutorPadrao() throws NomeAutorNuloException {
 		Autor autor = new Autor("Teste Autor");
 		return autor;
@@ -70,17 +74,17 @@ public class AutorTest {
 
 	@Test
 	public void testQuandoNomeDeAutorForNulo() throws Exception {
-		
+
 		exception.expect(NomeAutorNuloException.class);
-		
+
 		new Autor(null);
 	}
 
 	@Test
 	public void testQuandoNomeDeAutorForVazio() throws Exception {
-		
+
 		exception.expect(NomeAutorNuloException.class);
-		
+
 		new Autor("");
 	}
 
@@ -96,9 +100,9 @@ public class AutorTest {
 
 	@Test
 	public void testSetDataDeNascimentoFutura() throws NomeAutorNuloException, Exception {
-		
+
 		exception.expect(DataInvalidaException.class);
-		
+
 		Autor autor = criarAutorPadrao();
 
 		autor.setDataDeNascimento("08/11/2018");
@@ -106,29 +110,29 @@ public class AutorTest {
 
 	@Test
 	public void testSetDataDeNascimentoFormatoInvalido() throws NomeAutorNuloException, Exception {
-		
+
 		exception.expect(FormatoDeDataInvalidoException.class);
-		
+
 		Autor autor = criarAutorPadrao();
 
 		autor.setDataDeNascimento("aaa");
 	}
-	
-	@Test 
-	public void testGetSetDataDeNascimentoNula() throws Exception{
-		
+
+	@Test
+	public void testGetSetDataDeNascimentoNula() throws Exception {
+
 		Autor autor = criarAutorPadrao();
-		
+
 		autor.setDataDeNascimento(null);
-		
+
 		assertEquals("*** Data de nascimento não informada ***", autor.getDataDeNascimento());
 	}
-	
+
 	@Test
 	public void testSetDataDeNascimentoCaractereNAceito() throws NomeAutorNuloException, Exception {
-		
+
 		exception.expect(FormatoDeDataInvalidoException.class);
-		
+
 		Autor autor = criarAutorPadrao();
 
 		autor.setDataDeNascimento("ç2215kh2h6");
@@ -143,9 +147,9 @@ public class AutorTest {
 
 		assertEquals("brasileiro", autor.getNacionalidade());
 	}
-	
+
 	@Test
-	public void testSetNacionalidadeVazia() throws Exception{
+	public void testSetNacionalidadeVazia() throws Exception {
 
 		Autor autor = criarAutorPadrao();
 
@@ -153,9 +157,9 @@ public class AutorTest {
 
 		assertEquals("*** Nacionalidade não informada ***", autor.getNacionalidade());
 	}
-	
+
 	@Test
-	public void testSetNacionalidadeNula() throws Exception{
+	public void testSetNacionalidadeNula() throws Exception {
 
 		Autor autor = criarAutorPadrao();
 

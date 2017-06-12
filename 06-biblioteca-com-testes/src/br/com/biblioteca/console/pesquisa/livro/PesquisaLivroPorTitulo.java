@@ -6,6 +6,15 @@ import java.util.Set;
 import br.com.biblioteca.objetos.Livro;
 import br.com.biblioteca.repositorios.interfaces.Livros;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de pesquisa: Interação com o usuário e pesquisa
+ *         de Livros pelo título no banco
+ *
+ */
+
 public class PesquisaLivroPorTitulo {
 	private Scanner scanner;
 	private static Livros bancoDeLivros;

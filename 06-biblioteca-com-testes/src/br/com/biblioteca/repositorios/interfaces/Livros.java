@@ -1,19 +1,24 @@
 package br.com.biblioteca.repositorios.interfaces;
 
 import java.util.Set;
-
 import br.com.biblioteca.objetos.Livro;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ */
+
 public interface Livros extends AcoesNoRepositorio<Livro> {
-	
+
 	Set<Livro> buscarPorTitulo(String titulo);
 
 	Livro buscarPorCodigoSequencial(String codigoSequencial);
 
 	Livro buscarPorCodigoDeBarras(String codigoDeBarras);
-	
+
 	Set<Livro> buscarPorCategoria(String descricaoCategoria);
 
-	Set<Livro> buscarPorAutor(String nomeAutor);	
+	Set<Livro> buscarPorAutor(String nomeAutor);
 
 }

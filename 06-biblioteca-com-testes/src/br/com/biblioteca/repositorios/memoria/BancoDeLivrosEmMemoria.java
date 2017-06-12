@@ -1,16 +1,17 @@
 package br.com.biblioteca.repositorios.memoria;
 
-/**
- * 
- * @author aline.correa
- *
- */
 import java.util.Set;
 import java.util.TreeSet;
 
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.objetos.Livro;
 import br.com.biblioteca.repositorios.interfaces.Livros;
+
+/**
+ * 
+ * @author aline.correa
+ *
+ */
 
 public class BancoDeLivrosEmMemoria implements Livros {
 
@@ -39,11 +40,11 @@ public class BancoDeLivrosEmMemoria implements Livros {
 			titulo = titulo.toUpperCase();
 			String tituloLivroNoSistema = livro.getTitulo();
 			tituloLivroNoSistema = tituloLivroNoSistema.toUpperCase();
-				if(tituloLivroNoSistema.contains(titulo)){
-					livrosEncontrados.add(livro);
-				}
+			if (tituloLivroNoSistema.contains(titulo)) {
+				livrosEncontrados.add(livro);
+			}
 		}
-		if(livrosEncontrados.isEmpty()){
+		if (livrosEncontrados.isEmpty()) {
 			throw new NullPointerException("Nenhum livro encontrado com o título informado");
 		}
 		return livrosEncontrados;
@@ -82,7 +83,7 @@ public class BancoDeLivrosEmMemoria implements Livros {
 				livrosEncontrados.add(livro);
 			}
 		}
-		if(livrosEncontrados.isEmpty()){
+		if (livrosEncontrados.isEmpty()) {
 			throw new NullPointerException("Nenhum livro encontrado com a categoria informada");
 		}
 		return livrosEncontrados;
@@ -100,9 +101,9 @@ public class BancoDeLivrosEmMemoria implements Livros {
 					livrosEncontrados.add(livro);
 				}
 			}
-			
+
 		}
-		if(livrosEncontrados.isEmpty()){
+		if (livrosEncontrados.isEmpty()) {
 			throw new NullPointerException("Nenhum livro encontrado com o(a) autor(a) informado(a)");
 		}
 		return livrosEncontrados;

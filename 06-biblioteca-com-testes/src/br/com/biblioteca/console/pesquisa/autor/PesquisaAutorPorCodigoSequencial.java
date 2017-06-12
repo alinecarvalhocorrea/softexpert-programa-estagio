@@ -5,6 +5,15 @@ import java.util.Scanner;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de pesquisa: Interação com o usuário e
+ *         pesquisa de Autores pelo código sequencial no banco
+ *
+ */
+
 public class PesquisaAutorPorCodigoSequencial {
 	private Scanner scanner;
 	private static Autores bancoDeAutores;
@@ -13,7 +22,7 @@ public class PesquisaAutorPorCodigoSequencial {
 		this.scanner = scanner;
 		PesquisaAutorPorCodigoSequencial.bancoDeAutores = bancoDeAutores;
 	}
-	
+
 	public void pesquisarAutorPorCodigoSequencial() {
 		System.out.println("Insira o código sequencial: ");
 		scanner.nextLine();
@@ -30,6 +39,7 @@ public class PesquisaAutorPorCodigoSequencial {
 			return;
 		}
 	}
+
 	public boolean verificaExistenciaDeAutorPorCodigoSequencial(String codigo) {
 		Autor busca = bancoDeAutores.buscarPorCodigoSequencial(codigo);
 		if (busca != null) {

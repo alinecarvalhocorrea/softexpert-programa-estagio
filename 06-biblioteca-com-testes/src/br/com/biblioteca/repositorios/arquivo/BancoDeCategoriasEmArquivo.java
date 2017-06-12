@@ -12,25 +12,31 @@ import java.util.TreeSet;
 import br.com.biblioteca.objetos.Categoria;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ */
+
 public class BancoDeCategoriasEmArquivo implements Categorias {
-	
+
 	private static Set<Categoria> banco = new TreeSet<>();
 
 	@Override
-	public void adicionar(Categoria categoria){
+	public void adicionar(Categoria categoria) {
 		if (categoria.getDescricao() == null) {
 			throw new NullPointerException("A categoria está sem descrição, favor colocar");
 		}
 		banco.add(categoria);
 		salvar();
 	}
-	
-	private void salvar(){
+
+	private void salvar() {
 		try {
-			FileOutputStream arquivo = new FileOutputStream("categorias.txt",false);
+			FileOutputStream arquivo = new FileOutputStream("categorias.txt", false);
 			ObjectOutputStream os = new ObjectOutputStream(arquivo);
-			os.writeObject(banco); 
-            os.close( );
+			os.writeObject(banco);
+			os.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -49,20 +55,20 @@ public class BancoDeCategoriasEmArquivo implements Categorias {
 
 	@Override
 	public Set<Categoria> listar() {
-		 try{
-			 FileInputStream arquivo = new FileInputStream("categorias.txt");
-			 ObjectInputStream objetos = new ObjectInputStream(arquivo);
-			 @SuppressWarnings("unchecked")
-			 Set<Categoria> lista = (Set<Categoria>) objetos.readObject();
-			 objetos.close();
-			 arquivo.close();
-			 return lista;
-		 }catch(Exception e){
-			 e.printStackTrace();
-		 }
+		try {
+			FileInputStream arquivo = new FileInputStream("categorias.txt");
+			ObjectInputStream objetos = new ObjectInputStream(arquivo);
+			@SuppressWarnings("unchecked")
+			Set<Categoria> lista = (Set<Categoria>) objetos.readObject();
+			objetos.close();
+			arquivo.close();
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
-    }     
-	
+	}
+
 	@Override
 	public Set<Categoria> buscarCategoriaPorDescricao(String descricao) {
 		Set<Categoria> bancoEmArquivo = listar();

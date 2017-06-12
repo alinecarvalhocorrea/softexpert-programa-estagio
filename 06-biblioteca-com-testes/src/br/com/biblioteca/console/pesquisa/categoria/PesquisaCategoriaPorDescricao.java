@@ -7,6 +7,15 @@ import java.util.Set;
 import br.com.biblioteca.objetos.Categoria;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de pesquisa: Interação com o usuário e pesquisa
+ *         de Autores pela descrição no banco
+ *
+ */
+
 public class PesquisaCategoriaPorDescricao {
 	private Scanner scanner;
 	private static Categorias bancoDeCategorias;

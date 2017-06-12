@@ -5,6 +5,15 @@ import java.util.Scanner;
 import br.com.biblioteca.objetos.Categoria;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de pesquisa: Interação com o usuário e pesquisa
+ *         de Categorias pelo código sequencial no banco
+ *
+ */
+
 public class PesquisaCategoriaPorCodigoSequencial {
 	private Scanner scanner;
 	private static Categorias bancoDeCategorias;

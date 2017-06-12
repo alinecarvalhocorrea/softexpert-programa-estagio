@@ -7,15 +7,24 @@ import java.util.Set;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de pesquisa: Interação com o usuário e pesquisa
+ *         de Autores pela nacionalidade no banco
+ *
+ */
+
 public class PesquisaAutorPorNacionalidade {
 	private Scanner scanner;
 	private static Autores bancoDeAutores;
-	
-	public PesquisaAutorPorNacionalidade(Scanner scanner, Autores bancoDeAutores){
+
+	public PesquisaAutorPorNacionalidade(Scanner scanner, Autores bancoDeAutores) {
 		this.scanner = scanner;
 		PesquisaAutorPorNacionalidade.bancoDeAutores = bancoDeAutores;
 	}
-	
+
 	public void pesquisarAutorPorNacionalidade() {
 		String nacionalidade = scanner.nextLine();
 		System.out.println("Insira a nacionalidade do(a) autor(a):");

@@ -5,18 +5,29 @@ import java.util.Set;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de listagem: Interação com o usuário e listagem
+ *         de Autores no banco
+ *
+ */
+
 public class ListaDeAutores {
 	private static Autores bancoDeAutores;
-	
-	public  ListaDeAutores(Autores bancoDeAutores){
+
+	public ListaDeAutores(Autores bancoDeAutores) {
 		ListaDeAutores.bancoDeAutores = bancoDeAutores;
 	}
-	
-	public void listarAutores(){
+
+	public void listarAutores() {
 		Set<Autor> listaDeAutores = bancoDeAutores.listar();
 		for (Autor autor : listaDeAutores) {
-			System.out.println("Nome: " + autor.getNome() + " | Nacionalidade: " + autor.getNacionalidade() + " | Data De Nascimento: " + autor.getDataDeNascimento() + " | Código Sequencial: " + autor.getCodigoSequencial());
+			System.out.println("Nome: " + autor.getNome() + " | Nacionalidade: " + autor.getNacionalidade()
+					+ " | Data De Nascimento: " + autor.getDataDeNascimento() + " | Código Sequencial: "
+					+ autor.getCodigoSequencial());
 		}
-		
+
 	}
 }

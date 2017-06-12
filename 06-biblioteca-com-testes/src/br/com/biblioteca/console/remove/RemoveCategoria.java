@@ -7,6 +7,15 @@ import br.com.biblioteca.console.pesquisa.categoria.PesquisaCategoriaPorCodigoSe
 import br.com.biblioteca.objetos.Categoria;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de remoção: Interação com o usuário e remoção de
+ *         Categoria
+ *
+ */
+
 public class RemoveCategoria {
 	private static Categorias bancoDeCategorias;
 	private Scanner scanner;
@@ -21,19 +30,22 @@ public class RemoveCategoria {
 		scanner.nextLine();
 		String codigoSequencial = scanner.nextLine();
 		System.out.println("Buscando categoria...");
-		boolean verifica = new PesquisaCategoriaPorCodigoSequencial(scanner, bancoDeCategorias).verificaExistenciaDeCategoriaPorCodigoSequencial(codigoSequencial);
-		if(verifica){
+		boolean verifica = new PesquisaCategoriaPorCodigoSequencial(scanner, bancoDeCategorias)
+				.verificaExistenciaDeCategoriaPorCodigoSequencial(codigoSequencial);
+		if (verifica) {
 			Categoria categoria = bancoDeCategorias.buscarPorCodigoSequencial(codigoSequencial);
-			System.out.println("Categoria Encontrada: " + categoria + " | Código Sequencial: " + categoria.getCodigoSequencial());
+			System.out.println(
+					"Categoria Encontrada: " + categoria + " | Código Sequencial: " + categoria.getCodigoSequencial());
 			boolean decisao = new Confirmacao(scanner, categoria).confirmaRemocao();
-				if (decisao) {
-						bancoDeCategorias.excluir(categoria);
-						System.out.println("Categoria " + categoria + " removida.");
-				} else {
-					return;
-		}
-		}else{
-			System.out.println("Categoria não encontrada. Por favor, verifique o código sequencial informado e tente novamente.");
+			if (decisao) {
+				bancoDeCategorias.excluir(categoria);
+				System.out.println("Categoria " + categoria + " removida.");
+			} else {
+				return;
+			}
+		} else {
+			System.out.println(
+					"Categoria não encontrada. Por favor, verifique o código sequencial informado e tente novamente.");
 			return;
 		}
 	}

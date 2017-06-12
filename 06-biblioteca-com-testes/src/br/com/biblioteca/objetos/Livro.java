@@ -8,8 +8,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import br.com.biblioteca.objetos.exceptions.CriacaoDeAtributoException;
+import br.com.biblioteca.objetos.exceptions.DataInvalidaException;
+import br.com.biblioteca.objetos.exceptions.FormatoDeDataInvalidoException;
 import br.com.biblioteca.objetos.interfaces.ItemBiblioteca;
-import br.com.biblioteca.objetos.verificacoes.AttributeCreationException;
 
 /**
  * 
@@ -38,9 +40,9 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 		setDigitoVerificador();
 		setCodigoDeBarras();
 	}
-	
+
 	// Métodos Private
-	
+
 	private void setCodigoDeBarras() {
 		int prefixoDoPaisDeRegistroDaEmpresa = 789;
 		int identificadorDaEmpresa = 73217;
@@ -62,85 +64,88 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 		List<Integer> numeros = calculaDigitoVerificador();
 		this.digitoVerificador = numeros.get(12);
 	}
-	
-	private String verificaCodigoSequencial(String codigo){
-		if(!(codigo.length() == 4)){
-			for(int tamanho = codigo.length();tamanho != 4;){
+
+	private String verificaCodigoSequencial(String codigo) {
+		if (!(codigo.length() == 4)) {
+			for (int tamanho = codigo.length(); tamanho != 4;) {
 				codigo = "0" + codigo;
 				tamanho = codigo.length();
 			}
 		}
 		return codigo;
 	}
-	
-	private List<Integer> calculaDigitoVerificador(){
+
+	private List<Integer> calculaDigitoVerificador() {
 		String codigoSequencial = verificaCodigoSequencial(this.getCodigoSequencial());
 		List<Integer> numeros = new ArrayList<>();
-		numeros.add(7);	
-		numeros.add(8);	
-		numeros.add(9);	
-		numeros.add(7);	
-		numeros.add(3);	
-		numeros.add(2);	
-		numeros.add(1);	
-		numeros.add(7);	
-		for(int posicao = 0;posicao < 4;posicao++){
+		numeros.add(7);
+		numeros.add(8);
+		numeros.add(9);
+		numeros.add(7);
+		numeros.add(3);
+		numeros.add(2);
+		numeros.add(1);
+		numeros.add(7);
+		for (int posicao = 0; posicao < 4; posicao++) {
 			String num = String.valueOf(codigoSequencial.charAt(posicao));
 			int numero = Integer.parseInt(num);
 			numeros.add(numero);
 		}
 		int somaImpares = 0;
 		int somaPares = 0;
-			//soma dos numeros nas posicões pares
-			for(int posicao = 0; posicao < 11;){
-				int num = numeros.get(posicao);
-				somaPares += num;
-				posicao += 2;
-			}
-			//soma dos numeros nas posicões impares
-			for(int posicao = 1; posicao <= 11;){
-				int num = numeros.get(posicao);
-				somaImpares += num;
-				posicao += 2;
-			}
-			int numPares = somaPares * 3;
-			int numeroFinal = somaImpares + numPares;
-			int contador = 0;
-			while(numeroFinal%10 != 0){
-				numeroFinal = numeroFinal+1;
-				contador += 1;
-			}	
-			numeros.add(contador);
-			return numeros;
+		// soma dos numeros nas posicões pares
+		for (int posicao = 0; posicao < 11;) {
+			int num = numeros.get(posicao);
+			somaPares += num;
+			posicao += 2;
+		}
+		// soma dos numeros nas posicões impares
+		for (int posicao = 1; posicao <= 11;) {
+			int num = numeros.get(posicao);
+			somaImpares += num;
+			posicao += 2;
+		}
+		int numPares = somaPares * 3;
+		int numeroFinal = somaImpares + numPares;
+		int contador = 0;
+		while (numeroFinal % 10 != 0) {
+			numeroFinal = numeroFinal + 1;
+			contador += 1;
+		}
+		numeros.add(contador);
+		return numeros;
 	}
-	
+
 	private void setCodigoSequencial(int contador) {
 		String codigoString = String.valueOf(contador);
 		this.codigoSequencial = codigoString;
 	}
 
 	// Métodos Public
-	
+
 	public int getDigitoVerificador() {
 		return this.digitoVerificador;
 	}
-	
+
 	public String getCodigoSequencial() {
 		return this.codigoSequencial;
 	}
-	
-	public void verificacaoDeDadosLivro() throws AttributeCreationException{
+
+	public void verificacaoDeDadosLivro() throws CriacaoDeAtributoException {
 		if (this.getTitulo() == null) {
-			throw new AttributeCreationException("*** ERRO: O livro está sem titulo. Por favor, informe o título. ***");
+			throw new CriacaoDeAtributoException("*** ERRO: O livro está sem titulo. Por favor, informe o título. ***");
 		}
-		if(this.getAutor().isEmpty()){
-			throw new AttributeCreationException("*** ERRO: O livro está sem autor. Por Favor, informe pelo menos um(a) autor(a). ***");
+		if (this.getAutor().isEmpty()) {
+			throw new CriacaoDeAtributoException(
+					"*** ERRO: O livro está sem autor. Por Favor, informe pelo menos um(a) autor(a). ***");
 		}
-		if(this.getCategoria() == null){
-			throw new AttributeCreationException("*** ERRO: O livro está sem categoria. Por favor, informe a categoria do livro. ***");
+		if (this.getCategoria() == null) {
+			throw new CriacaoDeAtributoException(
+					"*** ERRO: O livro está sem categoria. Por favor, informe a categoria do livro. ***");
 		}
 		if (this.getLocal() == null) {
-			throw new AttributeCreationException("*** ERRO: O livro está sem local. Por favor, informe o local do livro. ***");
+			throw new CriacaoDeAtributoException(
+					"*** ERRO: O livro está sem local. Por favor, informe o local do livro. ***");
 		}
 	}
 
@@ -154,13 +159,13 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 	}
 
 	public void setResumo(String resumo) {
-		try{
-			if(resumo.equals("")){
+		try {
+			if (resumo.equals("")) {
 				this.resumo = "*** Resumo não informado ***";
-			}else{
+			} else {
 				this.resumo = resumo;
 			}
-		}catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			this.resumo = "*** Resumo não informado ***";
 		}
 	}
@@ -174,13 +179,13 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 	}
 
 	public void setQuantidadeDePaginas(String quantidadeDePaginas) {
-		try{
-			if(quantidadeDePaginas.equals("")){
+		try {
+			if (quantidadeDePaginas.equals("")) {
 				this.quantidadeDePaginas = "*** Quantidade de páginas não informado ***";
-			}else{
+			} else {
 				this.quantidadeDePaginas = quantidadeDePaginas;
 			}
-		}catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			this.quantidadeDePaginas = "*** Quantidade de páginas não informado ***";
 		}
 	}
@@ -198,7 +203,8 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 		return this.local;
 	}
 
-	public void setDataDeAquisicao(String dataDeAquisicao) throws FormatoDeDataInvalidoException, DataInvalidaException {
+	public void setDataDeAquisicao(String dataDeAquisicao)
+			throws FormatoDeDataInvalidoException, DataInvalidaException {
 		try {
 			Date date = formatoData.parse(dataDeAquisicao);
 			Calendar dataVerifica = Calendar.getInstance();
@@ -210,15 +216,16 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 			this.dataDeAquisicao.setTime(date);
 
 		} catch (ParseException e) {
-			throw new FormatoDeDataInvalidoException("Data inserida invalida, por favor utilize o formato (dd/mm/yyyy)");
-		}catch (NullPointerException e){
+			throw new FormatoDeDataInvalidoException(
+					"Data inserida invalida, por favor utilize o formato (dd/mm/yyyy)");
+		} catch (NullPointerException e) {
 			this.dataDeAquisicao = null;
 			return;
 		}
 	}
 
 	public String getDataDeAquisicao() {
-		try{
+		try {
 			if (this.dataDeAquisicao.equals(null)) {
 				return "*** Data de Aquisição não informada ***";
 			}
@@ -227,7 +234,7 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 			}
 			String dataString = formatoData.format(this.dataDeAquisicao.getTime());
 			return dataString;
-		}catch(NullPointerException e ){
+		} catch (NullPointerException e) {
 			return "*** Data de Aquisição não informada ***";
 		}
 	}
@@ -273,8 +280,8 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 	@Override
 	public String toString() {
 		return "Livro: " + titulo + ", (" + quantidadeDePaginas + " Páginas) | Categoria: " + categoria
-				+ " | Autor(es/a/as): " + autor + " | Código De Barras: " + codigoDeBarras + " | Código Sequencia: " + codigoSequencial + " | Data de Aquisição: "
-				+ getDataDeAquisicao() + " | Resumo: " + resumo + ".";
+				+ " | Autor(es/a/as): " + autor + " | Código De Barras: " + codigoDeBarras + " | Código Sequencia: "
+				+ codigoSequencial + " | Data de Aquisição: " + getDataDeAquisicao() + " | Resumo: " + resumo + ".";
 
 	}
 

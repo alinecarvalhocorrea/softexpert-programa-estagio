@@ -5,18 +5,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.objetos.Livro;
 import br.com.biblioteca.repositorios.interfaces.Livros;
 
-public class BancoDeLivrosEmArquivo implements Livros{ 
-	
+/**
+ * 
+ * @author aline.correa
+ *
+ */
+
+public class BancoDeLivrosEmArquivo implements Livros {
+
 	private static Set<Livro> banco = new TreeSet<>();
-	
+
 	@Override
 	public void adicionar(Livro livro) {
 		try {
@@ -26,18 +31,18 @@ public class BancoDeLivrosEmArquivo implements Livros{
 			e.getMessage();
 		}
 	}
-	
-	private void salvar(){
+
+	private void salvar() {
 		try {
-			FileOutputStream arquivo = new FileOutputStream("livros.txt",false);
+			FileOutputStream arquivo = new FileOutputStream("livros.txt", false);
 			ObjectOutputStream os = new ObjectOutputStream(arquivo);
-			os.writeObject(banco); 
-            os.close( );
+			os.writeObject(banco);
+			os.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void excluir(Livro livro) {
 		banco.remove(livro);
@@ -51,17 +56,17 @@ public class BancoDeLivrosEmArquivo implements Livros{
 
 	@Override
 	public Set<Livro> listar() {
-		try{
-			 FileInputStream arquivo = new FileInputStream("livros.txt");
-			 ObjectInputStream objetos = new ObjectInputStream(arquivo);
-			 @SuppressWarnings("unchecked")
-			 Set<Livro> lista = (Set<Livro>) objetos.readObject();
-			 objetos.close();
-			 arquivo.close();
-			 return lista;
-		 }catch(Exception e){
-			 e.printStackTrace();
-		 }
+		try {
+			FileInputStream arquivo = new FileInputStream("livros.txt");
+			ObjectInputStream objetos = new ObjectInputStream(arquivo);
+			@SuppressWarnings("unchecked")
+			Set<Livro> lista = (Set<Livro>) objetos.readObject();
+			objetos.close();
+			arquivo.close();
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -115,12 +120,12 @@ public class BancoDeLivrosEmArquivo implements Livros{
 	}
 
 	@Override
-	public List<Livro> buscarPorCategoria(String descricaoCategoria) {
+	public Set<Livro> buscarPorCategoria(String descricaoCategoria) {
 		Set<Livro> bancoEmArquivo = listar();
 		descricaoCategoria = descricaoCategoria.toUpperCase();
-		List<Livro> livrosEncontrados = new ArrayList<>();
+		Set<Livro> livrosEncontrados = new TreeSet<>();
 		for (Livro livro : bancoEmArquivo) {
-			String descricaoLivro = livro.getCategoria();
+			String descricaoLivro = livro.getCategoria().getDescricao();
 			descricaoLivro = descricaoLivro.toUpperCase();
 			if (descricaoLivro.equals(descricaoCategoria)) {
 				livrosEncontrados.add(livro);
@@ -142,7 +147,7 @@ public class BancoDeLivrosEmArquivo implements Livros{
 					livrosEncontrados.add(livro);
 				}
 			}
-			
+
 		}
 		return livrosEncontrados;
 	}

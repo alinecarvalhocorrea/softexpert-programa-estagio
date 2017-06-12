@@ -12,6 +12,12 @@ import java.util.TreeSet;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ */
+
 public class BancoDeAutoresEmArquivo implements Autores {
 
 	private static Set<Autor> banco = new TreeSet<>();
@@ -98,7 +104,7 @@ public class BancoDeAutoresEmArquivo implements Autores {
 		Set<Autor> autoresEncontrados = new TreeSet<>();
 		for (Autor autor : bancoEmArquivo) {
 			String dataAutor = autor.getDataDeNascimento();
-			if(dataAutor.equals(dataDeNascimento)){
+			if (dataAutor.equals(dataDeNascimento)) {
 				autoresEncontrados.add(autor);
 			}
 		}

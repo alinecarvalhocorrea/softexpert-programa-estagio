@@ -12,32 +12,31 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import br.com.biblioteca.objetos.Autor;
-import br.com.biblioteca.objetos.DataInvalidaException;
-import br.com.biblioteca.objetos.FormatoDeDataInvalidoException;
-import br.com.biblioteca.objetos.NomeAutorNuloException;
+import br.com.biblioteca.objetos.exceptions.DataInvalidaException;
+import br.com.biblioteca.objetos.exceptions.FormatoDeDataInvalidoException;
+import br.com.biblioteca.objetos.exceptions.NomeAutorNuloException;
 import br.com.biblioteca.objetos.testes.ZerarTestesDeAutores;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 
 /**
  * @author aline.correa
  * 
- *	ETAPAS NOS TESTES
+ *         ETAPAS NOS TESTES
  *
- * 1 -  A (Organizar)
- * 2 -  A (Executar)
- * 3 -  A (Verificar)
+ *         1 - A (Organizar) 2 - A (Executar) 3 - A (Verificar)
  * 
  */
 
 public class BancoDeAutoresEmMemoriaTest {
 
 	private Autores banco = new BancoDeAutoresEmMemoria();
-	
+
 	@Rule
-    public ExpectedException exception = ExpectedException.none();
-	
+	public ExpectedException exception = ExpectedException.none();
+
 	// Inicia Dados padrão para os testes
-	private void prepararDadosParaPesquisa() throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
+	private void prepararDadosParaPesquisa()
+			throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
 		Autor autor1 = new Autor("Shakespeare Aline");
 		autor1.setNacionalidade("BRASILEIRO");
 		autor1.setDataDeNascimento("08/11/1997");
@@ -66,7 +65,7 @@ public class BancoDeAutoresEmMemoriaTest {
 
 	@Test
 	public void testAdicionar() throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
-		
+
 		Autor autor = new Autor("Aline");
 		autor.setDataDeNascimento("03/11/1997");
 
@@ -111,7 +110,8 @@ public class BancoDeAutoresEmMemoriaTest {
 	}
 
 	@Test
-	public void testBuscarPorNome() throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
+	public void testBuscarPorNome()
+			throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
 
 		prepararDadosParaPesquisa();
 
@@ -121,7 +121,8 @@ public class BancoDeAutoresEmMemoriaTest {
 	}
 
 	@Test
-	public void testBuscarPorNacionalidade() throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
+	public void testBuscarPorNacionalidade()
+			throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
 
 		prepararDadosParaPesquisa();
 
@@ -131,7 +132,8 @@ public class BancoDeAutoresEmMemoriaTest {
 	}
 
 	@Test
-	public void testBuscarPorDataDeNascimento() throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
+	public void testBuscarPorDataDeNascimento()
+			throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
 
 		prepararDadosParaPesquisa();
 
@@ -142,8 +144,9 @@ public class BancoDeAutoresEmMemoriaTest {
 	}
 
 	@Test
-	public void testBuscarPorCodigoSequencial() throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
-		
+	public void testBuscarPorCodigoSequencial()
+			throws NomeAutorNuloException, DataInvalidaException, FormatoDeDataInvalidoException {
+
 		prepararDadosParaPesquisa();
 
 		Autor autorBuscarPorCodigoSequencial = banco.buscarPorCodigoSequencial("2");

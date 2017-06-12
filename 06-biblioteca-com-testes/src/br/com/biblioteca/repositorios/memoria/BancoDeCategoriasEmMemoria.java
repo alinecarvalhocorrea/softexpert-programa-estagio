@@ -1,15 +1,16 @@
 package br.com.biblioteca.repositorios.memoria;
 
-/**
- * 
- * @author aline.correa
- * 
- */
 import java.util.HashSet;
 import java.util.Set;
 
 import br.com.biblioteca.objetos.Categoria;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
+
+/**
+ * 
+ * @author aline.correa
+ * 
+ */
 
 public class BancoDeCategoriasEmMemoria implements Categorias {
 
@@ -19,7 +20,7 @@ public class BancoDeCategoriasEmMemoria implements Categorias {
 	public void adicionar(Categoria categoria) {
 		banco.add(categoria);
 	}
-	
+
 	@Override
 	public void excluir(Categoria categoria) {
 		banco.remove(categoria);
@@ -36,7 +37,7 @@ public class BancoDeCategoriasEmMemoria implements Categorias {
 	}
 
 	@Override
-	public Set<Categoria> buscarCategoriaPorDescricao(String descricao) throws NullPointerException{
+	public Set<Categoria> buscarCategoriaPorDescricao(String descricao) throws NullPointerException {
 		Set<Categoria> categoriasEncontradas = new HashSet<>();
 		descricao = descricao.toUpperCase();
 		for (Categoria categoria : banco) {
@@ -45,7 +46,7 @@ public class BancoDeCategoriasEmMemoria implements Categorias {
 				categoriasEncontradas.add(categoria);
 			}
 		}
-		if(categoriasEncontradas.isEmpty()){
+		if (categoriasEncontradas.isEmpty()) {
 			throw new NullPointerException("Nenhuma categoria com a descrição informada foi encontrada");
 		}
 		return categoriasEncontradas;

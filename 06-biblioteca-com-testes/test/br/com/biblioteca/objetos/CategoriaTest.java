@@ -7,6 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import br.com.biblioteca.objetos.exceptions.DescricaoCategoriaNulaException;
 import br.com.biblioteca.objetos.testes.ZerarTestesDeCategorias;
 
 /**
@@ -21,8 +22,8 @@ import br.com.biblioteca.objetos.testes.ZerarTestesDeCategorias;
 public class CategoriaTest {
 
 	@Rule
-    public ExpectedException exception = ExpectedException.none();
-	
+	public ExpectedException exception = ExpectedException.none();
+
 	private Categoria criarCategoriaPadrao() throws DescricaoCategoriaNulaException {
 		Categoria categoria = new Categoria("drama");
 		return categoria;
@@ -59,17 +60,17 @@ public class CategoriaTest {
 
 	@Test
 	public void testQuandoDescricaoDeCategoriaEstiverNula() throws Exception {
-		
+
 		exception.expect(DescricaoCategoriaNulaException.class);
-		
+
 		new Categoria(null);
 	}
 
 	@Test
 	public void testQuandoEntradaDeDescricaoDeCategoriaForVazia() throws Exception {
-		
+
 		exception.expect(DescricaoCategoriaNulaException.class);
-		
+
 		new Categoria("");
 	}
 }

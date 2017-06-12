@@ -5,40 +5,51 @@ import java.util.Scanner;
 import br.com.biblioteca.console.cadastro.CadastroDeLivro;
 import br.com.biblioteca.console.confirmacao.Confirmacao;
 import br.com.biblioteca.console.pesquisa.livro.PesquisaLivroPorCodigoSequencial;
-import br.com.biblioteca.objetos.FormatoDeDataInvalidoException;
 import br.com.biblioteca.objetos.Livro;
+import br.com.biblioteca.objetos.exceptions.FormatoDeDataInvalidoException;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
 import br.com.biblioteca.repositorios.interfaces.Livros;
+
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de edição: Interação com o usuário e edição de
+ *         livro
+ *
+ */
 
 public class EditaLivro {
 	private Scanner scanner;
 	private static Livros bancoDeLivros;
 	private static Autores bancoDeAutores;
 	private static Categorias bancoDeCategorias;
-	
-	public EditaLivro(Scanner scanner, Livros bancoDeLivros, Autores bancoDeAutores, Categorias bancoDeCategorias){
+
+	public EditaLivro(Scanner scanner, Livros bancoDeLivros, Autores bancoDeAutores, Categorias bancoDeCategorias) {
 		this.scanner = scanner;
 		EditaLivro.bancoDeLivros = bancoDeLivros;
-		EditaLivro.bancoDeAutores  = bancoDeAutores;
+		EditaLivro.bancoDeAutores = bancoDeAutores;
 		EditaLivro.bancoDeCategorias = bancoDeCategorias;
 	}
-	
-	public void editarLivro() throws FormatoDeDataInvalidoException{
+
+	public void editarLivro() throws FormatoDeDataInvalidoException {
 		scanner.nextLine();
 		System.out.println("Insira o código sequencial do livro:");
 		String codigo = scanner.nextLine();
-		boolean pesquisa = new PesquisaLivroPorCodigoSequencial(scanner, bancoDeLivros).verificaExistenciaDeLivroPorCodigoSequencial(codigo);
+		boolean pesquisa = new PesquisaLivroPorCodigoSequencial(scanner, bancoDeLivros)
+				.verificaExistenciaDeLivroPorCodigoSequencial(codigo);
 		System.out.println("Pesquisando livro no banco...");
-		if(pesquisa){
+		if (pesquisa) {
 			Livro livroEncontrado = bancoDeLivros.buscarPorCodigoSequencial(codigo);
 			System.out.println(livroEncontrado);
 			boolean confirmaEdicao = new Confirmacao(scanner, livroEncontrado).confirmaEdicao();
-			if(confirmaEdicao){
+			if (confirmaEdicao) {
 				bancoDeLivros.excluir(livroEncontrado);
-				CadastroDeLivro cadastraLivro = new CadastroDeLivro(scanner, bancoDeLivros, bancoDeAutores, bancoDeCategorias);
+				CadastroDeLivro cadastraLivro = new CadastroDeLivro(scanner, bancoDeLivros, bancoDeAutores,
+						bancoDeCategorias);
 				cadastraLivro.cadastrarLivro();
-			}else{
+			} else {
 				return;
 			}
 		}

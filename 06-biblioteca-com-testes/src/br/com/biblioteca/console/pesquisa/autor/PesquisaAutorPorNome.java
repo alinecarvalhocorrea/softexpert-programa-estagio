@@ -7,6 +7,15 @@ import java.util.Set;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de pesquisa: Interação com o usuário e pesquisa
+ *         de Autores pelo nome no banco
+ *
+ */
+
 public class PesquisaAutorPorNome {
 	private Scanner scanner;
 	private static Autores bancoDeAutores;

@@ -7,12 +7,18 @@ import java.util.TreeSet;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 
+/**
+ * 
+ * @author aline.correa
+ * 
+ */
+
 public class BancoDeAutoresEmMemoria implements Autores {
 
 	private static Set<Autor> banco = new TreeSet<>();
 
 	@Override
-	public void adicionar(Autor autor){
+	public void adicionar(Autor autor) {
 		banco.add(autor);
 	}
 
@@ -50,7 +56,7 @@ public class BancoDeAutoresEmMemoria implements Autores {
 		Set<Autor> autoresEncontrados = new HashSet<>();
 
 		for (Autor autor : banco) {
-			if(autor.getNacionalidade()!=null){
+			if (autor.getNacionalidade() != null) {
 				String nacionalidadeAutor = autor.getNacionalidade().toUpperCase();
 				nacionalidade = nacionalidade.toUpperCase();
 				if (nacionalidadeAutor.equalsIgnoreCase(nacionalidade)) {
@@ -66,14 +72,14 @@ public class BancoDeAutoresEmMemoria implements Autores {
 		Set<Autor> autoresEncontrados = new TreeSet<>();
 		for (Autor autor : banco) {
 			String dataAutor = autor.getDataDeNascimento();
-			if(!dataAutor.equals(null)){
-				if(dataAutor.equalsIgnoreCase(dataDeNascimento)){
+			if (!dataAutor.equals(null)) {
+				if (dataAutor.equalsIgnoreCase(dataDeNascimento)) {
 					autoresEncontrados.add(autor);
 				}
 			}
 		}
 		return autoresEncontrados;
-		
+
 	}
 
 	@Override

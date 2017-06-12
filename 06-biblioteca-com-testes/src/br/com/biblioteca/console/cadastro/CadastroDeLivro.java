@@ -8,13 +8,22 @@ import br.com.biblioteca.console.lista.ListaDeAutores;
 import br.com.biblioteca.console.lista.ListaDeCategorias;
 import br.com.biblioteca.objetos.Autor;
 import br.com.biblioteca.objetos.Categoria;
-import br.com.biblioteca.objetos.DataInvalidaException;
-import br.com.biblioteca.objetos.FormatoDeDataInvalidoException;
 import br.com.biblioteca.objetos.Livro;
-import br.com.biblioteca.objetos.verificacoes.AttributeCreationException;
+import br.com.biblioteca.objetos.exceptions.CriacaoDeAtributoException;
+import br.com.biblioteca.objetos.exceptions.DataInvalidaException;
+import br.com.biblioteca.objetos.exceptions.FormatoDeDataInvalidoException;
 import br.com.biblioteca.repositorios.interfaces.Autores;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
 import br.com.biblioteca.repositorios.interfaces.Livros;
+
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de cadastro: Interação com o usuário e cadastro
+ *         de livro
+ *
+ */
 
 public class CadastroDeLivro {
 	private Scanner scanner;
@@ -111,7 +120,7 @@ public class CadastroDeLivro {
 				System.out.println("Novo livro Criado !!!");
 				System.out.println(novoLivro);
 				
-			}catch(AttributeCreationException e){
+			}catch(CriacaoDeAtributoException e){
 				System.out.println(e.getMessage());
 				cadastrarLivro();
 			}catch(DataInvalidaException e){

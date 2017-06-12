@@ -2,11 +2,11 @@ package br.com.biblioteca.objetos;
 
 import java.util.Comparator;
 
- /**
-  * 
-  * @author aline.correa
-  * 
-  */
+/**
+ * 
+ * @author aline.correa
+ * 
+ */
 
 public class OrdenarLivroPorTitulo implements Comparator<Livro> {
 

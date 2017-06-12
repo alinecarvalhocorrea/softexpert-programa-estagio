@@ -4,8 +4,17 @@ import java.util.Scanner;
 import java.util.Set;
 
 import br.com.biblioteca.objetos.Categoria;
-import br.com.biblioteca.objetos.DescricaoCategoriaNulaException;
+import br.com.biblioteca.objetos.exceptions.DescricaoCategoriaNulaException;
 import br.com.biblioteca.repositorios.interfaces.Categorias;
+
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de cadastro: Interação com o usuário e cadastro
+ *         de categoria
+ *
+ */
 
 public class CadastroDeCategoria {
 	private Scanner scanner;
@@ -18,36 +27,34 @@ public class CadastroDeCategoria {
 
 	public void cadastrarCategoria() {
 		scanner.nextLine();
-		try{
+		try {
 			System.out.println("Insira a descrição da categoria: ");
 			String descricao = scanner.nextLine();
-			Categoria novaCategoria = new Categoria(descricao);
-			
 			System.out.println("Verificando se categoria ja existe no banco...");
-			
 			boolean resultado = verificaExistenciaDeCategoriaPorDescricao(descricao);
-			if(resultado){
+			if (resultado) {
 				System.out.println("*** Categoria:" + descricao.toUpperCase() + " ja existe ***");
 				return;
-			}else{
+			} else {
+				Categoria novaCategoria = new Categoria(descricao);
 				System.out.println("Nova categoria criada: " + descricao.toUpperCase());
 				bancoDeCategorias.adicionar(novaCategoria);
 			}
-		}catch(DescricaoCategoriaNulaException e){
+		} catch (DescricaoCategoriaNulaException e) {
 			System.out.println(e.getMessage());
 			cadastrarCategoria();
 		}
 	}
-	
-	private boolean verificaExistenciaDeCategoriaPorDescricao(String descricao){
-		try{
+
+	private boolean verificaExistenciaDeCategoriaPorDescricao(String descricao) {
+		try {
 			@SuppressWarnings("unused")
 			Set<Categoria> busca = bancoDeCategorias.buscarCategoriaPorDescricao(descricao);
 			return true;
-		}catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			return false;
 		}
-		
+
 	}
-	
+
 }

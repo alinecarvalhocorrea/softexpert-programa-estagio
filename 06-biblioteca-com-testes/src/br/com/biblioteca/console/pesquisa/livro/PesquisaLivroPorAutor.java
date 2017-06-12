@@ -6,15 +6,24 @@ import java.util.Set;
 import br.com.biblioteca.objetos.Livro;
 import br.com.biblioteca.repositorios.interfaces.Livros;
 
+/**
+ * 
+ * @author aline.correa
+ *
+ *         Script de integração de pesquisa: Interação com o usuário e pesquisa
+ *         de Livros pelo autor no banco
+ *
+ */
+
 public class PesquisaLivroPorAutor {
 	private Scanner scanner;
 	private static Livros bancoDeLivros;
-	
-	public PesquisaLivroPorAutor(Scanner scanner, Livros bancoDeLivros){
+
+	public PesquisaLivroPorAutor(Scanner scanner, Livros bancoDeLivros) {
 		this.scanner = scanner;
 		PesquisaLivroPorAutor.bancoDeLivros = bancoDeLivros;
 	}
-	
+
 	public void pesquisaLivroPorAutor() {
 		System.out.println("Insira o(a) autor(a):");
 		scanner.nextLine();
