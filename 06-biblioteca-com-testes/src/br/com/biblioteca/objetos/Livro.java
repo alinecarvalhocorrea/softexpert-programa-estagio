@@ -135,6 +135,9 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 		if (this.getTitulo() == null) {
 			throw new CriacaoDeAtributoException("*** ERRO: O livro está sem titulo. Por favor, informe o título. ***");
 		}
+		if (this.getTitulo().equals("")) {
+			throw new CriacaoDeAtributoException("*** ERRO: O livro está sem titulo. Por favor, informe o título. ***");
+		}
 		if (this.getAutor().isEmpty()) {
 			throw new CriacaoDeAtributoException(
 					"*** ERRO: O livro está sem autor. Por Favor, informe pelo menos um(a) autor(a). ***");
@@ -144,6 +147,10 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 					"*** ERRO: O livro está sem categoria. Por favor, informe a categoria do livro. ***");
 		}
 		if (this.getLocal() == null) {
+			throw new CriacaoDeAtributoException(
+					"*** ERRO: O livro está sem local. Por favor, informe o local do livro. ***");
+		}
+		if (this.getLocal().equals("")) {
 			throw new CriacaoDeAtributoException(
 					"*** ERRO: O livro está sem local. Por favor, informe o local do livro. ***");
 		}
@@ -280,7 +287,7 @@ public class Livro implements Comparable<Livro>, ItemBiblioteca {
 	@Override
 	public String toString() {
 		return "Livro: " + titulo + ", (" + quantidadeDePaginas + " Páginas) | Categoria: " + categoria
-				+ " | Autor(es/a/as): " + autor + " | Código De Barras: " + codigoDeBarras + " | Código Sequencia: "
+				+ " | Autor(es/a/as): " + autor + " | Código De Barras: " + codigoDeBarras + " | Código Sequencial: "
 				+ codigoSequencial + " | Data de Aquisição: " + getDataDeAquisicao() + " | Resumo: " + resumo + ".";
 
 	}

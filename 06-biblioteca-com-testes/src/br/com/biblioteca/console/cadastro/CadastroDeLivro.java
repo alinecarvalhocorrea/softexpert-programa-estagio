@@ -127,6 +127,22 @@ public class CadastroDeLivro {
 				System.out.println(e.getMessage());
 				System.out.println("Retornando... Por favor, Tente novamente");
 				cadastrarLivro();
+			}catch(NumberFormatException e){
+				System.out.println("*** Formato de caractere inserido inválido ***\nRetornando... Por favor, Tente novamente");
+				cadastrarLivro();
+			}catch (FormatoDeDataInvalidoException e) {
+				System.out.println(e.getMessage());
+				try {
+					novoLivro.verificacaoDeDadosLivro();
+					bancoDeLivros.adicionar(novoLivro);
+					System.out.println("Novo livro Criado !!!");
+					System.out.println(novoLivro);
+				} catch (CriacaoDeAtributoException e1) {
+					System.out.println(e.getMessage());
+					System.out.println("Retornando... Por favor, Tente novamente");
+					cadastrarLivro();
+				}
+				
 			}
 			
 		}
