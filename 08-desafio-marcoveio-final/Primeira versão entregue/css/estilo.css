@@ -1,0 +1,170 @@
+
+@font-face {
+font-family: 'Bangers';
+src: url('../fonts/Bangers/Bangers-Regular.ttf');
+}
+@font-face {
+font-family: 'Merriweather';
+src: url('../fonts/Merriweather/Merriweather-BlackItalic.ttf');
+}
+@font-face {
+font-family: 'Teko';
+src: url('../fonts/Teko/Teko-Light.ttf');
+}
+..resultacep{
+    height: 100px;
+}
+.teste{
+    font-family: 'Merriweather';
+    color:#FCC408;
+}
+h1,h3{
+    text-align: center;
+}
+.entrada{
+    background: linear-gradient(to right, #88253f,#3b6085);
+    width:inherit;
+    color:#FFFFFF;
+}
+#cabecalho{
+    margin-top:80px; 
+}
+.formulario{
+    margin-top: 50px;
+    font-family: Teko;
+    font-size:20px;
+}
+.formulario input{
+    font-size:19px;
+}
+.formulario textarea{
+    font-size:19px;
+}
+.bordaform{
+    border-left:solid 1px #FFFFFF;
+}
+
+#borda{ padding: 40px 40px; border: solid 1px #d3cfcf;border-radius:3px; margin:auto;}
+
+.classesalvar{
+    color:#FFFFFF;
+    border:solid 1px #FFFFFF;
+    border-radius:3px;
+    padding:5px 40px;
+    text-align:center;
+}
+.classesalvar:hover{
+    color:#FFFFFF;
+    text-decoration: none;
+    border:solid 1px #FFFFFF;
+    border-radius:3px;
+    padding:5px 40px;
+    text-align:center;
+}
+.classesalvar:visited{
+    color:#FFFFFF;
+    border:solid 1px #FFFFFF;
+    border-radius:3px;
+    padding:5px 40px;
+    text-align:center;
+}
+table{
+    margin-top:50px;
+    margin-bottom:0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.fundo{background-color: #efeded;}
+dt{color:19c0ea;}
+small{font-size: 10px;}
+
+.idpago{color:#449D44;}
+.idpendente{color:#EC971F;}
+.idcancelado{color:#C9302C;}
+
+.iddata{color:#a5a5a5;font-size: 10px;}
+
+.centro{text-align: center;}
+
+.paypal{
+  margin: auto;
+}
+.paypal1{
+  margin: auto;
+}
+.paypal2{
+  margin: auto;
+}
+.paypal3{
+  margin: auto;
+}
+.paypal4{
+  margin: auto;
+}
+.paypal5{
+  margin: auto;
+}
+
+.favoritando{
+   color:#9e9c9c;
+    text-align: center;
+}
+.favorita{
+   color:#f9ca2f;
+    text-align: center;
+}
+
+.nfavorito4{
+   color:#9e9c9c;
+    text-align: center;
+}
+.favorito4{
+   color:#f9ca2f;
+    text-align: center;
+}
+
+.nfavorito3{
+   color:#9e9c9c;
+    text-align: center;
+}
+.favorito3{
+   color:#f9ca2f;
+    text-align: center;
+}
+
+.nfavorito2{
+   color:#9e9c9c;
+    text-align: center;
+}
+.favorito2{
+   color:#f9ca2f;
+    text-align: center;
+}
+
+.nfavorito1{
+   color:#9e9c9c;
+    text-align: center;
+}
+.favorito1{
+   color:#f9ca2f;
+    text-align: center;
+}
+
+.nfavorito{
+   color:#9e9c9c;
+    text-align: center;
+}
+.favorito{
+   color:#f9ca2f;
+    text-align: center;
+}
+
+.nomeempresa{text-align: left;}
+.avatarempresa{width: inherit;}
+
+input.checkteste{display: none;}
+
+input[type=text] : onClick {
+  color: black;
+  font-weight: bolder;
+}

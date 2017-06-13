@@ -1,0 +1,361 @@
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> DESAFIO FRONT </title>     
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css"> 
+        <link rel="stylesheet" href="css/estilo.css"> 
+    </head>
+    <body>
+        <script src="js/data.js"></script>
+            <!--CONTAINER 1-->
+            <div class="container entrada">
+                <div class="row" id="cabecalho"><!--Abre row 1 : CABEÇALHO-->
+                    <h1>Sinta-se desafiado(a) <span class = "teste">e faça</span></h1>
+                    <h3>você é capaz, se acreditar que é.</h3>
+                </div><!--Fecha row cabeçalho-->
+                
+                <!--FORMULARIO-->
+                <form class="formulario"> 
+                <DIV CLASS="ROW"><!--ROW FORMULARIO-->
+                    <div class="col-md-3"></div>
+                    <fieldset class="col-md-3"><!--FIELDSET 1-->  
+                        <!--DIV RAZÃO SOCIAL-->
+                        <div class="form-group">
+                            <label for="razaoSocial">Razão Social:</label>
+                                <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" placeholder="Informa a razão social" autofocus required>
+                        </div>
+                        <!--DIV CNPJ-->
+                        <div class="form-group">
+                            <label for="cnpj">CNPJ:</label>
+                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Informe seu CNPJ" data-mask="999.999.999/9999-999" required >
+                        </div>
+                        <!--DIV TELEFONE-->
+                        <div class="form-group">
+                            <label for="telefone">Telefone:</label>
+                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Informe (ddd) + número" data-mask="(999)9999-9999" required >
+                        </div>
+                        <!--SITUAÇÃO-->
+                        <label for="situacao">Situação:</label>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" id="pago" value="pago">Pago</button>
+                                <button type="button" class="btn btn-primary" id="pendente" value="pendente">Pendente</button>
+                                <button type="button" class="btn btn-primary" id="cancelado" id="cancelado">Cancelado</button>
+                            </div><!--FIM Situação-->
+
+                    </fieldset>
+                    <fieldset class = "col-md-3"><!--FIELDSET 2-->
+                            <!--DIV SITE-->
+                            <div class="form-group">
+                                <label for="site">Site:</label>
+                                    <input type="text" class="form-control" id="site" name="site" placeholder="Informe o site da empresa">
+                            </div>
+                            <!--DIV DESC EMPRESA-->
+                            <div class="form-group">
+                                <label for="resultadoCep">Descrição da empresa:</label>
+                                    <textarea class="form-control" rows="4" id="descEmpresa" placeholder="Informe a descrição da sua empresa"></textarea>    
+                            </div> 
+                            <!--SUBMIT FORMULARIO-->
+                            <button type="submit" class="btn btn-link pull-right classesalvar">
+                                <i class="fa fa-paper-plane" color="white"></i>
+                                    Salvar
+                            </button>
+                            </fieldset><!--FIM FIELDSET 2-->
+                    <div class="col-md-3"></div>
+                </DIV><!--FIM ROW FORMULARIO-->
+                    
+                    <div class="row" id="formulario">
+                        <div class="col-md-3"></div>
+                        <!--FIELDSET-->
+                        <fieldset class = "col-md-6">                        
+                            <!--DIV CEP-->
+                            <div class="form-group">
+                                <label for="cep">CEP:</label> 
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cep" name="cep" placeholder="Informa CEP" data-mask="99.999-999">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" onclick="pcep();">Buscar</button>
+                                    </span>
+                                </div>
+                                
+                            </div><!--FIM DIV ENDEREÇO-->
+                            <fieldset disabled>
+                                <div class="form-group">
+                                    <label for="resultadoCep">Como Chegar:</label>
+                                        <output class="form-control resultacep" id="resultadoCEP" style="height:150px; font-size:20px;"></output>    
+                                </div>
+                            </fieldset><!--FIM FIELDSET ENDEREÇO-->
+                        </fieldset><!--FIM FIELDSET-->
+                        
+                        <div class="col-md-3"></div>
+                    </div>
+                    <input type="hidden" id="dataEnvio">
+                </form><!--FIM FORMULARIO-->
+            </div><!--FIM CONTAINER 1-->
+        
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1><span class = "teste">Escolha e experimente</span> outra fonte</h1>
+                        <h3><a href="https://fonts.google.com/">aqui</a></h3>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="row" id="borda">
+                                <div class="col-md-12">
+                                    <div class="row"> 
+                                        
+                                        <div class="btn-group pull-right" id="myInput">
+                                            
+                                            <button type="button" class="btn btn-success" id="pago2" value="Pago" onclick="myFunction('#pago2')">Pago</button>
+                                            
+                                            <button type="button" class="btn btn-warning" id="pendente2" value="Pendente" onclick="myFunction('#pendente2')">Pendente</button>
+                                            
+                                            <button type="button" class="btn btn-danger" id="cancelado2" value="Cancelado" onclick="myFunction('#cancelado2')">Cancelado</button>
+                                            
+                                            <button type="button" class="btn btn-default" id="todos2" value="" onclick="myFunction('#todos2')">Todos</button>
+                                            
+                                        </div>
+
+                                        <br>
+
+                                        <table class="table" id="tabela">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            <!--LINHA 1-->
+                                                <tr>
+                                                    <!--COLUNA 1-->
+                                                    <td class="niceform centro">   
+                                                       <figure>          
+                                                           <img src ="imagens/check_before.png" class="paypal">
+                                                      </figure>
+                                                    </td>
+                                                    <!--COLUNA 2-->
+                                                    <td>
+                                                        <div class="nfavorito">
+                                                            <span class="glyphicon glyphicon-star"></span>
+                                                        </div>
+                                                    </td>
+                                                    <!--COLUNA 3-->
+                                                    <td class="centro">
+                                                        <img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+                                                    </td>
+                                                    <!--COLUNA 4-->
+                                                    <td class="nomeempresa">
+                                                        <dl><dt>Softexpert Software S.A</dt><dd>04.967.666/0001-74</dd></dl>
+                                                    </td>
+                                                    <!--COLUNA 5-->
+                                                    <td></td>
+                                                    <!--COLUNA 6-->
+                                                    <td id="pagos" class="idpago"><strong></strong>(Pago)</td>
+                                                    <!--COLUNA 7-->
+                                                    <td class="nomeempresa">
+                                                        <span class="iddata">
+                                                            <strong><script src="js/data.js"></script></strong>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <!--LINHA 2-->
+                                                <tr>
+                                                    <!--COLUNA 1-->
+                                                    <td class="niceform centro">   
+                                                       <figure>          
+                                                           <img src ="imagens/check_before1.png" class="paypal1">
+                                                      </figure>
+                                                    </td>
+                                                    <!--COLUNA 2-->
+                                                    <td>
+                                                        <div class="nfavorito1">
+                                                            <span class="glyphicon glyphicon-star"></span>
+                                                        </div>
+                                                    </td>
+                                                    <!--COLUNA 3-->
+                                                    <td class="centro">
+                                                        <img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+                                                    </td>
+                                                    <!--COLUNA 4-->
+                                                    <td class="nomeempresa">
+                                                        <dl><dt>Softexpert Software S.A</dt><dd>04.967.666/0001-74</dd></dl>
+                                                    </td>
+                                                    <!--COLUNA 5-->
+                                                    <td></td>
+                                                    <!--COLUNA 6-->
+                                                    <td class="idcancelado">(Cancelado)</td>
+                                                    <!--COLUNA 7-->
+                                                    <td class="nomeempresa">
+                                                        <span class="iddata">
+                                                            <strong><script src="js/data.js"></script></strong>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            <!--LINHA 3-->
+                                               <tr>
+                                                    <td class="niceform centro">   
+                                                      <!-- Check -->
+                                                       <figure>          
+                                                           <img src ="imagens/check_before2.png" class="paypal2">
+                                                      </figure>
+                                                    </td>
+                                                   
+                                                    <td>
+                                                        <div class="nfavorito2">
+                                                            <span class="glyphicon glyphicon-star"></span>
+                                                        </div>
+                                                    </td>
+                                                   
+                                                    <td class="centro">
+                                                        <img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+                                                    </td>
+                                                   
+                                                    <td class="nomeempresa">
+                                                        <dl><dt>Softexpert Software S.A</dt><dd>04.967.666/0001-74</dd></dl>
+                                                    </td>
+                                                   
+                                                    <td></td>
+                                                   
+                                                    <td class="idpago">(Pago)</td>
+                                                   
+                                                    <td class="nomeempresa"><small class="iddata"><strong><script src="js/data.js"></script></strong></small></td>
+                                                </tr> 
+                                                <!--LINHA 4-->
+                                                <tr>
+                                                    <!--COLUNA 1-->
+                                                    <td class="niceform centro">   
+                                                       <figure>          
+                                                           <img src ="imagens/check_before3.png" class="paypal3">
+                                                       </figure>
+                                                    </td>
+                                                    <!--COLUNA 2-->
+                                                    <td>
+                                                        <div class="nfavorito3">
+                                                            <span class="glyphicon glyphicon-star"></span>
+                                                        </div>
+                                                    </td>
+                                                    <!--COLUNA 3-->
+                                                    <td class="centro">
+                                                        <img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+                                                    </td>
+                                                    <!--COLUNA 4-->
+                                                    <td class="nomeempresa">
+                                                        <dl><dt>Softexpert Software S.A</dt><dd>04.967.666/0001-74</dd></dl>
+                                                    </td>
+                                                    <!--COLUNA 5-->
+                                                    <td></td>
+                                                    <!--COLUNA 6-->
+                                                    <td class="idpendente">(Pendente)</td>
+                                                    <!--COLUNA 7-->
+                                                    <td class="nomeempresa">
+                                                        <span class="iddata">
+                                                            <strong><script src="js/data.js"></script></strong>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <!--LINHA 5-->
+                                                <tr>
+                                                    <!--COLUNA 1-->
+                                                    <td class="niceform centro">   
+                                                       <figure>          
+                                                           <img src ="imagens/check_before4.png" class="paypal4">
+                                                       </figure>
+                                                    </td>
+                                                    <!--COLUNA 2-->
+                                                    <td>
+                                                        <div class="nfavorito4">
+                                                            <span class="glyphicon glyphicon-star"></span>
+                                                        </div>
+                                                    </td>
+                                                    <!--COLUNA 3-->
+                                                    <td class="centro">
+                                                        <img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+                                                    </td>
+                                                    <!--COLUNA 4-->
+                                                    <td class="nomeempresa">
+                                                        <dl><dt>Softexpert Software S.A</dt><dd>04.967.666/0001-74</dd></dl>
+                                                    </td>
+                                                    <!--COLUNA 5-->
+                                                    <td></td>
+                                                    <!--COLUNA 6-->
+                                                    <td class="idcancelado">(Cancelado)</td>
+                                                    <!--COLUNA 7-->
+                                                    <td class="nomeempresa">
+                                                        <span class="iddata">
+                                                            <strong><script src="js/data.js"></script></strong>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <!--LINHA 6-->
+                                                <tr>
+                                                    <!--COLUNA 1-->
+                                                    <td class="niceform centro">   
+                                                       <figure  >          
+                                                           <img src ="imagens/check_before5.png" class="paypal5">
+                                                       </figure>
+                                                    </td>
+                                                    <!--COLUNA 2-->
+                                                    <td>
+                                                        <div class="favoritando">
+                                                            <span class="glyphicon glyphicon-star"></span>
+                                                        </div>
+                                                    </td>
+                                                    <!--COLUNA 3-->
+                                                    <td class="centro">
+                                                        <img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+                                                    </td>
+                                                    <!--COLUNA 4-->
+                                                    <td class="nomeempresa">
+                                                        <dl><dt>Softexpert Software S.A</dt><dd>04.967.666/0001-74</dd></dl>
+                                                    </td>
+                                                    <!--COLUNA 5-->
+                                                    <td></td>
+                                                    <!--COLUNA 6-->
+                                                    <td class="idpendente">(Pendente)</td>
+                                                    <!--COLUNA 7-->
+                                                    <td class="nomeempresa">
+                                                        <span class="iddata">
+                                                            <strong><script src="js/data.js"></script></strong>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table><!--Fecha Tabela-->
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--Espaço-->
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+  
+<script src="js/jquery.js"></script>
+<script src="js/cep.js"></script>
+<script src="js/filtro.js"></script>
+<script src="js/inputmask-plugin.js"></script>
+<script src="js/filtro.js"></script>
+<script src="js/testebotaofavorito.js"></script>
+<script src="js/testebotaofavorito1.js"></script>
+<script src="js/testecheck.js"></script>
+<script src="js/testecheck1.js"></script>
+<script src="js/testecheck2.js"></script>
+<script src="js/testecheck3.js"></script>
+<script src="js/testecheck4.js"></script>
+<script src="js/testecheck5.js"></script>
+</body>
+</html>
