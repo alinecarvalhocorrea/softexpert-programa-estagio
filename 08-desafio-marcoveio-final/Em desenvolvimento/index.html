@@ -1,0 +1,317 @@
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> DESAFIO FRONT - Etapa 2 </title>     
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css"> 
+        <link rel="stylesheet" href="css/estilo.css"> 
+    </head>
+    <body>
+        <section id="cabecalho">
+            <div class="container-fluid entrada">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Sinta-se desafiado(a) <span class = "link">e faça</span></h1>
+                        <h3>você é capaz, se acreditar que é.</h3>
+                    </div>
+                </div>
+                <!--FORMULARIO-->
+                <form class="formulario"> 
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <fieldset class="col-md-3">
+                            <div class="form-group">
+                                <label for="razaoSocial">Razão Social:</label>
+                                <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" placeholder="Informe a razão social" autofocus required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cnpj">CNPJ:</label>
+                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Informe seu CNPJ" data-mask="999.999.999/9999-999" required >
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone:</label>
+                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Informe (ddd) + número" data-mask="(999)9999-9999" required >
+                            </div>
+                            <label for="situacao">Situação:</label>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" id="pago" value="pago">Pago</button>
+                                    <button type="button" class="btn btn-primary" id="pendente" value="pendente">Pendente</button>
+                                    <button type="button" class="btn btn-primary" id="cancelado" id="cancelado">Cancelado</button>
+                                </div>
+                        </fieldset>
+                        <fieldset class = "col-md-3">
+                            <div class="form-group">
+                                <label for="site">Site:</label>
+                                <input type="text" class="form-control" id="site" name="site" placeholder="Informe o site da empresa">
+                            </div>
+                            <div class="form-group">
+                                <label for="resultadoCep">Descrição da empresa:</label>
+                                <textarea class="form-control" rows="4" id="descEmpresa" placeholder="Informe a descrição da sua empresa"></textarea>    
+                            </div> 
+                            <button type="submit" class="btn btn-link pull-right classesalvar">
+                                <i class="fa fa-paper-plane" color="white"></i>Salvar
+                            </button>
+                        </fieldset>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row" id="formulario">
+                        <div class="col-md-3"></div>
+                        <fieldset class = "col-md-6">                        
+                            <div class="form-group">
+                                <label for="cep">CEP:</label> 
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cep" name="cep" placeholder="Informa CEP" data-mask="99.999-999">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" onclick="pcep();">Buscar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <fieldset disabled>
+                                <div class="form-group">
+                                    <label for="resultadoCep">Como Chegar:</label>
+                                    <output class="form-control resultacep" id="resultadoCEP" style="height:150px; font-size:20px;"></output>    
+                                </div>
+                            </fieldset>
+                        </fieldset>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <input type="hidden" id="dataEnvio">
+                </form><!--FIM FORMULARIO-->
+            </div>
+        </section>
+        
+        <hr class="style12">
+
+        <section id="empresas">
+            <div class="container-fluid">
+                <div class="row">
+                    
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <br>
+                            <h1><span class="link">Escolha e experimente</span> outra fonte</h1>
+                            <h3><a href="https://fonts.google.com/" target="_blank">aqui</a></h3>
+                        <br>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+             </div>    
+
+            <!--Tabela-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="table-container">
+                            <table class="table-style">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="check">
+                                            <input type="checkbox" id="checkbox1">
+                                            <label for="checkbox1"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="star">
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="#" class="pull-left">
+                                                <img src="imagens/avatar.png">
+                                            </a>
+                                                    <div class="media-body">
+                                                        <span class="media-meta pull-right">Janeiro 13, 2016</span>
+                                                        <h4 class="title">
+                                                            Softexpert Software S.A.
+                                                            <span class="pull-right pago">(Pago)</span>
+                                                        </h4>
+                                                        <p class="summary">04.967.666/0001-74</p>
+                                                    </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="check">
+                                            <input type="checkbox" id="checkbox2">
+                                            <label for="checkbox2"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="star">
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="#" class="pull-left">
+                                                <img src="imagens/avatar.png">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="media-meta pull-right">Janeiro 13, 2016</span>
+                                                <h4 class="title">
+                                                    Softexpert Software S.A.
+                                                    <span class="pull-right pago">(Pago)</span>
+                                                </h4>
+                                                <p class="summary">04.967.666/0001-74</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="check">
+                                            <input type="checkbox" id="checkbox3">
+                                            <label for="checkbox3"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="star">
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div>
+                                                    <a href="#" class="pull-left">
+                                                        <img src="imagens/avatar.png">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <span class="media-meta pull-right">Janeiro 13, 2016</span>
+                                                        <h4 class="title">
+                                                            Softexpert Software S.A.
+                                                            <span class="pull-right pago">(Pago)</span>
+                                                        </h4>
+                                                        <p class="summary">04.967.666/0001-74</p>
+                                                    </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="check">
+                                            <input type="checkbox" id="checkbox4">
+                                                <label for="checkbox4"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="star">
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div>
+                                                    <a href="#" class="pull-left">
+                                                        <img src="imagens/avatar.png">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <span class="media-meta pull-right">Janeiro 13, 2016</span>
+                                                        <h4 class="title">
+                                                            Softexpert Software S.A.
+                                                            <span class="pull-right pago">(Pago)</span>
+                                                        </h4>
+                                                        <p class="summary">04.967.666/0001-74</p>
+                                                    </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="check">
+                                            <input type="checkbox" id="checkbox5">
+                                            <label for="checkbox5"></label>
+                                        </div>
+                                    </td>
+                                   <td>
+                                        <a href="javascript:;" class="star">
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        </a>
+                                   </td>
+                                    <td>
+                                        <div>
+                                                    <a href="#" class="pull-left">
+                                                        <img src="imagens/avatar.png">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <span class="media-meta pull-right">Janeiro 13, 2016</span>
+                                                        <h4 class="title">
+                                                            Softexpert Software S.A.
+                                                            <span class="pull-right pago">(Pago)</span>
+                                                        </h4>
+                                                        <p class="summary">04.967.666/0001-74</p>
+                                                    </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="check">
+                                            <input type="checkbox" id="checkbox6">
+                                            <label for="checkbox6"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="star">
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="#" class="pull-left">
+                                                <img src="imagens/avatar.png">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="media-meta pull-right">Janeiro 13, 2016</span>
+                                                <h4 class="title">
+                                                    Softexpert Software S.A.
+                                                    <span class="pull-right pago">(Pago)</span>
+                                                </h4>
+                                                    <p class="summary">04.967.666/0001-74</p>
+                                            </div>
+                                        </div>  
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+            <!--Tabela-->
+
+        </section>
+
+        <div class="content-footer container-fluid">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"><p class="text-left"><em>Aline Carvalho Corrêa</em></p></div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+
+    <!--Imports-->
+        <script src="js/jquery.js"></script>
+        <script src="js/cep.js"></script>
+        <script src="js/filtro.js"></script>
+        <script src="js/inputmask-plugin.js"></script>
+        <script src="js/filtro.js"></script>
+        <script src="js/testebotaofavorito.js"></script>
+        <script src="js/testebotaofavorito1.js"></script>
+        <script src="js/testecheck.js"></script>
+        <script src="js/testecheck1.js"></script>
+        <script src="js/testecheck2.js"></script>
+        <script src="js/testecheck3.js"></script>
+        <script src="js/testecheck4.js"></script>
+        <script src="js/testecheck5.js"></script>
+        <script src="js/testeCheckbox.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                    testCheckbox();
+                });
+        </script>
+    <!---------->
+    </body>
+</html>
