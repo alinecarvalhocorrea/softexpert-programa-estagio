@@ -63,7 +63,7 @@ button i {
 hr.style12 {
   height: 6px;
   background: url(http://ibrahimjabbari.com/english/images/hr-12.png) repeat-x 0 0;
-    border: 0;
+  border: 0;
 }
 
 
@@ -115,7 +115,7 @@ hr.style12 {
   -ms-user-select: none;
   user-select: none;
 }
-.ckbox label:before {
+.ckbox label:before {  
   content: '';
   top: 1px;
   left: 0;

@@ -7,4 +7,4 @@ var meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agos
 var mes = meses[mes];
 document.write(mes+" "+dia+", "+ano);
 }
-window.onload = buscarData()
+window.onload = buscarData();

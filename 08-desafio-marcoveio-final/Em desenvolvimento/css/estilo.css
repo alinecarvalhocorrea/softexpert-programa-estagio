@@ -1,193 +1,114 @@
+
 @font-face {
-font-family: 'Bangers';
-src: url('../fonts/Bangers/Bangers-Regular.ttf');
+	font-family: 'Bangers';
+	src: url('../fonts/Bangers/Bangers-Regular.ttf');
 }
 @font-face {
-font-family: 'Merriweather';
-src: url('../fonts/Merriweather/Merriweather-BlackItalic.ttf');
+	font-family: 'Merriweather';
+	src: url('../fonts/Merriweather/Merriweather-BlackItalic.ttf');
 }
 @font-face {
-font-family: 'Teko';
-src: url('../fonts/Teko/Teko-Light.ttf');
+	font-family: 'Teko';
+	src: url('../fonts/Teko/Teko-Light.ttf');
 }
 .resultacep{
-    height: 100px;
+	height: 100px;
 }
-.link{
-    font-family: 'Merriweather';
-    color:#FCC408;
+.teste{
+	font-family: 'Merriweather';
+	color:#FCC408;
 }
 h1,h3{
-    text-align: center;
+	text-align: center;
 }
 .entrada{
-    background: linear-gradient(to right, #88253f,#3b6085);
-    width:inherit;
-    color:#FFFFFF;
-    padding-top:50px;
+	background: linear-gradient(to right, #88253f,#3b6085);
+	width:inherit;
+	color:#FFFFFF;
 }
-body{
-  padding-bottom:20px;
+#cabecalho{
+	margin-top:80px; 
 }
 .formulario{
-    margin-top: 50px;
-    font-family: Teko;
-    font-size:20px;
+	margin-top: 50px;
+	font-family: Teko;
+	font-size:20px;
 }
 .formulario input{
-    font-size:20px;
+	font-size:19px;
 }
 .formulario textarea{
-    font-size:20px;
+	font-size:19px;
 }
-.bordaform{
-    border-left:solid 1px #FFFFFF;
+.borda-formulario{
+	border-right:solid 1px #FFFFFF;
 }
-.classesalvar{
-    color:#FFFFFF;
-    border:solid 1px #FFFFFF;
-    border-radius:3px;
-    padding:5px 40px;
-    text-align:center;
+.botao-salvar{
+	color:#FFFFFF;
+	border:solid 1px #FFFFFF;
+	border-radius:3px;
+	padding:5px 40px;
+	text-align:center;
 }
-.classesalvar:hover{
-    color:#FFFFFF;
-    text-decoration: none;
-    border:solid 1px #FFFFFF;
-    border-radius:3px;
-    padding:5px 40px;
-    text-align:center;
+.botao-salvar:hover{
+	color:#FFFFFF;
+	text-decoration: none;
+	border:solid 1px #FFFFFF;
+	border-radius:3px;
+	padding:5px 40px;
+	text-align:center;
 }
-.classesalvar:visited{
-    color:#FFFFFF;
-    border:solid 1px #FFFFFF;
-    border-radius:3px;
-    padding:5px 40px;
-    text-align:center;
+.botao-salvar:visited{
+	color:#FFFFFF;
+	border:solid 1px #FFFFFF;
+	border-radius:3px;
+	padding:5px 40px;
+	text-align:center;
 }
-.fundo{background-color: #efeded;}
-.idpago{color:#449D44;}
-.idpendente{color:#EC971F;}
-.idcancelado{color:#C9302C;}
-.iddata{color:#a5a5a5;font-size: 10px;}
-.centro{text-align: center;}
-.paypal{
-  margin: auto;
+.espaco-tabela{ padding: 40px 40px; border: solid 1px #d3cfcf;border-radius:3px; margin:auto;}
+table{
+	background-color: #fff;
+	border-bottom: 1px solid #eee;
 }
-.paypal1{
-  margin: auto;
+table tbody tr:hover{
+	cursor: pointer;
+	background-color: #eee;
 }
-.paypal2{
-  margin: auto;
+table tbody tr td dl dt{
+	color:19c0ea;
 }
-.paypal3{
-  margin: auto;
+table tbody tr td.status-pago{color:#449D44;font-size: 14px;}
+table tbody tr td.status-pendente{color:#EC971F;font-size: 14px;}
+table tbody tr td.status-cancelado{color:#C9302C;font-size: 14px;}
+table tbody tr td span.data{color: #a5a5a5; font-size: 10px; font-weight: bolder;}
+table .estrela {
+	color: #ccc;
+	text-align: center;
+	display: block;
 }
-.paypal4{
-  margin: auto;
+table .estrela.estrela-checked {
+	color: #F0AD4E;
 }
-.paypal5{
-  margin: auto;
+table .estrela:hover {
+	color: #ccc;
 }
-.favoritando{
-   color:#9e9c9c;
-    text-align: center;
+table .estrela.estrela-checked:hover {
+	color: #F0AD4E;
 }
-.favorita{
-   color:#f9ca2f;
-    text-align: center;
-}
-.nfavorito4{
-   color:#9e9c9c;
-    text-align: center;
-}
-.favorito4{
-   color:#f9ca2f;
-    text-align: center;
-}
-.nfavorito3{
-   color:#9e9c9c;
-    text-align: center;
-}
-.favorito3{
-   color:#f9ca2f;
-    text-align: center;
-}
-.nfavorito2{
-   color:#9e9c9c;
-    text-align: center;
-}
-.favorito2{
-   color:#f9ca2f;
-    text-align: center;
-}
-.nfavorito1{
-   color:#9e9c9c;
-    text-align: center;
-}
-.favorito1{
-   color:#f9ca2f;
-    text-align: center;
-}
-.nfavorito{
-   color:#9e9c9c;
-    text-align: center;
-}
-.favorito{
-   color:#f9ca2f;
-    text-align: center;
-}
-.nomeempresa{text-align: left;}
-.businessName{
-  font-size: 15px;
-  font-weight: bolder;
-  color: #2BBCDE;
-  text-align: left;
-}
-.businessNumber{
-  font-size: 14px;
-}
-
-/*  --------------------------------------------------
-  :: Yuri CSS
-  -------------------------------------------------- */
-
-hr.style12 {
-  height: 3px;
-  background: url(https://thumb7.shutterstock.com/display_pic_with_logo/1096643/214418965/stock-photo-pencil-icon-flat-abstract-background-with-web-icons-interface-symbols-cloud-computing-mobile-214418965.jpg) repeat-x 0 0;
-  border: 0;
-}
-.table-style {
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
-}
-.table-style tbody tr:hover {
-  cursor: pointer;
-  background-color: #eee;
-}
-.table-style tbody tr td {
-  padding: 10px;
-  vertical-align: middle;
-  border-top-color: #eee;
-}
-.table-style tbody tr.selected td {
-  background-color: #eee;
-}
-.table-style tr td:first-child {
-  width: 38px;
-}
-.table-style tr td:nth-child(2) {
-  width: 35px;
-}
-
-.check{
+.ckbox {
   position: relative;
 }
-
-.check input[type="checkbox"]{
-  opacity: 0;
+.ckbox input[type="checkbox"] {
+	display:none;
+  	/*opacity: 0;*/
 }
-.check label:before { /*  Quando caixa de checkbox não esta selecionada  */
+.ckbox label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.ckbox label:before {  
   content: '';
   top: 1px;
   left: 0;
@@ -199,11 +120,11 @@ hr.style12 {
   border: 1px solid #bbb;
   background-color: #fff;
 }
-.check input[type="checkbox"]:checked + label:before {
+.ckbox input[type="checkbox"]:checked + label:before {
   border-color: #2BBCDE;
-  background-color: #FF03EF;
+  background-color: #2BBCDE;
 }
-.check input[type="checkbox"]:checked + label:after {
+.ckbox input[type="checkbox"]:checked + label:after {
   top: 3px;
   left: 3.5px;
   content: '\e013';
@@ -212,3 +133,7 @@ hr.style12 {
   font-family: 'Glyphicons Halflings';
   position: absolute;
 }
+.centro{text-align: center;}
+.text-left{text-align: left;}
+.avatarempresa{width: inherit;}
+input.checkteste{display: none;}
