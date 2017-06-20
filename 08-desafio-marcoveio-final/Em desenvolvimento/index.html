@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="css/estilo.css"> 
 </head>
 <body>
-
 	<section>
 		<div class="container entrada">
 			<div class="row" id="cabecalho">
@@ -30,23 +29,22 @@
 						</div>
 						<div class="form-group">
 							<label for="telefone">Telefone:</label>
-							<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Informe (ddd) + número" data-mask="(999)9999-9999" required >
+							<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Informe (ddd) + número" data-mask="(99)9999-9999" required >
 						</div>
 						<label for="situacao">Situação:</label>
 						<div class="btn-group">
 							<button type="button" class="btn btn-primary" id="pago" value="pago">Pago</button>
 							<button type="button" class="btn btn-primary" id="pendente" value="pendente">Pendente</button>
-							<button type="button" class="btn btn-primary" id="cancelado" id="cancelado">Cancelado</button>
+							<button type="button" class="btn btn-primary" id="cancelado" value="cancelado">Cancelado</button>
 						</div>
 					</fieldset>
-
 					<fieldset class = "col-md-3">
 						<div class="form-group">
 							<label for="site">Site:</label>
 							<input type="text" class="form-control" id="site" name="site" placeholder="Informe o site da empresa">
 						</div>
 						<div class="form-group">
-							<label for="resultadoCep">Descrição da empresa:</label>
+							<label for="descEmpresa">Descrição da empresa:</label>
 							<textarea class="form-control" rows="4" id="descEmpresa" placeholder="Informe a descrição da sua empresa"></textarea>    
 						</div>
 						<button type="submit" class="btn btn-link pull-right botao-salvar">
@@ -56,7 +54,6 @@
 					</fieldset>
 					<div class="col-md-3"></div>
 				</div>
-
 				<div class="row">
 					<div class="col-md-3"></div>
 					<fieldset class = "col-md-6">
@@ -78,14 +75,13 @@
 							</div>
 						</fieldset>
 					</fieldset>
-
 					<div class="col-md-3"></div>
 				</div>
 				<input type="hidden" id="dataEnvio">
 			</form>
 		</div>
 	</section>
-
+	<hr class="linha">
 	<section>
 		<div class="container">
 			<div class="row">
@@ -101,7 +97,7 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-12">
-									<div class="btn-group pull-right" >  
+									<div class="btn-group pull-right" > 
 										<button type="button" class="btn btn-success botao-filtro" data-etiqueta="pago">Pago</button>
 										<button type="button" class="btn btn-warning botao-filtro" data-etiqueta="pendente">Pendente</button>
 										<button type="button" class="btn btn-danger botao-filtro"  data-etiqueta="cancelado">Cancelado</button>
@@ -121,21 +117,23 @@
 													<td class="centro">   
 														<div class="ckbox">
 															<input type="checkbox" id="checkbox1">
-															<label for="checkbox1"></label>
+															<label for="checkbox1" title="Selecionar"></label>
 														</div>
 													</td>
 													<td>
-														<a href="javascript:;" class="estrela">
-															<i class="glyphicon glyphicon-star"></i>
-														</a>
+														<div class="favoritar">
+															<a href="javascript:;" class="estrela" title="Favoritar">
+																<i class="glyphicon glyphicon-star"></i>
+															</a>
+														</div>
 													</td>
 													<td class="centro">
-														<img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+														<img src="imagens/avatar.png" alt="img empresa" title="Softexpert Software S.A" class="img-rounded">
 													</td>
 													<td>
 														<dl>
-															<dt>Softexpert Software S.A</dt>
-															<dd>04.967.666/0001-74</dd>
+															<dt title="Visitar site da empresa"><a href="https://www.softexpert.com.br/" target="_blank">Softexpert Software S.A</a></dt>
+															<dd title="CNPJ">04.967.666/0001-74</dd>
 														</dl>
 													</td>
 													<td id="pagos" class="status-pago">
@@ -152,21 +150,23 @@
 													<td class="centro">   
 														<div class="ckbox">
 															<input type="checkbox" id="checkbox2">
-															<label for="checkbox2"></label>
+															<label for="checkbox2" title="Selecionar"></label>
 														</div>
 													</td>
 													<td>
-														<a href="javascript:;" class="estrela">
-															<i class="glyphicon glyphicon-star"></i>
-														</a>
+														<div class="favoritar">
+															<a href="javascript:;" class="estrela" title="Favoritar">
+																<i class="glyphicon glyphicon-star"></i>
+															</a>
+														</div>
 													</td>
 													<td class="centro">
-														<img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+														<img src="imagens/avatar.png" alt="img empresa" title="Softexpert Software S.A" class="img-rounded">
 													</td>
 													<td>
 														<dl>
-															<dt>Softexpert Software S.A</dt>
-															<dd>04.967.666/0001-74</dd>
+															<dt title="Visitar site da empresa"><a href="https://www.softexpert.com.br/" target="_blank">Softexpert Software S.A</a></dt>
+															<dd title="CNPJ">04.967.666/0001-74</dd>
 														</dl>
 													</td>
 													<td class="status-cancelado">
@@ -183,21 +183,23 @@
 													<td class="centro">   
 														<div class="ckbox">
 															<input type="checkbox" id="checkbox3" checked>
-															<label for="checkbox3"></label>
+															<label for="checkbox3" title="Selecionar"></label>
 														</div>
 													</td>
 													<td>
-														<a href="javascript:;" class="estrela">
-															<i class="glyphicon glyphicon-star"></i>
-														</a>
+														<div class="favoritar">
+															<a href="javascript:;" class="estrela" title="Favoritar">
+																<i class="glyphicon glyphicon-star"></i>
+															</a>
+														</div>
 													</td>
 													<td class="centro">
-														<img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+														<img src="imagens/avatar.png" alt="img empresa" title="Softexpert Software S.A" class="img-rounded">
 													</td>
 													<td>
 														<dl>
-															<dt>Softexpert Software S.A</dt>
-															<dd>04.967.666/0001-74</dd>
+															<dt title="Visitar site da empresa"><a href="https://www.softexpert.com.br/" target="_blank">Softexpert Software S.A</a></dt>
+															<dd title="CNPJ">04.967.666/0001-74</dd>
 														</dl>
 													</td>
 													<td class="status-pago">
@@ -214,21 +216,23 @@
 													<td class="centro">   
 														<div class="ckbox">
 															<input type="checkbox" id="checkbox4">
-															<label for="checkbox4"></label>
+															<label for="checkbox4" title="Selecionar"></label>
 														</div>
 													</td>
 													<td>
-														<a href="javascript:;" class="estrela">
-															<i class="glyphicon glyphicon-star"></i>
-														</a>
+														<div class="favoritar">
+															<a href="javascript:;" class="estrela" title="Favoritar">
+																<i class="glyphicon glyphicon-star"></i>
+															</a>
+														</div>
 													</td>
 													<td class="centro">
-														<img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+														<img src="imagens/avatar.png" alt="img empresa" title="Softexpert Software S.A" class="img-rounded">
 													</td>
 													<td>
 														<dl>
-															<dt>Softexpert Software S.A</dt>
-															<dd>04.967.666/0001-74</dd>
+															<dt title="Visitar site da empresa"><a href="https://www.softexpert.com.br/" target="_blank">Softexpert Software S.A</a></dt>
+															<dd title="CNPJ">04.967.666/0001-74</dd>
 														</dl>
 													</td>
 													<td class="status-pendente">
@@ -245,21 +249,23 @@
 													<td class="centro">   
 														<div class="ckbox">
 															<input type="checkbox" id="checkbox5">
-															<label for="checkbox5"></label>
+															<label for="checkbox5" title="Selecionar"></label>
 														</div>
 													</td>
 													<td>
-														<a href="javascript:;" class="estrela">
-															<i class="glyphicon glyphicon-star"></i>
-														</a>
+														<div class="favoritar">
+															<a href="javascript:;" class="estrela" title="Favoritar">
+																<i class="glyphicon glyphicon-star"></i>
+															</a>
+														</div>
 													</td>
 													<td class="centro">
-														<img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+														<img src="imagens/avatar.png" alt="img empresa" title="Softexpert Software S.A" class="img-rounded">
 													</td>
 													<td>
 														<dl>
-															<dt>Softexpert Software S.A</dt>
-															<dd>04.967.666/0001-74</dd>
+															<dt title="Visitar site da empresa"><a href="https://www.softexpert.com.br/" target="_blank">Softexpert Software S.A</a></dt>
+															<dd title="CNPJ">04.967.666/0001-74</dd>
 														</dl>
 													</td>
 													<td class="status-cancelado">
@@ -276,21 +282,23 @@
 													<td class="centro">   
 														<div class="ckbox">
 															<input type="checkbox" id="checkbox6">
-															<label for="checkbox6"></label>
+															<label for="checkbox6" title="Selecionar"></label>
 														</div>
 													</td>
 													<td>
-														<a href="javascript:;" class="estrela">
-															<i class="glyphicon glyphicon-star"></i>
-														</a>
+														<div class="favoritar">
+															<a href="javascript:;" class="estrela" title="Favoritar">
+																<i class="glyphicon glyphicon-star"></i>
+															</a>
+														</div>
 													</td>
 													<td class="centro">
-														<img src="imagens/avatar.png" alt="img empresa" class="img-rounded">
+														<img src="imagens/avatar.png" alt="img empresa" title="Softexpert Software S.A" class="img-rounded">
 													</td>
 													<td>
 														<dl>
-															<dt>Softexpert Software S.A</dt>
-															<dd>04.967.666/0001-74</dd>
+															<dt title="Visitar site da empresa"><a href="https://www.softexpert.com.br/" target="_blank">Softexpert Software S.A</a></dt>
+															<dd title="CNPJ">04.967.666/0001-74</dd>
 														</dl>
 													</td>
 													<td class="status-pendente">
@@ -320,25 +328,22 @@
 
 	<section>
 		<div class="content-footer">
-			<p class="centro">
-				<span>
-					<em>Aline Carvalho Corrêa</em>
-				</span>
+			<p>
+				<small><em>Aline Carvalho Corrêa</em></small>
 			</p>
 		</div>
 	</section>
 
-    <script src="js/jquery.js"></script>
-    <script src="js/favorito.js"></script>
-    <script src="js/cep.js"></script>
-    <script src="js/filtro.js"></script>
-    <script src="js/inputmask-plugin.js"></script>
-    <script type="text/javascript">
-    	$(document).ready(function () {
-    		favoritar();
-    		filtrar();
-    	});
-    </script>
-
+	<script src="js/jquery.js"></script>
+	<script src="js/favorito.js"></script>
+	<script src="js/cep.js"></script>
+	<script src="js/filtro.js"></script>
+	<script src="js/inputmask-plugin.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			favoritar();
+			filtrar();
+		});
+	</script>
 </body>
 </html>

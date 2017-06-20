@@ -21,6 +21,9 @@
 h1,h3{
 	text-align: center;
 }
+div.content-footer{
+	text-align: center;
+}
 .entrada{
 	background: linear-gradient(to right, #88253f,#3b6085);
 	width:inherit;
@@ -65,7 +68,11 @@ h1,h3{
 	padding:5px 40px;
 	text-align:center;
 }
-.espaco-tabela{ padding: 40px 40px; border: solid 1px #d3cfcf;border-radius:3px; margin:auto;}
+.espaco-tabela{ 
+	padding: 40px 40px; 
+	border: solid 1px #d3cfcf;
+	border-radius:3px; 
+	margin:auto;}
 table{
 	background-color: #fff;
 	border-bottom: 1px solid #eee;
@@ -74,13 +81,26 @@ table tbody tr:hover{
 	cursor: pointer;
 	background-color: #eee;
 }
-table tbody tr td dl dt{
+table tbody tr td dl dt a{
 	color:19c0ea;
+	display: inline;
 }
-table tbody tr td.status-pago{color:#449D44;font-size: 14px;}
-table tbody tr td.status-pendente{color:#EC971F;font-size: 14px;}
-table tbody tr td.status-cancelado{color:#C9302C;font-size: 14px;}
-table tbody tr td span.data{color: #a5a5a5; font-size: 10px; font-weight: bolder;}
+table tbody tr td dl dd{
+	display: inline;
+}
+table tbody tr td dl dt a:hover{
+	color:19c0ea;
+	border-bottom: 1.5px dotted;
+}
+table tbody tr td dl dt a:visited{
+	color:19c0ea;
+	text-decoration: none;
+}
+table tbody tr td.status-pago{color:#449D44;	font-size: 14px;}
+table tbody tr td.status-pendente{color:#EC971F;	font-size: 14px;}
+table tbody tr td.status-cancelado{color:#C9302C;	font-size: 14px;}
+table tbody tr td span.data{color: #a5a5a5;		font-size: 10px;	font-weight: bolder;}
+table tbody tr td img.img-rounded{	 margin: auto;	display: inline; box-shadow: 5px 5px 25px #888888;}
 table .estrela {
 	color: #ccc;
 	text-align: center;
@@ -94,6 +114,10 @@ table .estrela:hover {
 }
 table .estrela.estrela-checked:hover {
 	color: #F0AD4E;
+}
+div.favoritar{
+	width: inherit;
+	margin-left: 10px;
 }
 .ckbox {
   position: relative;
@@ -133,7 +157,13 @@ table .estrela.estrela-checked:hover {
   font-family: 'Glyphicons Halflings';
   position: absolute;
 }
+}
 .centro{text-align: center;}
 .text-left{text-align: left;}
 .avatarempresa{width: inherit;}
 input.checkteste{display: none;}
+hr.linha {
+  height: 6px;
+  background: url(http://ibrahimjabbari.com/english/images/hr-12.png) repeat-x 0 0;
+  border: 0;
+}
