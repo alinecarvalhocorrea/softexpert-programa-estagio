@@ -1,29 +1,7 @@
+/*  --------------------------------------------------
+  :: Index
+  -------------------------------------------------- */
 
-@font-face {
-	font-family: 'Bangers';
-	src: url('../fonts/Bangers/Bangers-Regular.ttf');
-}
-@font-face {
-	font-family: 'Merriweather';
-	src: url('../fonts/Merriweather/Merriweather-BlackItalic.ttf');
-}
-@font-face {
-	font-family: 'Teko';
-	src: url('../fonts/Teko/Teko-Light.ttf');
-}
-.resultacep{
-	height: 100px;
-}
-.teste{
-	font-family: 'Merriweather';
-	color:#FCC408;
-}
-h1,h3{
-	text-align: center;
-}
-.content-footer{
-	text-align: center;
-}
 .entrada{
 	background: linear-gradient(to right, #88253f,#3b6085);
 	width:inherit;
@@ -32,96 +10,35 @@ h1,h3{
 #cabecalho{
 	margin-top:80px; 
 }
-.formulario{
-	margin-top: 50px;
-	font-family: Teko;
-	font-size:20px;
-}
-.formulario input{
-	font-size:19px;
-}
-.formulario textarea{
-	font-size:19px;
-}
-.borda-formulario{
-	border-right:solid 1px #FFFFFF;
-}
-.botao-salvar{
-	color:#FFFFFF;
-	border:solid 1px #FFFFFF;
-	border-radius:3px;
-	padding:5px 40px;
-	text-align:center;
-}
-.botao-salvar:hover{
-	color:#FFFFFF;
-	text-decoration: none;
-	border:solid 1px #FFFFFF;
-	border-radius:3px;
-	padding:5px 40px;
-	text-align:center;
-}
-.botao-salvar:visited{
-	color:#FFFFFF;
-	border:solid 1px #FFFFFF;
-	border-radius:3px;
-	padding:5px 40px;
-	text-align:center;
-}
-.espaco-tabela{ 
+
+/*  --------------------------------------------------
+  :: Table
+  -------------------------------------------------- */
+
+ .espaco-tabela{ 
 	padding: 40px 40px; 
 	border: solid 1px #d3cfcf;
 	border-radius:3px; 
-	margin:auto;}
+	margin:auto;
+}
+.botao-filtro{
+	transition: all .1s linear;
+
+}
+.botao-filtro:active {
+ 	transform: translateY(2px);
+ 	transform: rotateZ(40deg);
+}
 table{
 	background-color: #fff;
 	border-bottom: 1px solid #eee;
 }
-
 table tbody tr:hover{
 	cursor: pointer;
-	background-color: #eee;
-}
-table tbody tr td p a{
-	color:19c0ea;
-	display: inline;
-}
-table tbody tr td p{
-	display: inline;
-}
-table tbody tr td p a:hover{
-	color:19c0ea;
-	border-bottom: 1.5px dotted;
-}
-table tbody tr td p a:visited{
-	color:19c0ea;
-	text-decoration: none;
-}
-table tbody tr td.status-pago{color:#449D44;	font-size: 14px;}
-table tbody tr td.status-pendente{color:#EC971F;	font-size: 14px;}
-table tbody tr td.status-cancelado{color:#C9302C;	font-size: 14px;}
-table tbody tr td span.data{color: #a5a5a5;		font-size: 10px;	font-weight: bolder;}
-.nomeEmpresa{color: ##2BBCDE;		font-size: 16px;	font-weight: bolder;}
-.cnpjEmpresa{color: black;		font-size: 14px;}
-table tbody tr td span.data{color: #a5a5a5;		font-size: 10px;	font-weight: bolder;}
-table tbody tr td img.img-rounded{	 margin: auto;	display: inline; box-shadow: 5px 5px 25px #888888;}
-table .estrela {
-	color: #ccc;
-	text-align: center;
-	display: block;
-}
-table .estrela.estrela-checked {
-	color: #F0AD4E;
-}
-table .estrela:hover {
-	color: #ccc;
-}
-table .estrela.estrela-checked:hover {
-	color: #F0AD4E;
-}
-.favoritar{
-	width: inherit;
-	margin-left: 10px;
+	background-color:#eee;
+	-webkit-box-shadow: 0px 10px 99px -6px rgba(0,0,0,0.54);
+	-moz-box-shadow: 0px 10px 9px -6px rgba(0,0,0,0.54);
+	box-shadow: 0px 10px 99px -6px rgba(0,0,0,0.54);
 }
 .ckbox {
   position: relative;
@@ -161,13 +78,160 @@ table .estrela.estrela-checked:hover {
   font-family: 'Glyphicons Halflings';
   position: absolute;
 }
+table .estrela {
+	color: #ccc;
+	text-align: center;
+	display: block;
 }
-.centro{text-align: center;}
-.text-left{text-align: left;}
-.avatarempresa{width: inherit;}
-input.checkteste{display: none;}
+table .estrela.estrela-checked {
+	color: #F0AD4E;
+}
+table .estrela:hover {
+	color: #ccc;
+}
+table .estrela.estrela-checked:hover {
+	color: #F0AD4E;
+}
+.favoritar{
+	width: inherit;
+	margin-left: 10px;
+}
+table tbody tr td img.img-rounded{	 
+	margin: auto;	
+	display: inline; 
+	box-shadow: 5px 5px 25px #888888;
+}
+.avatarempresa{
+	width: inherit;
+}
+.nomeEmpresa{
+	color: ##2BBCDE;		
+	font-size: 16px;	
+	font-weight: bolder;
+}
+.cnpjEmpresa{
+	color: black;		
+	font-size: 14px;
+}
+table tbody tr td.status-pago{
+	color:#449D44;	
+	font-size: 14px;
+}
+table tbody tr td.status-pendente{
+	color:#EC971F;	
+	font-size: 14px;
+}
+table tbody tr td.status-cancelado{
+	color:#C9302C;	
+	font-size: 14px;
+}
+table tbody tr td span.data{
+	color: #a5a5a5;		
+	font-size: 10px;	
+	font-weight: bolder;
+}
+table tbody tr td p{
+	display: inline;
+}
+table tbody tr td p a{
+	color:19c0ea;
+	display: inline;
+}
+table tbody tr td p a:hover{
+	color:19c0ea;
+	border-bottom: 1.5px dotted;
+}
+table tbody tr td p a:visited{
+	color:19c0ea;
+	text-decoration: none;
+}
+
+/*  --------------------------------------------------
+  :: Form
+  -------------------------------------------------- */
+
+.resultacep{
+	height: 100px;
+}
+.teste{
+	font-family: 'Merriweather';
+	color:#FCC408;
+}
+h1,h3{
+	text-align: center;
+}
+.formulario{
+	margin-top: 50px;
+	font-family: Teko;
+	font-size:20px;
+}
+.formulario input{
+	font-size:19px;
+}
+.formulario textarea{
+	font-size:19px;
+}
+.borda-formulario{
+	border-right:solid 1px #FFFFFF;
+}
+@media only screen and (max-width:768px){
+	.borda-formulario{
+		border-right:solid 1px #3b6085;
+	}
+}
+.botao-salvar{
+	color:#FFFFFF;
+	border:solid 1px #FFFFFF;
+	border-radius:3px;
+	padding:5px 40px;
+	text-align:center;
+}
+.botao-salvar:hover{
+	color:#FFFFFF;
+	text-decoration: none;
+	border:solid 1px #FFFFFF;
+	border-radius:3px;
+	padding:5px 40px;
+	text-align:center;
+}
+.botao-salvar:visited{
+	color:#FFFFFF;
+	border:solid 1px #FFFFFF;
+	border-radius:3px;
+	padding:5px 40px;
+	text-align:center;
+}
+.centro{
+	text-align: center;
+}
+.text-left{
+	text-align: left;
+}
+input.checkteste{
+	display: none;
+}
 hr.linha {
   height: 6px;
   background: url(http://ibrahimjabbari.com/english/images/hr-12.png) repeat-x 0 0;
   border: 0;
+}
+.content-footer{
+	text-align: center;
+}
+
+/*  --------------------------------------------------
+  :: Fonts
+  -------------------------------------------------- */
+
+@font-face {
+	font-family: 'Bangers';
+	src: url('../fonts/Bangers/Bangers-Regular.ttf');
+}
+@font-face {
+	font-family: 'Merriweather';
+	src: url('../fonts/Merriweather/Merriweather-BlackItalic.ttf');
+}
+@font-face {
+	font-family: 'Teko';
+	src: url('../fonts/Teko/Teko-Light.ttf');
 }
